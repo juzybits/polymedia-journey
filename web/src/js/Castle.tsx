@@ -7,6 +7,11 @@ import imgTorch from '../img/torch.gif';
 import '../css/Castle.less';
 
 export function Castle(props: any) {
+
+    useEffect(() => {
+        document.body.className = 'bg-bricks';
+    }, []);
+
     return <div id='page'>
         <div id='door-container'>
             <img className='torch left' src={imgTorch} alt='closed door' />
