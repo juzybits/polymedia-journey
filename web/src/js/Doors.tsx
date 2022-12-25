@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 
@@ -22,7 +23,7 @@ export function Doors(props: any) {
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosedDiff} alt='closed door' /></div>
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
             <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
