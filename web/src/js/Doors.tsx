@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 
-import '../css/Castle.less';
+import '../css/Doors.less';
 
 export function Doors(props: any) {
 
@@ -12,8 +12,23 @@ export function Doors(props: any) {
     }, []);
 
     return <div id='page'>
-        <div id='door-container'>
-            <img id='door' src={imgDoorClosed} alt='closed door' />
+        <div id='door-grid'>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
         </div>
     </div>;
 }
