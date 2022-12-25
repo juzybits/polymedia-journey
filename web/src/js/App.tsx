@@ -7,7 +7,7 @@ import { NotFound } from './NotFound';
 
 export function App(props: any)
 {
-    const [stage, setStage] = useState(1);
+    const [stage, setStage] = useState(0);
 
     const nextStage = () => {
         setStage(stage+1);

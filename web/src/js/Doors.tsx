@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgDoorClosed from '../img/door_closed.webp';
@@ -12,24 +12,34 @@ export function Doors(props: any) {
         document.body.className = 'bg-bricks';
     }, []);
 
-    return <div id='page'>
-        <div id='door-grid'>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosedDiff} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
-            <div className='door-wrapper'><img src={imgDoorClosed} alt='closed door' /></div>
+    const [modal, setModal] = useState(<></>);
+
+    const modalWrong = () => {
+        alert('Wrong!');
+    }
+
+    const modalCorrect = () => {
+        alert('Correct!');
+    }
+
+    return <div id='page' className='doors'>
+        <div className='door-grid'>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosedDiff} onClick={modalCorrect} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
+            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={modalWrong} alt='closed door' /></div>
         </div>
     </div>;
 }
