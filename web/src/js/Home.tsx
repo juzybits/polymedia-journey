@@ -17,7 +17,7 @@ export function Home(props: any) {
         <p className='home-description'>
             Travelers beware: The Journey to Mount Sogol is a peculiar one, because the destination is not a physical place. That is not to say it's not <i>real</i> – many of the most important things in live are not physical either: love, justice, truth, reputation, math, language. What it means, though, is that Mount Sogol must be found in a different plain of existence, not in the mundane world. But how to reach it, then? Well...<br/><br/><i>the door to the invisible must be visible</i>.
         </p>
-        <button className='home-button'>
+        <button className='home-button' onClick={props.nextStage}>
             BEGIN
         </button>
     </div>;
