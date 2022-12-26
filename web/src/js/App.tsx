@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { Castle } from './Castle';
-import { Doors } from './Doors';
+import { KnockDoor } from './KnockDoor';
+import { FindDoor } from './FindDoor';
 import { Home } from './Home';
 
 export function App(props: any)
@@ -16,9 +16,9 @@ export function App(props: any)
     if (stage === 0) {
         view = <Home nextStage={nextStage} />;
     } else if (stage === 1) {
-        view = <Doors nextStage={nextStage} />;
+        view = <FindDoor nextStage={nextStage} />;
     } else if (stage === 2) {
-        view = <Castle nextStage={nextStage} />;
+        view = <KnockDoor nextStage={nextStage} />;
     }
     return <>{view}</>;
 }

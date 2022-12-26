@@ -4,9 +4,9 @@ import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 import imgTorch from '../img/torch.gif';
 
-import '../css/Castle.less';
+import '../css/KnockDoor.less';
 
-export function Castle(props: any) {
+export function KnockDoor(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-bricks';
