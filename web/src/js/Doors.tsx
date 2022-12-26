@@ -13,12 +13,10 @@ export function Doors(props: any) {
     }, []);
 
     const [modal, setModal]: any = useState(null);
+    const [act, setAct] = useState('intro');
 
     const Modal = (props: any) => {
-        const styles = {
-            height: window.document.body.scrollHeight + 'px',
-        };
-        return <div className='modal' style={styles}>{props.children}</div>
+        return <div className='modal'>{props.children}</div>
     };
 
     const onWrong = () => {
@@ -53,8 +51,23 @@ export function Doors(props: any) {
         </div>
     };
 
+    const Intro = (props: any) => {
+        return <Modal>
+            <h1 className='mario title'>FIND THE DOOR</h1>
+            <p className='paragraph'>The door to the invisible may be visible, but it's not easy to find.<br/>That's because the door is hiding in plain sight.</p>
+            <p className='paragraph'>Your first challenge will be to find the door that is different from the others.</p>
+            <button className='btn primary' onClick={() => setAct('game')}>Continue</button>
+        </Modal>;
+    };
+
+    let contents;
+    if (act == 'intro') {
+        contents = <Intro />;
+    } else {
+        contents = <> { modal && modal } <DoorsGrid /> </>;
+    }
     return <div id='page' className='doors'>
-        { modal && modal }
-        <DoorsGrid />
+        {contents}
     </div>;
+
 }
