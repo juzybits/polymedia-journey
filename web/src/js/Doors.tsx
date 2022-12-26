@@ -12,21 +12,28 @@ export function Doors(props: any) {
         document.body.className = 'bg-bricks';
     }, []);
 
-    const [result, setResult] = useState(null);
+    const [modal, setModal]: any = useState(null);
+
+    const Modal = (props: any) => {
+        const styles = {
+            height: window.document.body.scrollHeight + 'px',
+        };
+        return <div className='modal' style={styles}>{props.children}</div>
+    };
 
     const onWrong = () => {
-        setResult(<h1 className='mario red guess-result'>Wrong!</h1>);
+        setModal(<Modal><h1 className='mario red guess-result'>Wrong!</h1></Modal>);
         setTimeout(() => {
-            setResult(null);
-        }, 1000);
+            setModal(null);
+        }, 1250);
     }
 
     const onCorrect = () => {
-        setResult(<h1 className='mario green guess-result'>Correct!</h1>);
+        setModal(<Modal><h1 className='mario green guess-result'>Correct!</h1></Modal>);
         setTimeout(() => {
-            setResult(null);
+            setModal(null);
             props.nextStage();
-        }, 1000);
+        }, 1250);
     }
 
     const DoorsGrid = (props: any) => {
@@ -51,7 +58,7 @@ export function Doors(props: any) {
     };
 
     return <div id='page' className='doors'>
-        { result && result }
+        { modal && modal }
         <DoorsGrid />
     </div>;
 }

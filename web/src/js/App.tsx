@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Castle } from './Castle';
 import { Doors } from './Doors';
 import { Home } from './Home';
-import { NotFound } from './NotFound';
 
 export function App(props: any)
 {
