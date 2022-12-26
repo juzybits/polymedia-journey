@@ -50,10 +50,6 @@ export function Doors(props: any) {
             <div className='door-wrap'><img className='hand' src={imgDoorClosedDiff} onClick={onCorrect} alt='closed door' /></div>
             <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
             <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
         </div>
     };
 

@@ -1,12 +1,18 @@
 #page.doors {
     .door-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr)); // 4 columns
+        @media screen and (max-width: 760px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr)); // 3 columns
+        }
         text-align: center;
         padding-top: 2em;
         .door-wrap {
             img {
-                height: 250px;
+                height: 33vh; // 3 rows
+                @media screen and (max-width: 760px) {
+                    height: 25vh; // 4 rows
+                }
                 margin-bottom: -1em;
             }
         }
