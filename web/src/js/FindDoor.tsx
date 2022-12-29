@@ -15,23 +15,23 @@ export function FindDoor(props: any) {
     const [modal, setModal]: any = useState(null);
     const [act, setAct] = useState('intro');
 
-    const Modal = (props: any) => {
-        return <div className='modal'>{props.children}</div>
-    };
-
     const onWrong = () => {
-        setModal(<Modal><h1 className='mario red guess-result'>Wrong!</h1></Modal>);
-        setTimeout(() => {
+        const closeModal = () => {
             setModal(null);
-        }, 1250);
+        };
+        setModal(<div className='modal' onClick={closeModal}>
+            <h1 className='mario red guess-result'>Wrong!</h1>
+        </div>);
     }
 
     const onCorrect = () => {
-        setModal(<Modal><h1 className='mario green guess-result'>Correct!</h1></Modal>);
-        setTimeout(() => {
+        const closeModal = () => {
             setModal(null);
             props.nextStage();
-        }, 1250);
+        };
+        setModal(<div className='modal' onClick={closeModal}>
+            <h1 className='mario green guess-result'>Correct!</h1>
+        </div>);
     }
 
     const DoorsGrid = (props: any) => {
@@ -52,14 +52,14 @@ export function FindDoor(props: any) {
     };
 
     const Intro = (props: any) => {
-        return <Modal>
+        return <div className='modal'>
             <div className='intro'>
                 <h1 className='mario title'>Challenge #1</h1>
                 <p className='paragraph'>The door to the invisible may be visible, but it's not easy to find.<br/>That's because the door is hiding in plain sight.</p>
                 <p className='paragraph'>Your first challenge will be to find the door that is different from all the others.</p>
                 <button className='btn' onClick={() => setAct('game')}>Continue</button>
             </div>
-        </Modal>;
+        </div>;
     };
 
     let contents;
