@@ -53,10 +53,12 @@ export function FindDoor(props: any) {
 
     const Intro = (props: any) => {
         return <Modal>
-            <h1 className='mario title'>FIND THE DOOR</h1>
-            <p className='paragraph'>The door to the invisible may be visible, but it's not easy to find.<br/>That's because the door is hiding in plain sight.</p>
-            <p className='paragraph'>Your first challenge will be to find the door that is different from the others.</p>
-            <button className='btn primary' onClick={() => setAct('game')}>Continue</button>
+            <div className='intro'>
+                <h1 className='mario title'>Challenge #1</h1>
+                <p className='paragraph'>The door to the invisible may be visible, but it's not easy to find.<br/>That's because the door is hiding in plain sight.</p>
+                <p className='paragraph'>Your first challenge will be to find the door that is different from all the others.</p>
+                <button className='btn' onClick={() => setAct('game')}>Continue</button>
+            </div>
         </Modal>;
     };
 

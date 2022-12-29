@@ -1,24 +1,18 @@
 #page.find-door {
-    .door-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr)); // 4 columns
-        @media screen and (max-width: 760px) {
-            grid-template-columns: repeat(3, minmax(0, 1fr)); // 3 columns
-        }
-        text-align: center;
-        padding-top: 2em;
-        .door-wrap {
-            img {
-                height: 33vh; // 3 rows
-                @media screen and (max-width: 760px) {
-                    height: 25vh; // 4 rows
-                }
-                margin-bottom: -1em;
-            }
-        }
-    }
-
     .modal {
+        .intro {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+        .paragraph {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        .btn {
+            margin-top: 0.6em;
+        }
         .guess-result {
             position: absolute;
             top: 50%;
@@ -30,13 +24,22 @@
                 font-size: 4em;
             }
         }
-        .paragraph {
-            margin-top: 1em;
-            margin-bottom: 1em;
+    }
+    .door-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr)); // 4 columns
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr)); // 3 columns
         }
-        .btn.primary {
-            margin-top: 0.6em;
+        text-align: center;
+        .door-wrap {
+            img {
+                height: 31vh; // 3 rows
+                @media screen and (max-width: 900px) {
+                    height: 22vh; // 4 rows
+                }
+                margin: 0.5em 0;
+            }
         }
     }
-
 }
