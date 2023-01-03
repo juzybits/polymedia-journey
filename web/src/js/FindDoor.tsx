@@ -14,11 +14,17 @@ export function FindDoor(props: any) {
 
     const [modal, setModal]: any = useState(null);
     const [act, setAct] = useState('intro');
+    // keep track of which doors the user tried to open
+    const [doors, setDoors] = useState([false,false,false,false,false,false,false,false,false,false,false,false]);
 
-    const onWrong = () => {
+    const onWrong = (idx: number) => {
         const closeModal = () => {
             setModal(null);
         };
+        setDoors(oldDoors => {
+            oldDoors[idx] = true; // mark as tried
+            return oldDoors;
+        });
         setModal(<div className='modal' onClick={closeModal}>
             <h1 className='mario red guess-result'>Wrong!</h1>
         </div>);
@@ -34,21 +40,22 @@ export function FindDoor(props: any) {
         </div>);
     }
 
+    const Door = ({ idx, tried }: { idx: number, tried: boolean }) => {
+        const imgSrc = idx==9 ? imgDoorClosedDiff : imgDoorClosed;
+        const onClick = idx==9 ? onCorrect : () => onWrong(idx);
+        return tried
+        ? <div className='door-wrap tried'><img src={imgSrc} alt='closed door' /></div>
+        : <div className='door-wrap'><img src={imgSrc} alt='closed door' className='hand' onClick={onClick} /></div>;
+    }
+
     const DoorsGrid = (props: any) => {
-        return <div className='door-grid'>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosedDiff} onClick={onCorrect} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-            <div className='door-wrap'><img className='hand' src={imgDoorClosed} onClick={onWrong} alt='closed door' /></div>
-        </div>
+        return (
+            <div className='door-grid'>
+            { doors.map((tried, idx) => (
+                <Door key={idx} idx={idx} tried={tried} />
+            )) }
+            </div>
+        );
     };
 
     const Intro = (props: any) => {
