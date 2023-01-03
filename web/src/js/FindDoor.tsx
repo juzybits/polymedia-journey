@@ -7,6 +7,7 @@ import imgDoorOpen from '../img/door_open.webp';
 import '../css/FindDoor.less';
 
 export function FindDoor(props: any) {
+    // MAYBE: record # of attempts and elapsed time
 
     useEffect(() => {
         document.body.className = 'bg-bricks';
@@ -16,6 +17,7 @@ export function FindDoor(props: any) {
     const [act, setAct] = useState('intro');
     // keep track of which doors the user tried to open
     const [doors, setDoors] = useState([false,false,false,false,false,false,false,false,false,false,false,false]);
+    const [correctDoor, setCorrectDoor] = useState(Math.floor( Math.random() * 12 ));
 
     const onWrong = (idx: number) => {
         const closeModal = () => {
@@ -41,8 +43,8 @@ export function FindDoor(props: any) {
     }
 
     const Door = ({ idx, tried }: { idx: number, tried: boolean }) => {
-        const imgSrc = idx==9 ? imgDoorClosedDiff : imgDoorClosed;
-        const onClick = idx==9 ? onCorrect : () => onWrong(idx);
+        const imgSrc = idx==correctDoor ? imgDoorClosedDiff : imgDoorClosed;
+        const onClick = idx==correctDoor ? onCorrect : () => onWrong(idx);
         return tried
         ? <div className='door-wrap tried'><img src={imgSrc} alt='closed door' /></div>
         : <div className='door-wrap'><img src={imgSrc} alt='closed door' className='hand' onClick={onClick} /></div>;
