@@ -2,11 +2,14 @@
     display: flex;
     flex-flow: row;
     justify-content: center;
-    margin-top: 2em;
+    padding-top: 2em;
     text-align: center;
     .door-wrap {
         .door {
             width: 100%;
+            &:hover {
+                filter: brightness(1.1);
+            }
         }
     }
     .torch-wrap {

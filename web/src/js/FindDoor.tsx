@@ -15,7 +15,7 @@ export function FindDoor(props: any) {
     }, []);
 
     const [modal, setModal]: any = useState(null);
-    const [act, setAct] = useState('intro');
+    const [act, setAct] = useState('1_intro');
     // keep track of which doors the user tried to open
     const [doors, setDoors] = useState([false,false,false,false,false,false,false,false,false,false,false,false]);
     const [correctDoor, setCorrectDoor] = useState(Math.floor( Math.random() * 12 ));
@@ -61,25 +61,20 @@ export function FindDoor(props: any) {
         );
     };
 
-    const Intro = (props: any) => {
+    const ModalIntro = (props: any) => {
         return <div className='modal'>
             <div className='intro'>
                 <h1 className='mario title'>ONE</h1>
                 <p className='paragraph'>The door to the invisible may be visible... but it's not easy to find.<br/>That's because the door is hidden in plain sight.</p>
                 <p className='paragraph'>Your first challenge will be to prove your perspicacity by finding the door that is different from all the others.</p>
-                <button className='btn' onClick={() => setAct('game')}>I'm ready</button>
+                <button className='btn' onClick={() => setAct('2_game')}>I'm ready</button>
             </div>
         </div>;
     };
 
-    let contents;
-    if (act == 'intro') {
-        contents = <Intro />;
-    } else {
-        contents = <> { modal && modal } <DoorsGrid /> </>;
-    }
     return <div id='page' className='find-door'>
-        {contents}
+        { act=='1_intro' && <ModalIntro /> }
+        { modal && modal } <DoorsGrid />
     </div>;
 
 }

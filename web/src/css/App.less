@@ -55,23 +55,22 @@ body {
 }
 
 .modal {
-    background-color: rgba(0, 0, 0, 0.74);
+    background-color: rgba(0, 0, 0, 0.75);
     width: 100vw;
     height: 100vh;
     position: absolute;
     text-align: center;
     overflow: auto;
     z-index: 1;
-    .title {
-        overflow-wrap: anywhere;
-        margin-top: 0.8em;
-        font-size: 3.8em;
-    }
     .intro {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-
+    }
+    .title {
+        overflow-wrap: anywhere;
+        margin-top: 0.8em;
+        font-size: 3.8em;
     }
     .paragraph {
         margin-top: 1em;
@@ -79,16 +78,6 @@ body {
     }
     .btn {
         margin-top: 0.6em;
-    }
-    .guess-result {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 6em;
-        @media screen and (max-width: 520px) {
-            font-size: 4em;
-        }
     }
 }
 .paragraph {
