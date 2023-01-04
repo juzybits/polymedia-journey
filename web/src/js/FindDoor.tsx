@@ -8,6 +8,7 @@ import '../css/FindDoor.less';
 
 export function FindDoor(props: any) {
     // MAYBE: record # of attempts and elapsed time
+    // MAYBE: add a timer to the UI
 
     useEffect(() => {
         document.body.className = 'bg-bricks';
@@ -63,10 +64,10 @@ export function FindDoor(props: any) {
     const Intro = (props: any) => {
         return <div className='modal'>
             <div className='intro'>
-                <h1 className='mario title'>Challenge #1</h1>
-                <p className='paragraph'>The door to the invisible may be visible, but it's not easy to find.<br/>That's because the door is hiding in plain sight.</p>
-                <p className='paragraph'>Your first challenge will be to find the door that is different from all the others.</p>
-                <button className='btn' onClick={() => setAct('game')}>Continue</button>
+                <h1 className='mario title'>ONE</h1>
+                <p className='paragraph'>The door to the invisible may be visible... but it's not easy to find.<br/>That's because the door is hidden in plain sight.</p>
+                <p className='paragraph'>Your first challenge will be to prove your perspicacity by finding the door that is different from all the others.</p>
+                <button className='btn' onClick={() => setAct('game')}>I'm ready</button>
             </div>
         </div>;
     };
