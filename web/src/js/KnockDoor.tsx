@@ -14,6 +14,37 @@ export function KnockDoor(props: any) {
 
     const imgSrc = imgDoorClosed; // imgDoorOpen
     const [act, setAct] = useState('1_intro');
+    const [msgIdx, setMsgIdx] = useState(0);
+    const messages = [
+        '',
+        "Sorry, no visitors allowed.",
+        "No visitors, bye!",
+        "I said no visitors!!",
+        "You again?",
+        "Go away.",
+        "You're starting to annoy me...",
+        "Get. Lost.",
+        "You are wasting your time.",
+        "I'm trying to work here!",
+        "...",
+        "Stop!!!",
+        "I'm never going to open this door.",
+        "Has anyone ever told you how annoying you are?",
+        "You are NOT coming in. Accept it.",
+        "Go away! You don't belong here.",
+        "Look kid, you just don't have what it takes.",
+        "Go home!",
+        "Let me be perfectly clear: you are simply unfit to come in. Unworthy.",
+        "I am never opening this door for you.",
+        "Ever.",
+        "Ever!",
+        "EVER!",
+        "EVER!! 😠",
+        "EVER!!! 😡",
+        "EVER!!!! 🌋",
+        "GRRR. OKAY, OKAY! I'LL OPEN THE DOOR! You really are tenacious...",
+        ''
+    ];
 
     const ModalIntro = (props: any) => {
         return <div className='modal'>
@@ -27,7 +58,7 @@ export function KnockDoor(props: any) {
     };
 
     const onClickDoor = () => {
-        console.log("Knocking"); // TODO Remove
+        setMsgIdx(oldIdx => oldIdx+1);
     };
 
     return <div id='page'>
@@ -43,6 +74,6 @@ export function KnockDoor(props: any) {
                 <img className='torch right' src={imgTorch} alt='torch' />
             </div>
         </div>
-        <div class='speech-bubble'>Type any text here and the bubble will grow to fit the text no matter how many lines. Type any text here and the bubble will grow to fit the text no matter how many lines. Type any text here and the bubble will grow to fit the text no matter how many lines. Isn't that nifty?</div>
+        { messages[msgIdx] && <div className='speech-bubble'>{messages[msgIdx]}</div> }
     </div>;
 }
