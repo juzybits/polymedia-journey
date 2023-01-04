@@ -1,20 +1,22 @@
-#door-container {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    padding-top: 2em;
-    text-align: center;
-    .door-wrap {
-        .door {
-            width: 100%;
-            &:hover {
-                filter: brightness(1.1);
+#page.knock-door {
+    #door-container {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        padding-top: 2em;
+        text-align: center;
+        .door-wrap {
+            .door {
+                width: 100%;
+                &:hover {
+                    filter: brightness(1.1);
+                }
             }
         }
-    }
-    .torch-wrap {
-        .torch {
-            width: 100%;
+        .torch-wrap {
+            .torch {
+                width: 100%;
+            }
         }
     }
 }

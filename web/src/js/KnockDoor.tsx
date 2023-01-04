@@ -12,17 +12,16 @@ export function KnockDoor(props: any) {
         document.body.className = 'bg-bricks';
     }, []);
 
-    const imgSrc = imgDoorClosed; // imgDoorOpen
     const [act, setAct] = useState('1_intro');
     const [msgIdx, setMsgIdx] = useState(0);
     const messages = [
         '',
         "Sorry, no visitors allowed.",
         "No visitors, bye!",
-        "I said no visitors!!",
-        "You again?",
+        "I said no visitors!",
+        "Still here?",
         "Go away.",
-        "You're starting to annoy me...",
+        "You're quite annoying...",
         "Get. Lost.",
         "You are wasting your time.",
         "I'm trying to work here!",
@@ -42,33 +41,45 @@ export function KnockDoor(props: any) {
         "EVER!! 😠",
         "EVER!!! 😡",
         "EVER!!!! 🌋",
-        "GRRR. OKAY, OKAY! I'LL OPEN THE DOOR! You really are tenacious...",
-        ''
+        "GRRR. OK, OK, I'LL OPEN THE DOOR! You're really tenacious... Come in!",
+        '',
     ];
+
+    useEffect(() => {
+        if (msgIdx == messages.length-1) {
+            setAct('3_open_door');
+        }
+    }, [msgIdx]);
 
     const ModalIntro = (props: any) => {
         return <div className='modal'>
             <div className='intro'>
                 <h1 className='mario title'>TWO</h1>
-                <p className='paragraph'>You found the door to the invisible... but it is closed.</p>
-                <p className='paragraph'>Can you find a way to open the door?</p>
+                <p className='paragraph'>You found the door to the invisible... but it's closed.</p>
+                <p className='paragraph'>Do you have what it takes to open the door?</p>
+                <p className='paragraph'>Demonstrate your tenacity.</p>
                 <button className='btn' onClick={() => setAct('2_game')}>I'm ready</button>
             </div>
         </div>;
     };
 
-    const onClickDoor = () => {
+    const onClickNextPhase = () => {
+        props.nextStage();
+    };
+
+    const onClickShowMessage = () => {
         setMsgIdx(oldIdx => oldIdx+1);
     };
 
-    return <div id='page'>
+    let imgSrc = act == '3_open_door' ? imgDoorOpen : imgDoorClosed; // imgDoorOpen
+    return <div id='page' className='knock-door'>
         { act=='1_intro' && <ModalIntro /> }
         <div id='door-container'>
             <div className='torch-wrap'>
                 <img className='torch left' src={imgTorch} alt='torch' />
             </div>
             <div className='door-wrap'>
-                <img className='door hand' src={imgSrc} alt='door' onClick={onClickDoor} />
+                <img className='door hand' src={imgSrc} alt='door' onClick={act=='3_open_door' ? onClickNextPhase : onClickShowMessage} />
             </div>
             <div className='torch-wrap'>
                 <img className='torch right' src={imgTorch} alt='torch' />

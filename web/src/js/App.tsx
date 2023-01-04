@@ -6,7 +6,7 @@ import { Home } from './Home';
 
 export function App(props: any)
 {
-    const [stage, setStage] = useState(2);
+    const [stage, setStage] = useState(0);
 
     const nextStage = () => {
         setStage(stage+1);
