@@ -43,5 +43,6 @@ export function KnockDoor(props: any) {
                 <img className='torch right' src={imgTorch} alt='torch' />
             </div>
         </div>
+        <div class='speech-bubble'>Type any text here and the bubble will grow to fit the text no matter how many lines. Type any text here and the bubble will grow to fit the text no matter how many lines. Type any text here and the bubble will grow to fit the text no matter how many lines. Isn't that nifty?</div>
     </div>;
 }
