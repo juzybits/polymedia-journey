@@ -12,17 +12,19 @@ export function KnockDoor(props: any) {
         document.body.className = 'bg-bricks';
     }, []);
 
+    const imgSrc = imgDoorClosed; // imgDoorOpen
+
+
     return <div id='page'>
         <div id='door-container'>
-            <img className='torch left' src={imgTorch} alt='closed door' />
-            {/*<img id='door' src={imgDoorClosed} alt='closed door' />*/}
-            <img id='door' src={imgDoorOpen} alt='closed door' />
-            <img className='torch right' src={imgTorch} alt='closed door' />
-            <div className='mario'>
-                <span className='red'>WRONG!</span>
-            <br/>
-                <span className='green'>CORRECT!</span>
-            <br/>
+            <div className='torch-wrap'>
+                <img className='torch left' src={imgTorch} alt='torch' />
+            </div>
+            <div className='door-wrap'>
+                <img className='door' src={imgSrc} alt='door' />
+            </div>
+            <div className='torch-wrap'>
+                <img className='torch right' src={imgTorch} alt='torch' />
             </div>
         </div>
     </div>;

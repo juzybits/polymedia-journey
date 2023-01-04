@@ -1,15 +1,17 @@
 #door-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-top: 2em;
     text-align: center;
-    #door {
-        width: 280px;
-    }
-    .torch {
-        height: 200px;
-        &.left {
-            float: left;
+    .door-wrap {
+        .door {
+            width: 100%;
         }
-        &.right {
-            float: right;
+    }
+    .torch-wrap {
+        .torch {
+            width: 100%;
         }
     }
 }
