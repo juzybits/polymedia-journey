@@ -44,7 +44,7 @@ export function FindDoor(props: any) {
     }
 
     const Door = ({ idx, tried }: { idx: number, tried: boolean }) => {
-        const imgSrc = idx==correctDoor ? imgDoorClosedDiff : imgDoorClosed;
+        const imgSrc = idx==correctDoor ? imgDoorClosed : imgDoorClosedDiff;
         const onClick = idx==correctDoor ? onCorrect : () => onWrong(idx);
         return tried
         ? <div className='door-wrap tried'><img src={imgSrc} alt='closed door' /></div>
