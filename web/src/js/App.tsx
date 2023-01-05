@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import { KnockDoor } from './KnockDoor';
 import { FindDoor } from './FindDoor';
+import { MintAccount } from './MintAccount';
 import { Home } from './Home';
 
 export function App(props: any)
 {
-    const [stage, setStage] = useState(0);
+    const [stage, setStage] = useState(3);
 
     const nextStage = () => {
         setStage(stage+1);
@@ -19,6 +20,8 @@ export function App(props: any)
         view = <FindDoor nextStage={nextStage} />;
     } else if (stage === 2) {
         view = <KnockDoor nextStage={nextStage} />;
+    } else if (stage === 3) {
+        view = <MintAccount nextStage={nextStage} />;
     }
     return <>{view}</>;
 }
