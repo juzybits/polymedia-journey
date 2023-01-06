@@ -67,7 +67,7 @@ export function KnockDoor(props: any) {
         props.nextStage();
     };
 
-    const onClickShowMessage = () => {
+    const onClickNextMessage = () => {
         setMsgIdx(oldIdx => oldIdx+1);
     };
 
@@ -79,7 +79,7 @@ export function KnockDoor(props: any) {
                 <img className='torch left' src={imgTorch} alt='torch' />
             </div>
             <div className='door-wrap'>
-                <img className='door hand' src={imgSrc} alt='door' onClick={act=='3_open_door' ? onClickNextPhase : onClickShowMessage} />
+                <img className='door hand' src={imgSrc} alt='door' onClick={act=='3_open_door' ? onClickNextPhase : onClickNextMessage} />
             </div>
             <div className='torch-wrap'>
                 <img className='torch right' src={imgTorch} alt='torch' />
