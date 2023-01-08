@@ -63,28 +63,34 @@ export function KnockDoor(props: any) {
         </div>;
     };
 
-    const onClickNextPhase = () => {
-        props.nextStage();
+    const onClickNextPhase = () => { props.nextStage(); };
+    const onClickNextMessage = () => { setMsgIdx(oldIdx => oldIdx+1); };
+    const DoorContainer = (props: any) => {
+        return <>
+            <div id='door-container'>
+                <div className='torch-wrap'>
+                    <img className='torch left' src={imgTorch} alt='torch' />
+                </div>
+                <div className='door-wrap'>
+                    <img className='door hand' src={imgSrc} alt='door' onClick={act=='3_open_door' ? onClickNextPhase : onClickNextMessage} />
+                </div>
+                <div className='torch-wrap'>
+                    <img className='torch right' src={imgTorch} alt='torch' />
+                </div>
+            </div>
+            { messages[msgIdx] && <div className='speech-bubble'>{messages[msgIdx]}</div> }
+        </>;
     };
 
-    const onClickNextMessage = () => {
-        setMsgIdx(oldIdx => oldIdx+1);
-    };
+    let contents = <></>;
+    if (act=='1_intro') {
+        contents = <ModalIntro />;
+    } else {
+        contents = <DoorContainer />;
+    }
 
     let imgSrc = act == '3_open_door' ? imgDoorOpen : imgDoorClosed; // imgDoorOpen
     return <div id='page' className='knock-door'>
-        { act=='1_intro' && <ModalIntro /> }
-        <div id='door-container'>
-            <div className='torch-wrap'>
-                <img className='torch left' src={imgTorch} alt='torch' />
-            </div>
-            <div className='door-wrap'>
-                <img className='door hand' src={imgSrc} alt='door' onClick={act=='3_open_door' ? onClickNextPhase : onClickNextMessage} />
-            </div>
-            <div className='torch-wrap'>
-                <img className='torch right' src={imgTorch} alt='torch' />
-            </div>
-        </div>
-        { messages[msgIdx] && <div className='speech-bubble'>{messages[msgIdx]}</div> }
+        {contents}
     </div>;
 }

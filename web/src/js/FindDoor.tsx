@@ -72,9 +72,15 @@ export function FindDoor(props: any) {
         </div>;
     };
 
+    let contents = <></>;
+    if (act=='1_intro') {
+        contents = <ModalIntro />;
+    } else {
+        contents = <>{ modal && modal } <DoorsGrid /></>;
+    }
+
     return <div id='page' className='find-door'>
-        { act=='1_intro' && <ModalIntro /> }
-        { modal && modal } <DoorsGrid />
+        {contents}
     </div>;
 
 }
