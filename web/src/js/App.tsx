@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { KnockDoor } from './KnockDoor';
 import { FindDoor } from './FindDoor';
+import { KnockDoor } from './KnockDoor';
+import { MeetGrog } from './MeetGrog';
 import { MintAccount } from './MintAccount';
 import { Home } from './Home';
 
@@ -21,6 +22,8 @@ export function App(props: any)
     } else if (stage === 2) {
         view = <KnockDoor nextStage={nextStage} />;
     } else if (stage === 3) {
+        view = <MeetGrog nextStage={nextStage} />;
+    } else if (stage === 4) {
         view = <MintAccount nextStage={nextStage} />;
     }
     return <>{view}</>;

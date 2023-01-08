@@ -89,13 +89,29 @@ body {
     margin-right: auto;
 }
 
+input, textarea {
+    padding: 0.5em 1em;
+    font-family: Sans-Serif;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    background-color: black;
+    color: #eee;
+    border: 2px solid #eee;
+    outline: none;
+    &:focus {
+        border-color: #ffff9a;
+        border-color: #a9f5fa;
+        color: #a9f5fa;
+    }
+}
+
 .btn {
     background-color: #007eff;
     border-radius: 1em;
     border: 4px solid white;
     color: white;
     font-family: 'SuperMario256', Helvetica, Arial, sans-serif;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     letter-spacing: 1;
     font-weight: bold;
     margin: 0 auto 2em;

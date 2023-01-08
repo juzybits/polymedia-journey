@@ -1,16 +1,20 @@
 #page.mint-account {
-    text-align: center;
-    #wizard-wrap {
-        img {
-            width: 300px;
-            margin: 2em;
+    .form-wrap {
+        padding: 0 1rem;
+        margin-top: 2em;
+        text-align: center;
+        max-width: 500px;
+        font-size: 2em;
+        .field {
+            margin-bottom: 2em;
+            label, input, textarea {
+                box-sizing: border-box;
+                display: block;
+                width: 100%;
+            }
+            label {
+                margin-bottom: 0.2em;
+            }
         }
     }
-    #wizard-text {
-        padding: 0 1em;
-        p {
-            margin-bottom: 1em;
-        }
-    }
-
 }
