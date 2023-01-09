@@ -3,6 +3,8 @@
     "author": "juzybits <https://twitter.com/juzybits>",
     "private": true,
     "dependencies": {
+        "@mysten/sui.js": "latest",
+        "ethos-connect": "latest",
         "react": "18",
         "react-dom": "18"
     },
