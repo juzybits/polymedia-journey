@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 
-import '../css/MintAccount.less';
+import '../css/CreateAccount.less';
 
-export function MintAccount(props: any) {
+export function CreateAccount(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-stars';
@@ -19,7 +19,7 @@ export function MintAccount(props: any) {
     const [nameError, setNameError] = useState('');
     const [pfpError, setPfpError] = useState('');
 
-    return <div id='page' className='mint-account'>
+    return <div id='page' className='create-account'>
         <div className='form-wrap paragraph'>
         <form>
             <div className='field'>
