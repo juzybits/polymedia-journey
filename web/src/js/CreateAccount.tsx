@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
-import imgWizardBrown from '../img/wizard_brown.webp';
+import { ethos, EthosConnectStatus } from 'ethos-connect';
+import { shorten } from './lib/common';
 
 import '../css/CreateAccount.less';
+import imgWizardBrown from '../img/wizard_brown.webp';
 
 export function CreateAccount(props: any) {
 
@@ -18,8 +19,19 @@ export function CreateAccount(props: any) {
     // Input errors
     const [nameError, setNameError] = useState('');
     const [pfpError, setPfpError] = useState('');
+    const { status, wallet } = ethos.useWallet();
+
+    const isConnected = status==EthosConnectStatus.Connected;
+    useEffect(() => {
+        if (!isConnected) {
+            ethos.showSignInModal();
+        }
+    }, [isConnected]);
 
     return <div id='page' className='create-account'>
+        <div className='address-widget' onClick={isConnected ? wallet.disconnect: ethos.showSignInModal}>
+            {isConnected ? shorten(wallet.address) : 'Not connected'}
+        </div>
         <div className='form-wrap paragraph'>
         <form>
             <div className='field'>

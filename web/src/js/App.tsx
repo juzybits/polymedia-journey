@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { EthosConnectProvider } from 'ethos-connect';
 
 import { FindDoor } from './FindDoor';
 import { KnockDoor } from './KnockDoor';
 import { MeetGrog } from './MeetGrog';
 import { CreateAccount } from './CreateAccount';
 import { Home } from './Home';
+
+import imgLogo from '../img/logo.png';
 
 export function App(props: any)
 {
@@ -26,5 +29,10 @@ export function App(props: any)
     } else if (stage === 4) {
         view = <CreateAccount nextStage={nextStage} />;
     }
-    return <>{view}</>;
+    return <EthosConnectProvider
+        ethosConfiguration={{hideEmailSignIn: true}}
+        dappName='Journey to Mount Sogol'
+        dappIcon={<img src={imgLogo} alt='Polymedia logo' />}
+        connectMessage='Journey to Mount Sogol'
+    >{view}</EthosConnectProvider>;
 }

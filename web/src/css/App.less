@@ -3,6 +3,7 @@
     --bg-panel: #2a2d30;
     --bg-content: #303336;
     --text-color: rgb(224, 224, 224);
+    --hand-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
 }
 
 html {
@@ -10,7 +11,7 @@ html {
 }
 
 .hand, a, button, select, input[type=checkbox], input[type=radio] {
-    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
+    cursor: var(--hand-pointer);
 }
 
 html, body, p, h1, h2, h3, h4, h5, input, button {
@@ -157,4 +158,20 @@ input, textarea {
     left: 32px;
     position: absolute;
     width: 0px;
+}
+
+.address-widget {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: monospace;
+    font-size: 1.4em;
+    margin-right: 1rem;
+    margin-top: 0.8rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    &:hover {
+        color: yellow;
+        text-decoration: underline;
+        cursor: var(--hand-pointer);
+    }
 }
