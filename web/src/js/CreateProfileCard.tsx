@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 import { shorten } from './lib/common';
 
-import '../css/CreateAccount.less';
-import imgWizardBrown from '../img/wizard_brown.webp';
+import '../css/CreateProfileCard.less';
 
-export function CreateAccount(props: any) {
+export function CreateProfileCard(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-stars';
@@ -13,22 +12,22 @@ export function CreateAccount(props: any) {
 
     // Inputs
     const [name, setName] = useState('');
-    const [pfp, setPfp] = useState('');
+    const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
 
     // Input errors
-    const [nameError, setNameError] = useState('');
-    const [pfpError, setPfpError] = useState('');
+    const [nameError, _setNameError] = useState('');
+    const [imageError, _setImageError] = useState('');
     const { status, wallet } = ethos.useWallet();
 
-    const isConnected = status==EthosConnectStatus.Connected;
+    const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
     useEffect(() => {
         if (!isConnected) {
             ethos.showSignInModal();
         }
     }, [isConnected]);
 
-    return <div id='page' className='create-account'>
+    return <div id='page' className='create-profile-card'>
         <div className='address-widget' onClick={isConnected ? wallet.disconnect: ethos.showSignInModal}>
             {isConnected ? shorten(wallet.address) : 'Not connected'}
         </div>
@@ -42,10 +41,10 @@ export function CreateAccount(props: any) {
                 />
             </div>
             <div className='field'>
-                <label className='mario' htmlFor='field-pfp'>PROFILE PICTURE URL</label>
-                <input type='text' id='field-pfp' className={pfpError ? 'error' : ''}
+                <label className='mario' htmlFor='field-image'>PROFILE PICTURE URL</label>
+                <input type='text' id='field-image' className={imageError ? 'error' : ''}
                     autoCorrect='off' autoComplete='off'
-                    value={pfp} onChange={e => setPfp(e.target.value)}
+                    value={image} onChange={e => setImage(e.target.value)}
                 />
             </div>
             <div className='field'>

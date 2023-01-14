@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
@@ -51,7 +51,7 @@ export function KnockDoor(props: any) {
         }
     }, [msgIdx]);
 
-    const ModalIntro = (props: any) => {
+    const ModalIntro = () => {
         return <div className='modal'>
             <div className='intro'>
                 <h1 className='mario title'>TWO</h1>
@@ -65,7 +65,7 @@ export function KnockDoor(props: any) {
 
     const onClickNextPhase = () => { props.nextStage(); };
     const onClickNextMessage = () => { setMsgIdx(oldIdx => oldIdx+1); };
-    const DoorContainer = (props: any) => {
+    const DoorContainer = () => {
         return <>
             <div id='door-container'>
                 <div className='torch-wrap'>

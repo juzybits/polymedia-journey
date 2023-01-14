@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgDoorClosed from '../img/door_closed.webp';
-import imgDoorOpen from '../img/door_open.webp';
 
 import '../css/FindDoor.less';
 
@@ -18,7 +17,7 @@ export function FindDoor(props: any) {
     const [act, setAct] = useState('1_intro');
     // keep track of which doors the user tried to open
     const [doors, setDoors] = useState([false,false,false,false,false,false,false,false,false,false,false,false]);
-    const [correctDoor, setCorrectDoor] = useState(Math.floor( Math.random() * 12 ));
+    const [correctDoor, _setCorrectDoor] = useState(Math.floor( Math.random() * 12 ));
 
     const onWrong = (idx: number) => {
         const closeModal = () => {
@@ -51,7 +50,7 @@ export function FindDoor(props: any) {
         : <div className='door-wrap'><img src={imgSrc} alt='closed door' className='hand' onClick={onClick} /></div>;
     }
 
-    const DoorsGrid = (props: any) => {
+    const DoorsGrid = () => {
         return (
             <div className='door-grid'>
             { doors.map((tried, idx) => (
@@ -61,7 +60,7 @@ export function FindDoor(props: any) {
         );
     };
 
-    const ModalIntro = (props: any) => {
+    const ModalIntro = () => {
         return <div className='modal'>
             <div className='intro'>
                 <h1 className='mario title'>ONE</h1>

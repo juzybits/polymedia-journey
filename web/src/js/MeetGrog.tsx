@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 
@@ -18,9 +18,8 @@ export function MeetGrog(props: any) {
             <p className='paragraph'>
                 Well, well, well...
                 Welcome to the other side.
-                It's been a while since anyone comes around these parts.
-                You overcame the initial tests and found the door to the invisible.
-                It appears you are quite the explorer!
+                Few people make it this far — it appears you are quite the explorer!
+                You overcame the initiatory trial and found the door to the invisible.
                 I'm Grog. What's your name?
             </p>
             <button className='btn' onClick={props.nextStage}>I am...</button>

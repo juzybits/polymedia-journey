@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-
-import imgDoorClosed from '../img/door_closed.webp';
-import imgDoorOpen from '../img/door_open.webp';
-import imgTorch from '../img/torch.gif';
+import { useEffect } from 'react';
 
 import '../css/Home.less';
 

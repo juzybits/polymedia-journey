@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EthosConnectProvider } from 'ethos-connect';
 
 import { FindDoor } from './FindDoor';
 import { KnockDoor } from './KnockDoor';
 import { MeetGrog } from './MeetGrog';
-import { CreateAccount } from './CreateAccount';
+import { CreateProfileCard } from './CreateProfileCard';
 import { Home } from './Home';
 
 import imgLogo from '../img/logo.png';
 
-export function App(props: any)
+export function App()
 {
     const [stage, setStage] = useState(3);
 
@@ -27,7 +27,7 @@ export function App(props: any)
     } else if (stage === 3) {
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
-        view = <CreateAccount nextStage={nextStage} />;
+        view = <CreateProfileCard nextStage={nextStage} />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}
