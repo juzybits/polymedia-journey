@@ -4,7 +4,7 @@ import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 import imgTorch from '../img/torch.gif';
 
-import '../css/KnockDoor.less';
+import '../css/2_KnockDoor.less';
 
 export function KnockDoor(props: any) {
 

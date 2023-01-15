@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgDoorClosed from '../img/door_closed.webp';
 
-import '../css/FindDoor.less';
+import '../css/1_FindDoor.less';
 
 export function FindDoor(props: any) {
     // MAYBE: record # of attempts and elapsed time

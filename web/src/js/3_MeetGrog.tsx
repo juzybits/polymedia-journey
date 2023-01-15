@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 
-import '../css/MeetGrog.less';
+import '../css/3_MeetGrog.less';
 
 export function MeetGrog(props: any) {
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 import { shorten } from './lib/common';
 
-import '../css/CreateProfileCard.less';
+import '../css/4_CreateProfileCard.less';
 
 export function CreateProfileCard(props: any) {
 

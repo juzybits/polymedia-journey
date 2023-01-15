@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { EthosConnectProvider } from 'ethos-connect';
 
-import { FindDoor } from './FindDoor';
-import { KnockDoor } from './KnockDoor';
-import { MeetGrog } from './MeetGrog';
-import { CreateProfileCard } from './CreateProfileCard';
-import { Home } from './Home';
+import { Home } from './0_Home';
+import { FindDoor } from './1_FindDoor';
+import { KnockDoor } from './2_KnockDoor';
+import { MeetGrog } from './3_MeetGrog';
+import { CreateProfileCard } from './4_CreateProfileCard';
 
 import imgLogo from '../img/logo.png';
 
