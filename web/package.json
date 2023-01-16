@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@mysten/sui.js": "latest",
+        "@polymedia/profile-sdk": "file:../../polymedia-profile/sdk/",
         "ethos-connect": "latest",
         "react": "18",
         "react-dom": "18"

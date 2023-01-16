@@ -167,7 +167,7 @@
   resolved "https://registry.yarnpkg.com/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-2.2.0.tgz#016d855b6bc459fd908095811f6826e45dd4ba64"
   integrity sha512-XrC0JzsqQSvOyM3t04FMLO6z5gCuhPE6k4FXuLK5xf52ZbdvcFe1yBmo7meCew9B8G2f0T9iu9t3kfTYRYROgA==
 
-"@mysten/bcs@0.5.0":
+"@mysten/bcs@0.5.0", "@mysten/bcs@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@mysten/bcs/-/bcs-0.5.0.tgz#d2570971e3d9121b83091ced38db13e907ab4198"
   integrity sha512-FjGnXZfR4dY01Q1l3xjgaU+ruIlVomXZk8vzgsQXPFOv7O4pNiOOpJyMEMUnWcyUiktk4R9MxoJJrygOtdxaUw==
@@ -191,7 +191,7 @@
     rpc-websockets "^7.5.0"
     tweetnacl "^1.0.3"
 
-"@mysten/sui.js@0.22.0", "@mysten/sui.js@latest":
+"@mysten/sui.js@0.22.0", "@mysten/sui.js@^0.22.0", "@mysten/sui.js@latest":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@mysten/sui.js/-/sui.js-0.22.0.tgz#4435325f669181109f640a2718ec9f5082b60875"
   integrity sha512-eaP4xgGUfTihL1P/ywTrYI3bz/pQWw4uohL6l9ro5ZaL92LPtkJnXBO/sT3ngQdjG0Z4HJh4YhUnVHNVRIM7mg==
@@ -845,6 +845,12 @@
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
+"@polymedia/profile-sdk@file:../../polymedia-profile/sdk":
+  version "0.1.0"
+  dependencies:
+    "@mysten/bcs" "^0.5.0"
+    "@mysten/sui.js" "^0.22.0"
+
 "@scure/base@~1.1.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@scure/base/-/base-1.1.1.tgz#ebb651ee52ff84f420097055f4bf46cfba403938"
@@ -1173,9 +1179,9 @@ camelcase@^5.0.0:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 caniuse-lite@^1.0.30001400:
-  version "1.0.30001444"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001444.tgz#c0a530776eb44d933b493de1d05346f2527b30fc"
-  integrity sha512-ecER9xgJQVMqcrxThKptsW0pPxSae8R2RB87LNa+ivW9ppNWRHEplXcDzkCOP4LYWGj8hunXLqaiC41iBATNyg==
+  version "1.0.30001445"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001445.tgz#cf2d4eb93f2bcdf0310de9dd6d18be271bc0b447"
+  integrity sha512-8sdQIdMztYmzfTMO6KfLny878Ln9c2M0fc7EH60IjlP4Dc4PiCy7K2Vl3ITmWgOyPgVQKa5x+UP/KqFsxj4mBg==
 
 capture-stack-trace@^1.0.0:
   version "1.0.2"
