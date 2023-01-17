@@ -22,10 +22,8 @@ export function CreateProfileCard(props: any) {
     const [profileAddr, setProfileAddr] = useState('unknown');
     const { status, wallet } = ethos.useWallet();
 
-    async function fetchProfileObjectId(lookupAddress: string) {
+    const fetchProfileObjectId = async (lookupAddress: string) => {
         const result = await getProfileObjectIds({
-            packageId: '0x2f3def86663f600902a4f926d11d1c3fea586bd5', // TODO: move to profile.ts
-            registryId: '0x27d0b79b91c94597879aeabe7ed76d5961a02a6c',
             lookupAddresses: [ lookupAddress ],
         });
         console.log(JSON.stringify(result));
