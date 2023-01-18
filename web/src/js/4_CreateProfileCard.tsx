@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 
-import { getProfileObjectIds } from '@polymedia/profile-sdk';
-import { shorten } from './lib/common';
+import { findProfileObjectIds } from '@polymedia/profile-sdk';
+import { Nav } from './components/Nav';
 import '../css/4_CreateProfileCard.less';
 
 export function CreateProfileCard(props: any) {
@@ -10,6 +10,8 @@ export function CreateProfileCard(props: any) {
     useEffect(() => {
         document.body.className = 'bg-stars';
     }, []);
+
+    const [suiError, setSuiError] = useState('');
 
     // Inputs
     const [name, setName] = useState('');
@@ -23,13 +25,22 @@ export function CreateProfileCard(props: any) {
     const { status, wallet } = ethos.useWallet();
 
     const fetchProfileObjectId = async (lookupAddress: string) => {
-        const result = await getProfileObjectIds({
-            lookupAddresses: [ lookupAddress ],
-        });
-        console.log(JSON.stringify(result));
-        console.log(result);
-        setProfileAddr('unknown'); // TODO: fetch with getProfileObjectIds()
+        try {
+            const objectIds: Map<string,string> = await findProfileObjectIds({
+                lookupAddresses: [ lookupAddress ],
+            });
+            if (objectIds.has(lookupAddress)) {
+                const profileAddress = objectIds.get(lookupAddress) as string;
+                console.log('[fetchProfileObjectId] Found profile:', profileAddress);
+                setProfileAddr(profileAddress);
+            } else {
+                console.log('[fetchProfileObjectId] Profile not found');
+            }
+        } catch(error: any) {
+            setSuiError(error.message);
+        }
     };
+
     const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
     useEffect(() => {
         if (!isConnected) {
@@ -38,6 +49,7 @@ export function CreateProfileCard(props: any) {
             fetchProfileObjectId(wallet.address);
         }
     }, [isConnected]);
+
     useEffect(() => {
         if (profileAddr != 'unknown' && profileAddr != 'does_not_exist') {
             props.nextStage();
@@ -45,9 +57,7 @@ export function CreateProfileCard(props: any) {
     }, [profileAddr]);
 
     return <div id='page' className='create-profile-card'>
-        <div className='address-widget' onClick={isConnected ? wallet.disconnect: ethos.showSignInModal}>
-            {isConnected ? shorten(wallet.address) : 'Not connected'}
-        </div>
+        <Nav />
         <div className='form-wrap paragraph'>
         <form>
             <div className='field'>
@@ -75,5 +85,6 @@ export function CreateProfileCard(props: any) {
             </button>
         </form>
         </div>
+        { suiError && <div className='error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;
 }
