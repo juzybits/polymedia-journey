@@ -6,6 +6,7 @@ import { FindDoor } from './1_FindDoor';
 import { KnockDoor } from './2_KnockDoor';
 import { MeetGrog } from './3_MeetGrog';
 import { CreateProfileCard } from './4_CreateProfileCard';
+import { ShowProfileCard } from './5_ShowProfileCard';
 
 import imgLogo from '../img/logo.png';
 
@@ -15,6 +16,10 @@ export function App()
 
     const nextStage = () => {
         setStage(stage+1);
+    };
+
+    const prevStage = () => {
+        setStage(stage-1);
     };
 
     let view;
@@ -28,6 +33,8 @@ export function App()
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
         view = <CreateProfileCard nextStage={nextStage} />;
+    } else if (stage === 5) {
+        view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage} />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}

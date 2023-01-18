@@ -35,6 +35,7 @@ export function CreateProfileCard(props: any) {
                 setProfileAddr(profileAddress);
             } else {
                 console.log('[fetchProfileObjectId] Profile not found');
+                setProfileAddr('does_not_exist');
             }
         } catch(error: any) {
             setSuiError(error.message);
