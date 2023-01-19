@@ -13,6 +13,8 @@ import imgLogo from '../img/logo.png';
 export function App()
 {
     const [stage, setStage] = useState(3);
+    const [profileAddress, setProfileAddress] = useState('unknown');
+    const [suiError, setSuiError] = useState('');
 
     const nextStage = () => {
         setStage(stage+1);
@@ -32,9 +34,19 @@ export function App()
     } else if (stage === 3) {
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
-        view = <CreateProfileCard nextStage={nextStage} />;
+        view = <CreateProfileCard nextStage={nextStage}
+            profileAddress={profileAddress}
+            setProfileAddress={setProfileAddress}
+            suiError={suiError}
+            setSuiError={setSuiError}
+        />;
     } else if (stage === 5) {
-        view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage} />;
+        view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage}
+            profileAddress={profileAddress}
+            setProfileAddress={setProfileAddress}
+            suiError={suiError}
+            setSuiError={setSuiError}
+        />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}
