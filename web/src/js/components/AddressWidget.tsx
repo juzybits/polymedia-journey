@@ -4,7 +4,7 @@ import { findProfileObjectIds } from '@polymedia/profile-sdk';
 
 import { shorten } from '../lib/common';
 
-export function AddressWidget(props:any)
+export function AddressWidget(props: any)
 {
     const { status, wallet } = ethos.useWallet();
 

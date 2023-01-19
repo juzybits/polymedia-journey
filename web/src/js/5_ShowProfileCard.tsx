@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { AddressWidget } from './components/AddressWidget';
+import { Card } from './components/Card';
 import '../css/5_ShowProfileCard.less';
 
 export function ShowProfileCard(props: any)
@@ -23,7 +24,8 @@ export function ShowProfileCard(props: any)
             setSuiError={props.setSuiError}
         />
         profile addy: <a target="_blank" href={`https://explorer.sui.io/object/${props.profileAddress}`}>{props.profileAddress}</a>
-        <div className='paragraph'>
+        <div>
+            <Card />
         </div>
         { props.suiError && <div className='error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
