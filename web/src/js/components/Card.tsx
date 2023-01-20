@@ -1,7 +1,11 @@
+import { AddressOwner } from '@mysten/sui.js';
+import { PolymediaProfile } from '@polymedia/profile-sdk';
 import './Card.less';
 
-export function Card()
+export function Card(props: any)
 {
+    const profile = props.profile as PolymediaProfile;
+
     return <>
 <div className='profile-card'>
 <div className='flip-container'>
@@ -13,27 +17,22 @@ export function Card()
                 <div className='card-body'></div>
                 <header className='card-name'>
                     <div>
-                        <h1>Name</h1>
+                        <h1>{profile && profile.name}</h1>
                         <i className='grow'></i>
                     </div>
                 </header>
 
                 <div className='art'>
-                    <img src='https://avatars.githubusercontent.com/u/96890594?v=4' alt='profile picture' width='100%' height='auto' />
+                    <img src={profile && profile.image} alt='profile picture' width='100%' height='auto' />
                 </div>
 
                 <header className='card-type'>
                     <div>
-                        <h2>0x1d39...b33f</h2>
+                        <h2>{profile && (profile.suiObject.owner as AddressOwner).AddressOwner}</h2>
                     </div>
                 </header>
                 <div className='textBox'>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec tincidunt lectus.</p>
-                    <p>Sed malesuada pretium nibh ac lobortis. Sed sit amet nibh aliquam, dictum justo quis.</p>
-                    <blockquote>
-                        <p>“Quisque ullamcorper turpis id magna consectetur, sed molestie nunc pretium.”</p>
-                        <p>—Condimentum</p>
-                    </blockquote>
+                    {profile && profile.description}
                 </div>
                 <header className='powerToughness'>
                     <div>

@@ -2,6 +2,7 @@
     --bg-body: #202226;
     --bg-panel: #2a2d30;
     --bg-content: #303336;
+    --bg-blur: rgba(0, 0, 0, 0.5);
     --text-color: rgb(224, 224, 224);
     --hand-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
 }
@@ -51,7 +52,7 @@ body {
 .bg-stars {
     background-image: url('../img/stars.webp');
     .paragraph {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: var(--bg-blur);
     }
 }
 .bg-grass {
@@ -161,7 +162,7 @@ input, textarea {
 }
 
 .address-widget {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--bg-blur);
     font-family: monospace;
     font-size: 1.4em;
     margin-right: 1rem;
@@ -180,4 +181,5 @@ input, textarea {
     font-size: 1rem;
     padding: 1em;
     font-family: monospace;
+    background-color: var(--bg-blur);
 }
