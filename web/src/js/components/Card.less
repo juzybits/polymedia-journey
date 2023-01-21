@@ -49,10 +49,6 @@
     article > div.art, article > div.textbox {
         background: #ddd;
         position: relative;
-    /*    height: 235.031px;*/
-    /*    height: 322.797px;*/
-    /*    border: 2px solid #333;*/
-    /*    z-index: 2;*/
     }
 
     div.art {
@@ -95,6 +91,9 @@
 
     header.card-name {
         top: -485px;
+        h1 {
+            margin-left: 0.1em;
+        }
     }
     header.card-name div {
         height: 34px;
@@ -109,33 +108,31 @@
     }
 
     header.card-type {
-    /*    top: -485px;*/
-    /*    top: -397.234px;*/
-    /*    top: -435px;*/
         top: -537px;
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h2 {
+                font-size: 0.9em;
+            }
+        }
     }
 
     .textBox {
         width: 95%;
         margin: 0 auto;
         padding: 10px 7px;
-    /*    top: -485px;*/
-    /*    top: -397.234px;*/
-    /*    top: -435px;*/
         top: -538px;
         bottom: 44px;
         height: 100px;
         overflow-y: scroll;
-    /*    border: 2px solid #999;*/
-    /*    border-bottom: 0 none;*/
-    /*    border-left: 0 none;*/
         background: #d3dddd;
         position:relative;
     }
 
     header.powerToughness {
         width: 4em;
-    /*    top: -490px;*/
         top: -532px;
         right: 0;
         text-align: center;
@@ -156,7 +153,6 @@
         font-family: sans-serif;
         font-size: 9px;
         position: relative;
-    /*    top: -465px;*/
         top: -507.4px;
         left: 5px;
         right: 5px;

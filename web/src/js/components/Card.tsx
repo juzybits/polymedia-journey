@@ -16,7 +16,7 @@ export function Card(props: any)
             <article>
                 <div className='card-body'></div>
                 <header className='card-name'>
-                    <div>
+                    <div className='title-wrapper'>
                         <h1>{profile && profile.name}</h1>
                         <i className='grow'></i>
                     </div>
@@ -27,7 +27,7 @@ export function Card(props: any)
                 </div>
 
                 <header className='card-type'>
-                    <div>
+                    <div className='title-wrapper'>
                         <h2>{profile && (profile.suiObject.owner as AddressOwner).AddressOwner}</h2>
                     </div>
                 </header>
@@ -35,7 +35,7 @@ export function Card(props: any)
                     {profile && profile.description}
                 </div>
                 <header className='powerToughness'>
-                    <div>
+                    <div className='title-wrapper'>
                         <h2>1/1</h2>
                     </div>
                 </header>
