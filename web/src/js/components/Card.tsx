@@ -1,11 +1,9 @@
-import { AddressOwner } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import './Card.less';
 
 export function Card(props: any)
 {
     const profile = props.profile as PolymediaProfile;
-
     return <>
 <div className='profile-card'>
 <div className='flip-container'>
@@ -28,7 +26,7 @@ export function Card(props: any)
 
                 <header className='card-type'>
                     <div className='title-wrapper'>
-                        <h2>{profile && (profile.suiObject.owner as AddressOwner).AddressOwner}</h2>
+                        <h2>{profile && profile.owner}</h2>
                     </div>
                 </header>
                 <div className='textBox'>

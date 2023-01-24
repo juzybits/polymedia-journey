@@ -7,7 +7,7 @@ import '../css/3_MeetGrog.less';
 export function MeetGrog(props: any) {
 
     useEffect(() => {
-        document.body.className = 'bg-stars';
+        document.body.className = 'bg-library';
     }, []);
 
     return <div id='page' className='meet-grog'>

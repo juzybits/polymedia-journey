@@ -22,7 +22,7 @@ export function ShowProfileCard(props: any)
         });
     };
     useEffect(() => {
-        document.body.className = 'bg-grass';
+        document.body.className = 'bg-library';
         fetchProfileObject();
     }, []);
 

@@ -6,7 +6,7 @@ import '../css/4_CreateProfileCard.less';
 export function CreateProfileCard(props: any) {
 
     useEffect(() => {
-        document.body.className = 'bg-stars';
+        document.body.className = 'bg-library dark';
     }, []);
 
     // Inputs
@@ -31,7 +31,7 @@ export function CreateProfileCard(props: any) {
             suiError={props.suiError}
             setSuiError={props.setSuiError}
         />
-        <div className='form-wrap paragraph'>
+        <div className='form-wrap'>
         <form>
             <div className='field'>
                 <label className='mario' htmlFor='field-name'>YOUR NAME</label>
