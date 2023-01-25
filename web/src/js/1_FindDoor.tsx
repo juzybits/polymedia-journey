@@ -10,7 +10,8 @@ export function FindDoor(props: any) {
     // MAYBE: add a timer to the UI
 
     useEffect(() => {
-        document.body.className = 'bg-bricks';
+        document.body.className = 'bg-castle-wall';
+        // document.body.className = 'bg-bricks';
     }, []);
 
     const [modal, setModal]: any = useState(null);

@@ -5,7 +5,7 @@ import '../css/0_Home.less';
 export function Home(props: any) {
 
     useEffect(() => {
-        document.body.className = 'bg-stars';
+        document.body.className = 'bg-castle-sunset';
     }, []);
 
     return <div id='page' className='home'>
