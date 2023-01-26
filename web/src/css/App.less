@@ -208,3 +208,33 @@ input, textarea {
     font-family: monospace;
     background-color: var(--bg-blur);
 }
+
+.fade-in-1 {
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-delay: 1s;
+}
+
+.fade-in-2 {
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-delay: 4s;
+}
+
+.fade-in-3 {
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-delay: 7s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
