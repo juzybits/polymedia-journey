@@ -12,7 +12,7 @@ export function KnockDoor(props: any) {
         document.body.className = 'bg-bricks';
     }, []);
 
-    const [act, setAct] = useState('1_intro');
+    const [act, setAct] = useState('0_intro');
     const [msgIdx, setMsgIdx] = useState(0);
     const messages = [
         '',
@@ -51,15 +51,14 @@ export function KnockDoor(props: any) {
         }
     }, [msgIdx]);
 
-    const ModalIntro = () => {
-        return <div className='modal'>
-            <div className='intro'>
-                <h1 className='mario title'>TWO</h1>
-                <p className='paragraph'>You found the door to the invisible... but it's closed.</p>
-                <p className='paragraph'>Do you have what it takes to open the door?</p>
-                <p className='paragraph'>Demonstrate your tenacity.</p>
-                <button className='btn' onClick={() => setAct('2_game')}>I'm ready</button>
-            </div>
+    const Intro = () => {
+        return <div className='intro'>
+            <h1 className='mario title fade-in-1'>TWO</h1>
+            <p className='paragraph fade-in-2'>You found the door to the invisible... but it's closed.
+                <br/><br/>Do you have what it takes to open the door?
+                <br/><br/>Demonstrate your tenacity.
+            </p>
+            <button className='btn fade-in-3' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
     };
 
@@ -83,8 +82,8 @@ export function KnockDoor(props: any) {
     };
 
     let contents = <></>;
-    if (act=='1_intro') {
-        contents = <ModalIntro />;
+    if (act=='0_intro') {
+        contents = <Intro />;
     } else {
         contents = <DoorContainer />;
     }

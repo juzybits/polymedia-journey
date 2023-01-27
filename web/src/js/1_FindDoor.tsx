@@ -11,14 +11,19 @@ export function FindDoor(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-castle-wall';
-        // document.body.className = 'bg-bricks';
     }, []);
 
     const [modal, setModal]: any = useState(null);
-    const [act, setAct] = useState('1_intro');
+    const [act, setAct] = useState('0_intro');
     // keep track of which doors the user tried to open
     const [doors, setDoors] = useState([false,false,false,false,false,false,false,false,false,false,false,false]);
     const [correctDoor, _setCorrectDoor] = useState(Math.floor( Math.random() * 12 ));
+
+    useEffect(() => {
+        if (act == '1_game') {
+            document.body.className = 'bg-bricks';
+        }
+    }, [act]);
 
     const onWrong = (idx: number) => {
         const closeModal = () => {
@@ -61,20 +66,18 @@ export function FindDoor(props: any) {
         );
     };
 
-    const ModalIntro = () => {
-        return <div className='modal'>
-            <div className='intro'>
-                <h1 className='mario title'>ONE</h1>
-                <p className='paragraph'>The door to the invisible may be visible... but it's not easy to find.<br/>That's because the door is hidden in plain sight.</p>
-                <p className='paragraph'>Your first challenge will be to prove your perspicacity by finding the door that is different from all the others.</p>
-                <button className='btn' onClick={() => setAct('2_game')}>I'm ready</button>
-            </div>
+    const Intro = () => {
+        return <div className='intro'>
+            <h1 className='mario title fade-in-1'>ONE</h1>
+            <p className='paragraph fade-in-2'>The door to the invisible may be visible... but it's not easy to find.<br/>That's because the door is hidden in plain sight.</p>
+            <p className='paragraph fade-in-3'>Your first challenge will be to prove your perspicacity by finding the door that is different from all the others.</p>
+            <button className='btn fade-in-4' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
     };
 
     let contents = <></>;
-    if (act=='1_intro') {
-        contents = <ModalIntro />;
+    if (act=='0_intro') {
+        contents = <Intro />;
     } else {
         contents = <>{ modal && modal } <DoorsGrid /></>;
     }
