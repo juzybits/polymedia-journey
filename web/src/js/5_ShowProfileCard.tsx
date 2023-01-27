@@ -30,6 +30,7 @@ export function ShowProfileCard(props: any)
         if (props.profileAddress == 'does_not_exist') {
             props.prevStage();
         }
+        fetchProfileObject();
     }, [props.profileAddress]);
 
     return <div id='page' className='show-profile-card'>
