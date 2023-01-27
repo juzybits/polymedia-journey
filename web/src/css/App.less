@@ -3,7 +3,7 @@
     --bg-panel: #2a2d30;
     --bg-content: #303336;
     --bg-blur: rgba(0, 0, 0, 0.5);
-    --text-color: rgb(224, 224, 224);
+    --text-color: rgb(240, 240, 240);
     --hand-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
 }
 
@@ -34,7 +34,13 @@ body {
 
 .mario {
     font-family: 'SuperMario256', Helvetica, Arial, sans-serif;
-    text-shadow: 6px 6px black;
+    text-shadow:
+        -1px 0px black,
+        0px -1px black,
+        1px 0px black,
+        0px 1px black,
+        6px 6px black,
+    ;
     &.green {
         color: #22ee55;
     }
@@ -48,9 +54,6 @@ body {
 }
 .bg-stars {
     background-image: url('../img/bg-stars.webp');
-    .paragraph {
-        background-color: var(--bg-blur);
-    }
 }
 .bg-grass {
     background-image: url('../img/bg-grass.jpg');
@@ -92,22 +95,66 @@ body {
     text-align: center;
 }
 .title {
-    overflow-wrap: anywhere;
-    margin-top: 2em;
-    font-size: 3.8em;
-}
-.btn {
-    margin-top: 0.6em;
+    margin-top: 8rem;
+    margin-bottom: 2.5rem;
+    font-size: 5rem;
+    text-shadow:
+        -2px 0px black,
+        0px -2px black,
+        2px 0px black,
+        0px 2px black,
+        6px 6px black,
+    ;
 }
 .paragraph {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-variant: small-caps;
+    font-weight: bold;
     max-width: 800px;
     display: block;
     margin: 1em auto;
     border-radius: 1rem;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.75);
+    text-shadow:
+        0 0 1px #000,  0 0 1px #000,  0 0 1px #000,  0 0 1px #000,
+        0 0 2px #000,  0 0 2px #000,  0 0 2px #000,  0 0 2px #000,
+    ;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: table;
+    // -webkit-text-stroke: 1px #000;
+    text-stroke: 1px #000;
+}
+.btn {
+    font-size: 1.8rem;
+    background-color: #007eff;
+    border-radius: 1em;
+    border: 4px solid white;
+    color: white;
+    font-family: 'SuperMario256', Helvetica, Arial, sans-serif;
+    letter-spacing: 1;
+    font-weight: bold;
+    margin: 1rem auto 3rem;
+    padding: 0.7em 1em 0.5em;
+    text-shadow:
+        -1px 0px black,
+        0px -1px black,
+        1px 0px black,
+        0px 1px black,
+        4px 4px black,
+    ;
+    user-select: none;
+    &:hover {
+        background-color: #00a3ff;
+        background-color: #37c3ff;
+        background-color: #18a4ff;
+        text-shadow:
+            -1px 0px black,
+            0px -1px black,
+            1px 0px black,
+            0px 1px black,
+            6px 6px black,
+        ;
+    }
 }
 
 input, textarea {
@@ -123,26 +170,6 @@ input, textarea {
         border-color: #ffff9a;
         border-color: #a9f5fa;
         color: #a9f5fa;
-    }
-}
-
-.btn {
-    background-color: #007eff;
-    border-radius: 1em;
-    border: 4px solid white;
-    color: white;
-    font-family: 'SuperMario256', Helvetica, Arial, sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 1;
-    font-weight: bold;
-    margin: 0 auto 2em;
-    padding: 0.7em 1em 0.5em;
-    text-shadow: 4px 4px black;
-    user-select: none;
-    &:hover {
-        background-color: #0af;
-        text-shadow: 5px 5px black;
-        background-color: #09f;
     }
 }
 
@@ -200,30 +227,27 @@ input, textarea {
     background-color: var(--bg-blur);
 }
 
+@first-animation-delay: 1s;
+@animation-duration: 2.5s;
 .fade-in-1,
 .fade-in-2,
 .fade-in-3,
 .fade-in-4 {
   animation-name: fadeIn;
   animation-fill-mode: backwards;
-  animation-duration: 0s; // TODO: remove
-  animation-duration: 3s;
+  animation-duration: @animation-duration;
 }
 .fade-in-1 {
-  animation-delay: 0s; // TODO: remove
-  animation-delay: 1s;
+  animation-delay: @first-animation-delay;
 }
 .fade-in-2 {
-  animation-delay: 0s; // TODO: remove
-  animation-delay: 4s;
+  animation-delay: @first-animation-delay + 1*@animation-duration;
 }
 .fade-in-3 {
-  animation-delay: 0s; // TODO: remove
-  animation-delay: 7s;
+  animation-delay: @first-animation-delay + 2*@animation-duration;
 }
 .fade-in-4 {
-  animation-delay: 0s; // TODO: remove
-  animation-delay: 10s;
+  animation-delay: @first-animation-delay + 3*@animation-duration;
 }
 
 @keyframes fadeIn {

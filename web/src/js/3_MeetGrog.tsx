@@ -19,7 +19,7 @@ export function MeetGrog(props: any) {
                 Well, well, well...
                 Welcome to the other side.
                 Few people make it this far — it appears you are quite the explorer!
-                You overcame the initiatory trial and found the door to the invisible.
+                You overcame the initiatory trial and found the door to The Invisible.
                 I'm Grog. What's your name?
             </p>
             <button className='btn' onClick={props.nextStage}>I am...</button>
