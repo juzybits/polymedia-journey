@@ -45,6 +45,9 @@ export function ShowProfileCard(props: any)
                 profile={profileObj}
             />
         </div>
+        <div>
+        // TODO two buttons: CONTINUE / CHANGE WALLET
+        </div>
         { props.suiError && <div className='error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
 }
