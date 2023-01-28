@@ -7,6 +7,7 @@ import { KnockDoor } from './2_KnockDoor';
 import { MeetGrog } from './3_MeetGrog';
 import { CreateProfileCard } from './4_CreateProfileCard';
 import { ShowProfileCard } from './5_ShowProfileCard';
+import { GrogExplains } from './6_GrogExplains';
 
 import './App.less';
 import imgLogo from '../img/logo.png';
@@ -48,6 +49,8 @@ export function App()
             suiError={suiError}
             setSuiError={setSuiError}
         />;
+    } else if (stage === 6) {
+        view = <GrogExplains />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}

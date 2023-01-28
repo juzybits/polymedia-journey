@@ -54,7 +54,7 @@ export function ShowProfileCard(props: any)
             profile={profileObj}
         />
         <div className='action-buttons'>
-            <button className='btn'>USE THIS PROFILE</button>
+            <button className='btn' onClick={props.nextStage}>USE THIS PROFILE</button>
             <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
         </div>
         { props.suiError && <div className='error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
