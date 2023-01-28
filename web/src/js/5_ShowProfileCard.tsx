@@ -40,7 +40,7 @@ export function ShowProfileCard(props: any)
             suiError={props.suiError}
             setSuiError={props.setSuiError}
         />
-        profile addy: <a target="_blank" href={`https://explorer.sui.io/object/${props.profileAddress}`}>{props.profileAddress}</a>
+        profile addy: <a target="_blank" href={`https://explorer.sui.io/object/${props.profileAddress}?network=devnet`}>{props.profileAddress}</a>
         <div>
             <Card
                 profile={profileObj}

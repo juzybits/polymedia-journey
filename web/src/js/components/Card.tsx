@@ -1,9 +1,25 @@
+import { useEffect, useState } from 'react';
+
 import { PolymediaProfile } from '@polymedia/profile-sdk';
+import { isImageUrl } from '../lib/common';
 import './Card.less';
+import imgGhostPfp from '../../img/ghost_pfp.webp';
 
 export function Card(props: any)
 {
     const profile = props.profile as PolymediaProfile;
+    const [pfpUrl, setPfpUrl] = useState(imgGhostPfp);
+    useEffect(() => {
+        if (!profile || !profile.image) {
+            setPfpUrl(imgGhostPfp);
+            return;
+        }
+        (async () => {
+            const isImage = await isImageUrl(profile.image);
+            setPfpUrl(isImage ? profile.image : imgGhostPfp);
+        })();
+    }, [profile]);
+
     return <>
 <div className='profile-card'>
 <div className='flip-container'>
@@ -21,7 +37,7 @@ export function Card(props: any)
                 </header>
 
                 <div className='art'>
-                    <img src={profile && profile.image} alt='profile picture' width='100%' height='auto' />
+                    <img src={pfpUrl} alt='profile picture' width='100%' height='auto' />
                 </div>
 
                 <header className='card-type'>
