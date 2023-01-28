@@ -8,16 +8,18 @@ import imgGhostPfp from '../../img/ghost_pfp.webp';
 export function Card(props: any)
 {
     const profile = props.profile as PolymediaProfile;
-    const [pfpUrl, setPfpUrl] = useState(imgGhostPfp);
+    const [pfpUrl, setPfpUrl] = useState('');
     useEffect(() => {
-        if (!profile || !profile.image) {
+        if (!profile) {
+            setPfpUrl('');
+        } else if (!profile.image) {
             setPfpUrl(imgGhostPfp);
-            return;
+        } else {
+            (async () => {
+                const isImage = await isImageUrl(profile.image);
+                setPfpUrl(isImage ? profile.image : imgGhostPfp);
+            })();
         }
-        (async () => {
-            const isImage = await isImageUrl(profile.image);
-            setPfpUrl(isImage ? profile.image : imgGhostPfp);
-        })();
     }, [profile]);
 
     return <>

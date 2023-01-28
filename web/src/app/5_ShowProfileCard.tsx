@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ethos } from 'ethos-connect';
 
 import { getProfileObjects, PolymediaProfile } from '@polymedia/profile-sdk';
 
@@ -8,6 +9,7 @@ import './5_ShowProfileCard.less';
 
 export function ShowProfileCard(props: any)
 {
+    const {wallet} = ethos.useWallet();
     const [profileObj, setProfileObj] = useState<PolymediaProfile|null>(null);
 
     const fetchProfileObject = () => {
@@ -21,6 +23,13 @@ export function ShowProfileCard(props: any)
             props.setSuiError(error.message);
         });
     };
+
+    const disconnect = async () => {
+        wallet && await wallet.disconnect();
+        props.setProfileAddress('unknown');
+        props.prevStage();
+    };
+
     useEffect(() => {
         document.body.className = 'bg-library';
         fetchProfileObject();
@@ -41,13 +50,12 @@ export function ShowProfileCard(props: any)
             setSuiError={props.setSuiError}
         />
         profile addy: <a target="_blank" href={`https://explorer.sui.io/object/${props.profileAddress}?network=devnet`}>{props.profileAddress}</a>
-        <div>
-            <Card
-                profile={profileObj}
-            />
-        </div>
-        <div>
-        // TODO two buttons: CONTINUE / CHANGE WALLET
+        <Card
+            profile={profileObj}
+        />
+        <div className='action-buttons'>
+            <button className='btn'>USE THIS PROFILE</button>
+            <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
         </div>
         { props.suiError && <div className='error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
