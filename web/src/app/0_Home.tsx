@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import '../css/0_Home.less';
+import './0_Home.less';
 
 export function Home(props: any) {
 

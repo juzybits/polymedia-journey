@@ -8,6 +8,7 @@ import { MeetGrog } from './3_MeetGrog';
 import { CreateProfileCard } from './4_CreateProfileCard';
 import { ShowProfileCard } from './5_ShowProfileCard';
 
+import './App.less';
 import imgLogo from '../img/logo.png';
 
 export function App()

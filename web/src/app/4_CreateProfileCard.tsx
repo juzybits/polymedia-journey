@@ -3,7 +3,7 @@ import { ethos, EthosConnectStatus } from 'ethos-connect';
 
 import { createProfile } from '@polymedia/profile-sdk';
 import { AddressWidget } from './components/AddressWidget';
-import '../css/4_CreateProfileCard.less';
+import './4_CreateProfileCard.less';
 
 export function CreateProfileCard(props: any) {
 

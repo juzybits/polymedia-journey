@@ -4,7 +4,7 @@ import { getProfileObjects, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
 import { Card } from './components/Card';
-import '../css/5_ShowProfileCard.less';
+import './5_ShowProfileCard.less';
 
 export function ShowProfileCard(props: any)
 {
