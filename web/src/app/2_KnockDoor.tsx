@@ -17,14 +17,13 @@ export function KnockDoor(props: any) {
     const messages = [
         '',
         "Sorry, no visitors allowed.",
-        "No visitors, bye!",
-        "I said no visitors!",
+        "No visitors, bye now!",
         "Still here?",
-        "Go away.",
-        "You're quite annoying...",
-        "Get. Lost.",
+        "I said no visitors!",
+        "Please go away.",
+        "You are getting on my nerves...",
+        "Begone!",
         "You are wasting your time.",
-        "I'm trying to work here!",
         "...",
         "Stop!!!",
         "I'm never going to open this door.",
@@ -35,12 +34,10 @@ export function KnockDoor(props: any) {
         "Go home!",
         "Let me be perfectly clear: you are simply unfit to come in. Unworthy.",
         "I am never opening this door for you.",
-        "Ever.",
-        "Ever!",
-        "EVER!",
-        "EVER!! 😠",
-        "EVER!!! 😡",
-        "EVER!!!! 🌋",
+        "Never!",
+        "😤",
+        "😡",
+        "🌋",
         "GRRR. OK, OK, I'LL OPEN THE DOOR! You're really tenacious... Come in!",
         '',
     ];
@@ -55,10 +52,12 @@ export function KnockDoor(props: any) {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>TWO</h1>
             <p className='paragraph fade-in-2'>You found the door to the invisible... but it's closed.
-                <br/><br/>Do you have what it takes to open the door?
-                <br/><br/>Demonstrate your tenacity.
+                <br/>Do you have what it takes to open the door?
             </p>
-            <button className='btn fade-in-3' onClick={() => setAct('1_game')}>I'm ready</button>
+            <p className='paragraph fade-in-3'>
+                Demonstrate your tenacity.
+            </p>
+            <button className='btn fade-in-4' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
     };
 

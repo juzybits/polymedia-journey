@@ -74,16 +74,16 @@ export function CreateProfileCard(props: any) {
         />
         <div className='form-wrap'>
         <form onSubmit={onSubmitCreate}>
-            <div className='field'>
+            <div className={'field' + (nameError && ' error')}>
                 <label className='mario' htmlFor='field-name'>YOUR NAME</label>
-                <input type='text' id='field-name' className={nameError ? 'error' : ''}
+                <input type='text' id='field-name'
                     spellCheck='false' autoCorrect='off' autoComplete='off'
                     value={name} onChange={e => setName(e.target.value)}
                 />
             </div>
-            <div className='field'>
+            <div className={'field' + (imageError && ' error')}>
                 <label className='mario' htmlFor='field-image'>PROFILE PICTURE URL</label>
-                <input type='text' id='field-image' className={imageError ? 'error' : ''}
+                <input type='text' id='field-image'
                     autoCorrect='off' autoComplete='off'
                     value={image} onChange={e => setImage(e.target.value)}
                 />
@@ -102,6 +102,6 @@ export function CreateProfileCard(props: any) {
             </button>
         </form>
         </div>
-        { props.suiError && <div className='error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
+        { props.suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
 }
