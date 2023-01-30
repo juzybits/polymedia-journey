@@ -2,17 +2,18 @@
     --bg-body: #202226;
     --bg-panel: #2a2d30;
     --bg-content: #303336;
-    --bg-blur: rgba(0, 0, 0, 0.5);
+    --bg-blur: rgba(0, 0, 0, 0.6);
     --text-color: rgb(240, 240, 240);
-    --hand-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
+    --cursor-default: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=), auto;
+    --cursor-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
 }
 
-html {
-    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=), auto;
+*, html, body {
+    cursor: var(--cursor-default);
 }
 
-.hand, a, button, select, input[type=checkbox], input[type=radio] {
-    cursor: var(--hand-pointer);
+.hand, a, button, select, input, textarea {
+    cursor: var(--cursor-pointer);
 }
 
 html, body, p, h1, h2, h3, h4, h5, input, button {
@@ -124,6 +125,15 @@ body {
     // -webkit-text-stroke: 1px #000;
     text-stroke: 1px #000;
 }
+
+:root {
+    --btn-text-shadow:
+        -1px 0px black,
+        0px -1px black,
+        1px 0px black,
+        0px 1px black,
+        4px 4px black;
+}
 .btn {
     font-size: 1.8rem;
     background-color: #007eff;
@@ -135,17 +145,9 @@ body {
     font-weight: bold;
     margin: 1rem;
     padding: 0.7em 1em 0.5em;
-    text-shadow:
-        -1px 0px black,
-        0px -1px black,
-        1px 0px black,
-        0px 1px black,
-        4px 4px black,
-    ;
+    text-shadow: var(--btn-text-shadow);
     user-select: none;
     &:hover {
-        background-color: #00a3ff;
-        background-color: #37c3ff;
         background-color: #18a4ff;
         text-shadow:
             -1px 0px black,
@@ -154,6 +156,10 @@ body {
             0px 1px black,
             6px 6px black,
         ;
+    }
+    &.disabled {
+        background-color: grey;
+        text-shadow: var(--btn-text-shadow);
     }
 }
 
@@ -167,9 +173,7 @@ input, textarea {
     border: 2px solid #eee;
     outline: none;
     &:focus {
-        border-color: #ffff9a;
         border-color: #a9f5fa;
-        color: #a9f5fa;
     }
 }
 
@@ -216,7 +220,7 @@ input, textarea {
     &:hover {
         color: yellow;
         text-decoration: underline;
-        cursor: var(--hand-pointer);
+        cursor: var(--cursor-pointer);
     }
 }
 
@@ -225,6 +229,9 @@ input, textarea {
     padding: 1em;
     font-family: monospace;
     background-color: var(--bg-blur);
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 1em;
 }
 
 #wizard-wrap {

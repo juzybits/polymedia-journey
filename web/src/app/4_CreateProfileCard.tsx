@@ -3,6 +3,7 @@ import { ethos, EthosConnectStatus } from 'ethos-connect';
 
 import { createProfile } from '@polymedia/profile-sdk';
 import { AddressWidget } from './components/AddressWidget';
+import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
 export function CreateProfileCard(props: any) {
@@ -20,8 +21,8 @@ export function CreateProfileCard(props: any) {
     const [description, setDescription] = useState('');
 
     // Input errors
-    const [nameError, setNameError] = useState(''); // TODO validation
-    const [imageError, setImageError] = useState(''); // TODO validation
+    const [nameError, setNameError] = useState('');
+    const [imageError, setImageError] = useState('');
 
     useEffect(() => {
         if (props.profileAddress != 'unknown' && props.profileAddress != 'does_not_exist') {
@@ -29,25 +30,37 @@ export function CreateProfileCard(props: any) {
         }
     }, [props.profileAddress]);
 
-    const validateForm = (): boolean => {
-        setNameError('TODO - setNameError');
-        setImageError('TODO - setImageError');
-        return true;
+    const validateForm = async (): Promise<boolean> => {
+        let isValid = true;
+        if (name.length < 3) {
+            setNameError('Too short');
+            isValid = false;
+        } else if (name.length > 50) {
+            setNameError('Too long');
+            isValid = false;
+        }
+        if (image.length > 0 && !await isImageUrl(image)) {
+            setImageError('Not an image');
+            isValid = false;
+        }
+        return isValid;
     };
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
+        setWaiting(true);
         props.setSuiError('');
 
         const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
-        if (!isConnected) { // should never happen because AddressWidget show the modal if disconnected
+        if (!isConnected) { // should never happen because AddressWidget shows the modal if disconnected
+            setWaiting(false);
            return;
         }
-        if (!validateForm()) {
-           return;
+        if (!await validateForm()) {
+            setWaiting(false);
+            return;
         }
 
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
-        setWaiting(true);
 
         try {
             const result = await createProfile({
@@ -78,24 +91,37 @@ export function CreateProfileCard(props: any) {
                 <label className='mario' htmlFor='field-name'>YOUR NAME</label>
                 <input type='text' id='field-name'
                     spellCheck='false' autoCorrect='off' autoComplete='off'
-                    value={name} onChange={e => setName(e.target.value)}
+                    className={waiting ? 'disabled' : ''}
+                    value={name} onChange={e => {
+                        props.suiError.length && props.setSuiError('');
+                        nameError.length && setNameError('');
+                        setName(e.target.value);
+                    }}
                 />
+                <div className='field-error'>{nameError}</div>
             </div>
             <div className={'field' + (imageError && ' error')}>
                 <label className='mario' htmlFor='field-image'>PROFILE PICTURE URL</label>
                 <input type='text' id='field-image'
                     autoCorrect='off' autoComplete='off'
-                    value={image} onChange={e => setImage(e.target.value)}
+                    className={waiting ? 'disabled' : ''}
+                    value={image} onChange={e => {
+                        props.suiError.length && props.setSuiError('');
+                        imageError.length && setImageError('');
+                        setImage(e.target.value);
+                    }}
                 />
+                <div className='field-error'>{imageError}</div>
             </div>
             <div className='field'>
                 <label className='mario' htmlFor='field-description'>DESCRIPTION / SOCIALS</label>
                 <textarea id='field-description'
                     value={description} onChange={e => setDescription(e.target.value)}
+                    className={waiting ? 'disabled' : ''}
                 ></textarea>
             </div>
             <button type='submit'
-                className={'btn'+(waiting ? 'waiting' : '')}
+                className={'btn'+(waiting ? ' disabled' : '')}
                 disabled={waiting}
             >
                 CREATE PROFILE
