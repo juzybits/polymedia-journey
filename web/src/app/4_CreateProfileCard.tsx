@@ -63,15 +63,14 @@ export function CreateProfileCard(props: any) {
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
 
         try {
-            const result = await createProfile({
+            const [profileObj, _dynamicFieldObj] = await createProfile({
                 wallet: wallet,
                 name: name,
                 image: image,
                 description: description,
             });
-            console.debug('[onSubmitCreate] New object ID 0:', result[0].reference.objectId);
-            console.debug('[onSubmitCreate] New object ID 1:', result[1].reference.objectId);
-            // TODO: fetchProfileObjectId and setProfileAddress
+            console.debug('[onSubmitCreate] New profile object:', profileObj);
+            profileObj && props.setProfileAddress(profileObj.reference.objectId);
         } catch(error: any) {
             props.setSuiError(error.message);
         }

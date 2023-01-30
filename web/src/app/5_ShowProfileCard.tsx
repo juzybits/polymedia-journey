@@ -38,6 +38,7 @@ export function ShowProfileCard(props: any)
     useEffect(() => {
         if (props.profileAddress == 'does_not_exist') {
             props.prevStage();
+            return;
         }
         fetchProfileObject();
     }, [props.profileAddress]);
