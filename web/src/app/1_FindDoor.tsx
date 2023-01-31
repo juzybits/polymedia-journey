@@ -69,9 +69,18 @@ export function FindDoor(props: any) {
     const Intro = () => {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>ONE</h1>
-            <p className='paragraph fade-in-2'>The door to the invisible may be visible... but it's not easy to find. That's because the door is hidden in plain sight.</p>
-            <p className='paragraph fade-in-3'>Your first challenge will be to prove your perspicacity by finding the door that is different from all the others.</p>
-            <button className='btn fade-in-4' onClick={() => setAct('1_game')}>I'm ready</button>
+            <p className='paragraph fade-in-2 italic'>
+                You arrived to the fortress wall.
+            </p>
+            <p className='paragraph fade-in-3 italic'>
+                The door to The Invisible may be visible... but it's not easy to find.
+                Not because you cannot see it, but because it's hidden in plain sight.
+            </p>
+            <p className='paragraph fade-in-4 italic'>
+                Your first challenge will be to show your clever mind.
+                Find the door that stands apart from all the doors you'll find.
+            </p>
+            <button className='btn fade-in-5' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
     };
 

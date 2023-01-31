@@ -17,7 +17,7 @@ export function KnockDoor(props: any) {
     const messages = [
         '',
         "Sorry, no visitors allowed.",
-        "No visitors, bye now!",
+        "No visitors, bye!",
         "Still here?",
         "I said no visitors!",
         "Please go away.",
@@ -51,11 +51,13 @@ export function KnockDoor(props: any) {
     const Intro = () => {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>TWO</h1>
-            <p className='paragraph fade-in-2'>You found the door to the invisible... but it's closed.
-                <br/>Do you have what it takes to open the door?
+            <p className='paragraph fade-in-2 italic'>
+                The door to The Invisible, you've come so far!
+                Your second challenge, your journey's next part.
             </p>
-            <p className='paragraph fade-in-3'>
-                Demonstrate your tenacity.
+            <p className='paragraph fade-in-3 italic'>
+                Its entrance is blocked, it won't budge or yield.
+                Demonstrate your tenacity, and let the journey reveal.
             </p>
             <button className='btn fade-in-4' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
