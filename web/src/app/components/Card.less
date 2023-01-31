@@ -1,3 +1,13 @@
+:root {
+    --bg-lines: repeating-linear-gradient(140deg, transparent, rgba(255, 255, 255, 0.25) 1%, transparent 20%),
+                repeating-linear-gradient(-30deg, transparent, transparent 8%, rgba(255, 255, 255, 0.4), transparent 9%),
+                repeating-linear-gradient(-10deg, transparent, transparent 13%, rgba(0, 0, 0, 0.4), transparent 15%),
+                repeating-linear-gradient(80deg, transparent, transparent 7.5%, rgba(0, 0, 0, 0.25), transparent 8%),
+                repeating-linear-gradient(5deg, transparent, transparent 10.5%, rgba(255, 255, 255, 0.5), transparent 11%),
+                repeating-linear-gradient(75deg, transparent, transparent 11.5%, rgba(255, 255, 255, 0.5), transparent 12%),
+                repeating-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 1%, transparent 1%, transparent 5%);
+}
+
 * {margin: 0; padding: 0; box-sizing: border-box; }
 .profile-card {
     display: flex;
@@ -16,15 +26,8 @@
 
     .card-background {
         padding: 7px 8px 30px 7px;
-        background-color: #69a;
-        background-image:
-            repeating-linear-gradient(140deg, transparent, rgba(255, 255, 255, 0.25) 1%, transparent 20%),
-            repeating-linear-gradient(-30deg, transparent, transparent 8%, rgba(255, 255, 255, 0.4), transparent 9%),
-            repeating-linear-gradient(-10deg, transparent, transparent 13%, rgba(0, 0, 0, 0.4), transparent 15%),
-            repeating-linear-gradient(80deg, transparent, transparent 7.5%, rgba(0, 0, 0, 0.25), transparent 8%),
-            repeating-linear-gradient(5deg, transparent, transparent 10.5%, rgba(255, 255, 255, 0.5), transparent 11%),
-            repeating-linear-gradient(75deg, transparent, transparent 11.5%, rgba(255, 255, 255, 0.5), transparent 12%),
-            repeating-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 1%, transparent 1%, transparent 5%);
+        background-color: #308aa8;
+        background-image: var(--bg-lines);
         border-radius: 10px 10px 40px 40px;
         height: 475px;
     }
@@ -256,5 +259,36 @@
     /* back, initially hidden pane */
     .back {
         transform: rotateY(180deg);
+        .card-back-frame {
+            background-color: #303336;
+            background-image: var(--bg-lines);
+            border-radius: 5px;
+            display: flex;
+            height: 100%;
+            text-align: center;
+            justify-content: center;
+            .polymedia-logo {
+                width: 55%;
+                object-fit: contain;
+            }
+            .card-back-info {
+                background: rgba(0, 0, 0, 0.5);
+                bottom: 15px;
+                color: white;
+                font-family: monospace;
+                font-size: 0.84em;
+                padding: 0.5em 0;
+                position: absolute;
+                width: 100%;
+                a {
+                    color: lightblue;
+                    line-height: 1.5em;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
     }
 }

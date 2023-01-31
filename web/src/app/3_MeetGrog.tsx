@@ -19,7 +19,7 @@ export function MeetGrog(props: any) {
                 Welcome to the other side.
                 Few people make it this far — it appears you are quite the explorer!
                 You overcame the initiatory trial and found the door to The Invisible.
-                I'm Grog. What's your name?
+                I am Grog, the keeper of the Polymedia Registry. What's your name?
             </p>
             <button className='btn fade-in-2' onClick={props.nextStage}>I am...</button>
         </div>

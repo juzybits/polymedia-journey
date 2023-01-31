@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { PolymediaProfile } from '@polymedia/profile-sdk';
-import { isImageUrl } from '../lib/common';
+import { PolymediaProfile, POLYMEDIA_PROFILE_REGISTRY_ID } from '@polymedia/profile-sdk';
+import { isImageUrl, shorten } from '../lib/common';
 import './Card.less';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
+import imgLogo from '../../img/logo.png';
 
 export function Card(props: any)
 {
@@ -22,6 +23,10 @@ export function Card(props: any)
         }
     }, [profile]);
 
+    if (!profile) {
+        return <></>;
+    }
+
     return <>
 <div className='profile-card'>
 <div className='flip-container'>
@@ -33,7 +38,7 @@ export function Card(props: any)
                 <div className='card-body'></div>
                 <header className='card-name'>
                     <div className='title-wrapper'>
-                        <h1>{profile && profile.name}</h1>
+                        <h1>{profile.name}</h1>
                         <i className='grow'></i>
                     </div>
                 </header>
@@ -44,11 +49,11 @@ export function Card(props: any)
 
                 <header className='card-type'>
                     <div className='title-wrapper'>
-                        <h2>{profile && profile.owner}</h2>
+                        <h2>{profile.owner}</h2>
                     </div>
                 </header>
                 <div className='textBox'>
-                    {profile && profile.description}
+                    {profile.description}
                 </div>
                 <header className='powerToughness'>
                     <div className='title-wrapper'>
@@ -57,8 +62,8 @@ export function Card(props: any)
                 </header>
 
                 <footer>
-                    <p>100/100 C<br />
-                    ABC ‧ EN - @juzybits</p>
+                    <p>{shorten(profile.id)}<br />
+                    {shorten(POLYMEDIA_PROFILE_REGISTRY_ID)}</p>
                     <h6>2023 Polymedia</h6>
                 </footer>
 
@@ -68,7 +73,14 @@ export function Card(props: any)
     </div> {/* card front */}
 
     <div className='card back'>
-        <img src='img/Back.jpg' alt='Back' width='100%' height='auto' />
+        <div className='card-back-frame'>
+            <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
+            <div className='card-back-info'>
+                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=devnet`}>{profile.owner}</a>}<br/>
+                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=devnet`}>{profile.id}</a>}<br/>
+                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${POLYMEDIA_PROFILE_REGISTRY_ID}?network=devnet`}>{POLYMEDIA_PROFILE_REGISTRY_ID}</a>}<br/>
+            </div>
+        </div>
     </div>
 
 </div> {/* flipper */}

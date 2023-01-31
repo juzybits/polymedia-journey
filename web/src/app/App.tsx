@@ -14,7 +14,7 @@ import imgLogo from '../img/logo.png';
 
 export function App()
 {
-    const [stage, setStage] = useState(3);
+    const [stage, setStage] = useState(0);
     const [profileAddress, setProfileAddress] = useState('unknown');
     const [suiError, setSuiError] = useState('');
 

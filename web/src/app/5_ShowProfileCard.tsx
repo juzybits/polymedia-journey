@@ -44,20 +44,21 @@ export function ShowProfileCard(props: any)
     }, [props.profileAddress]);
 
     return <div id='page' className='show-profile-card'>
-        <AddressWidget
-            profileAddress={props.profileAddress}
-            setProfileAddress={props.setProfileAddress}
-            suiError={props.suiError}
-            setSuiError={props.setSuiError}
-        />
-        profile addy: <a target="_blank" href={`https://explorer.sui.io/object/${props.profileAddress}?network=devnet`}>{props.profileAddress}</a>
-        <Card
-            profile={profileObj}
-        />
-        <div className='action-buttons'>
-            <button className='btn' onClick={props.nextStage}>USE THIS PROFILE</button>
-            <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
-        </div>
+        {profileObj && <>
+            <AddressWidget
+                profileAddress={props.profileAddress}
+                setProfileAddress={props.setProfileAddress}
+                suiError={props.suiError}
+                setSuiError={props.setSuiError}
+            />
+            <Card
+                profile={profileObj}
+            />
+            <div className='action-buttons'>
+                <button className='btn' onClick={props.nextStage}>USE THIS PROFILE</button>
+                <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
+            </div>
+        </> }
         { props.suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
 }

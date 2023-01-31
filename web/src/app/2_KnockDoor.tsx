@@ -56,7 +56,7 @@ export function KnockDoor(props: any) {
                 Your second challenge, your journey's next part.
             </p>
             <p className='paragraph fade-in-3 italic'>
-                Its entrance is blocked, it won't budge or yield.
+                The entrance is blocked, it won't budge or yield.
                 Demonstrate your tenacity, and let the journey reveal.
             </p>
             <button className='btn fade-in-4' onClick={() => setAct('1_game')}>I'm ready</button>

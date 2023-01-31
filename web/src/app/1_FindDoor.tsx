@@ -70,15 +70,15 @@ export function FindDoor(props: any) {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>ONE</h1>
             <p className='paragraph fade-in-2 italic'>
-                You arrived to the fortress wall.
+                You arrived to the fortress wall that surrounds the castle.
             </p>
             <p className='paragraph fade-in-3 italic'>
-                The door to The Invisible may be visible... but it's not easy to find.
-                Not because you cannot see it, but because it's hidden in plain sight.
+                The door to The Invisible may be visible, but it's not easy to find...
+                Not because you cannot see it, but because it's hiding in plain sight.
             </p>
             <p className='paragraph fade-in-4 italic'>
-                Your first challenge will be to show your clever mind.
-                Find the door that stands apart from all the doors you'll find.
+                Your first challenge will be to prove your perspicacious mind:
+                Pick the door that stands apart from all the other doors you'll find.
             </p>
             <button className='btn fade-in-5' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;

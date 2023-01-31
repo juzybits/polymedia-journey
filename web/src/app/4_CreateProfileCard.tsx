@@ -70,6 +70,7 @@ export function CreateProfileCard(props: any) {
                 description: description,
             });
             console.debug('[onSubmitCreate] New profile object:', profileObj);
+            // TODO: props.setProfileObject, then use it in 6_GrogExplains.tsx
             profileObj && props.setProfileAddress(profileObj.reference.objectId);
         } catch(error: any) {
             props.setSuiError(error.message);
