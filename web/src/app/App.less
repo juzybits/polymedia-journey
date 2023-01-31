@@ -210,20 +210,25 @@ input, textarea {
     width: 0px;
 }
 
-.address-widget {
-    background-color: var(--bg-blur);
+.address-widget, #network-widget {
     font-family: monospace;
     font-size: 1.4em;
-    margin-right: 1rem;
-    margin-top: 0.8rem;
     position: absolute;
-    right: 0;
-    top: 0;
+    top: 0.8rem;
     &:hover {
         color: yellow;
         text-decoration: underline;
         cursor: var(--cursor-pointer);
     }
+}
+.address-widget, #network-widget .switch-btn {
+    background-color: var(--bg-blur);
+}
+.address-widget {
+    right: 1rem;
+}
+#network-widget {
+    left: 1rem;
 }
 
 .sui-error {
