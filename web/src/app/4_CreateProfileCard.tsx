@@ -14,6 +14,7 @@ export function CreateProfileCard(props: any) {
 
     const { status, wallet } = ethos.useWallet();
     const [waiting, setWaiting] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     // Inputs
     const [name, setName] = useState('');
@@ -25,7 +26,12 @@ export function CreateProfileCard(props: any) {
     const [imageError, setImageError] = useState('');
 
     useEffect(() => {
-        if (props.profileAddress != 'unknown' && props.profileAddress != 'does_not_exist') {
+        if (props.profileAddress === 'unknown') { // fetching profile
+            setLoading(true);
+        } else
+        if (props.profileAddress == 'does_not_exist') { // no profile
+            setLoading(false);
+        } else { // found profile
             props.nextStage();
         }
     }, [props.profileAddress]);
@@ -78,6 +84,10 @@ export function CreateProfileCard(props: any) {
         setWaiting(false);
     };
 
+    const Loading = () => {
+        return <div className='loading'>Loading...</div>;
+    };
+
     return <div id='page' className='create-profile-card'>
         <AddressWidget
             profileAddress={props.profileAddress}
@@ -85,6 +95,7 @@ export function CreateProfileCard(props: any) {
             suiError={props.suiError}
             setSuiError={props.setSuiError}
         />
+        { loading ? <Loading /> :
         <div className='form-wrap'>
         <form onSubmit={onSubmitCreate}>
             <div className={'field' + (nameError && ' error')}>
@@ -128,6 +139,7 @@ export function CreateProfileCard(props: any) {
             </button>
         </form>
         </div>
+        }
         { props.suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
     </div>;
 }
