@@ -139,8 +139,9 @@ body {
 .btn {
     font-size: 1.8rem;
     background-color: #007eff;
-    border-radius: 1em;
-    border: 4px solid white;
+    border-radius: 1.1em;
+    border: 1px solid lightblue;
+    box-shadow: 3px 3px 0px #002549;
     color: white;
     font-family: 'SuperMario256', Helvetica, Arial, sans-serif;
     letter-spacing: 1;
@@ -151,6 +152,8 @@ body {
     user-select: none;
     &:hover {
         background-color: #18a4ff;
+        border: 1px solid white;
+        box-shadow: 5px 5px 0px #002549;
         text-shadow:
             -1px 0px black,
             0px -1px black,
@@ -222,7 +225,7 @@ input, textarea {
     }
 }
 .address-widget, #network-widget .switch-btn {
-    background-color: var(--bg-blur);
+    color: white;
 }
 .address-widget {
     right: 1rem;
