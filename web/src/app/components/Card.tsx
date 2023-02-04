@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { PolymediaProfile, POLYMEDIA_PROFILE_REGISTRY_ID } from '@polymedia/profile-sdk';
+import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { isImageUrl, shorten } from '../lib/common';
 import './Card.less';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
@@ -63,7 +63,7 @@ export function Card(props: any)
 
                 <footer>
                     <p>{shorten(profile.id)}<br />
-                    {shorten(POLYMEDIA_PROFILE_REGISTRY_ID)}</p>
+                    {shorten(props.registryId)}</p>
                     <h6>2023 Polymedia</h6>
                 </footer>
 
@@ -78,7 +78,7 @@ export function Card(props: any)
             <div className='card-back-info'>
                 &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=devnet`}>{profile.owner}</a>}<br/>
                 &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=devnet`}>{profile.id}</a>}<br/>
-                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${POLYMEDIA_PROFILE_REGISTRY_ID}?network=devnet`}>{POLYMEDIA_PROFILE_REGISTRY_ID}</a>}<br/>
+                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=devnet`}>{props.registryId}</a>}<br/>
             </div>
         </div>
     </div>

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
-import { findProfileObjectIds } from '@polymedia/profile-sdk';
 
 import { shorten } from '../lib/common';
 
@@ -10,7 +9,7 @@ export function AddressWidget(props: any)
 
     const fetchProfileObjectId = async (lookupAddress: string) => {
         try {
-            const objectIds: Map<string,string> = await findProfileObjectIds({
+            const objectIds: Map<string,string> = await props.profileManager.findProfileObjectIds({
                 lookupAddresses: [ lookupAddress ],
             });
             if (objectIds.has(lookupAddress)) {

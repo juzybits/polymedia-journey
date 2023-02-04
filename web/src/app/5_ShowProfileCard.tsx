@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ethos } from 'ethos-connect';
-
-import { getProfileObjects, PolymediaProfile } from '@polymedia/profile-sdk';
+import { PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
 import { Card } from './components/Card';
@@ -13,7 +12,7 @@ export function ShowProfileCard(props: any)
     const [profileObj, setProfileObj] = useState<PolymediaProfile|null>(null);
 
     const fetchProfileObject = () => {
-        getProfileObjects({
+        props.profileManager.getProfileObjects({
             objectIds: [props.profileAddress]
         })
         .then((profiles: PolymediaProfile[]) => {
@@ -48,11 +47,13 @@ export function ShowProfileCard(props: any)
             <AddressWidget
                 profileAddress={props.profileAddress}
                 setProfileAddress={props.setProfileAddress}
+                profileManager={props.profileManager}
                 suiError={props.suiError}
                 setSuiError={props.setSuiError}
             />
             <Card
                 profile={profileObj}
+                registryId={props.profileManager.getRegistryId()}
             />
             <div className='action-buttons'>
                 <button className='btn' onClick={props.nextStage}>USE THIS PROFILE</button>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { EthosConnectProvider } from 'ethos-connect';
+import { ProfileManager } from '@polymedia/profile-sdk';
 
 import { Home } from './0_Home';
 import { FindDoor } from './1_FindDoor';
@@ -17,9 +18,12 @@ export function App()
     const [stage, setStage] = useState(3);
     const [profileAddress, setProfileAddress] = useState('unknown');
     const [suiError, setSuiError] = useState('');
+    const networkTmp = getNetwork();
+    const [network, setNetwork] = useState(networkTmp);
+    const [profileManager] = useState( new ProfileManager(networkTmp) );
 
     // Return either 'devnet' or 'testnet'
-    const getNetwork = (): string => {
+    function getNetwork(): string {
         // Read 'network' URL parameter
         const params = new URLSearchParams(window.location.search);
         // Delete query string
@@ -32,9 +36,7 @@ export function App()
         } else {
             return localStorage.getItem('polymedia.network') || 'devnet';
         }
-    };
-
-    const [network, setNetwork] = useState( getNetwork() );
+    }
 
     const toggleNetwork = () => {
         const newNetwork = network==='devnet' ? 'testnet' : 'devnet';
@@ -65,6 +67,7 @@ export function App()
         view = <CreateProfileCard nextStage={nextStage}
             profileAddress={profileAddress}
             setProfileAddress={setProfileAddress}
+            profileManager={profileManager}
             suiError={suiError}
             setSuiError={setSuiError}
         />;
@@ -72,6 +75,7 @@ export function App()
         view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage}
             profileAddress={profileAddress}
             setProfileAddress={setProfileAddress}
+            profileManager={profileManager}
             suiError={suiError}
             setSuiError={setSuiError}
         />;

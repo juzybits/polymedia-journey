@@ -1,7 +1,6 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 
-import { createProfile } from '@polymedia/profile-sdk';
 import { AddressWidget } from './components/AddressWidget';
 import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
@@ -69,7 +68,7 @@ export function CreateProfileCard(props: any) {
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
 
         try {
-            const [profileObj, _dynamicFieldObj] = await createProfile({
+            const [profileObj, _dynamicFieldObj] = await props.profileManager.createProfile({
                 wallet: wallet,
                 name: name,
                 image: image,
@@ -92,6 +91,7 @@ export function CreateProfileCard(props: any) {
         <AddressWidget
             profileAddress={props.profileAddress}
             setProfileAddress={props.setProfileAddress}
+            profileManager={props.profileManager}
             suiError={props.suiError}
             setSuiError={props.setSuiError}
         />
