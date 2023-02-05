@@ -20,7 +20,7 @@ export function Home(props: any) {
         return <div className='act-stars'>
             <h1 className='mario home-title title fade-in-1'><span className='prefix'>Journey to</span>Mount Sogol</h1>
             <p className='home-description paragraph fade-in-2 italic'>
-                Travelers beware: The Journey to Mount Sogol is a peculiar one, because the destination is not a geographical place. That is not to say it's not <i>real</i>.
+                Explorers beware: The Journey to Mount Sogol is a peculiar one, because the destination is not a geographical place. That is not to say it's not <i>real</i>.
             </p>
             <p className='home-description paragraph fade-in-3 italic'>
                 Mount Sogol is to be found on a different plane of existence, not in the physical world. But how can it be reached? Well...

@@ -9,6 +9,8 @@ import { MeetGrog } from './3_MeetGrog';
 import { CreateProfileCard } from './4_CreateProfileCard';
 import { ShowProfileCard } from './5_ShowProfileCard';
 import { GrogExplains } from './6_GrogExplains';
+import { MintCardEarlyAdopter } from './7_MintCardEarlyAdopter';
+import { GrogBye } from './8_GrogBye';
 
 import './App.less';
 import imgLogo from '../img/logo.png';
@@ -80,7 +82,11 @@ export function App()
             setSuiError={setSuiError}
         />;
     } else if (stage === 6) {
-        view = <GrogExplains network={network} />;
+        view = <GrogExplains network={network} nextStage={nextStage} />;
+    } else if (stage === 7) {
+        view = <MintCardEarlyAdopter nextStage={nextStage} />;
+    } else if (stage === 8) {
+        view = <GrogBye nextStage={nextStage} />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}
