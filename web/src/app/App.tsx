@@ -80,7 +80,7 @@ export function App()
             setSuiError={setSuiError}
         />;
     } else if (stage === 6) {
-        view = <GrogExplains />;
+        view = <GrogExplains network={network} />;
     }
     return <EthosConnectProvider
         ethosConfiguration={{hideEmailSignIn: true}}
