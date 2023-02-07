@@ -1,38 +1,50 @@
 import { useEffect } from 'react';
+import { useWalletKit } from '@mysten/wallet-kit';
+import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
 
 import { Card } from './components/Card';
 import './5_ShowProfileCard.less';
 
-export function ShowProfileCard(props: any)
-{
-    const disconnect = async () => {
-        props.wallet && await props.wallet.disconnect();
-        props.prevStage();
-    };
+export type ShowProfileCardProps = {
+    nextStage: () => void,
+    prevStage: () => void,
+    addressWidget: React.ReactNode,
+    profile: PolymediaProfile|null|undefined,
+    profileManager: ProfileManager,
+    suiError: string,
+}
+export const ShowProfileCard: React.FC<ShowProfileCardProps> = ({
+    nextStage,
+    prevStage,
+    addressWidget,
+    profile,
+    profileManager,
+    suiError,
+}) => {
+    const { disconnect } = useWalletKit();
 
     useEffect(() => {
         document.body.className = 'bg-library';
     }, []);
 
     useEffect(() => {
-        if (!props.profile) {
-            props.prevStage();
-            return;
+        if (!profile) {
+            prevStage();
         }
-    }, [props.profile]);
+    }, [profile]);
 
     return <div id='page' className='show-profile-card'>
-        {props.profile && <>
-            {props.addressWidget}
+        {profile && <>
+            {addressWidget}
             <Card
-                profile={props.profile}
-                registryId={props.profileManager.getRegistryId()}
+                profile={profile}
+                registryId={profileManager.getRegistryId()}
             />
             <div className='action-buttons'>
-                <button className='btn' onClick={props.nextStage}>USE THIS PROFILE</button>
+                <button className='btn' onClick={nextStage}>USE THIS PROFILE</button>
                 <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
             </div>
         </> }
-        { props.suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
+        { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;
 }

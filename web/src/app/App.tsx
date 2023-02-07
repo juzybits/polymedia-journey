@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SuiAddress } from '@mysten/sui.js';
-import { ethos, EthosConnectStatus, EthosConnectProvider } from 'ethos-connect';
+import { WalletKitProvider } from '@mysten/wallet-kit';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -15,7 +15,6 @@ import { MintCardEarlyAdopter } from './7_MintCardEarlyAdopter';
 import { GrogBye } from './8_GrogBye';
 
 import './App.less';
-import imgLogo from '../img/logo.png';
 
 export function App()
 {
@@ -28,18 +27,11 @@ export function App()
     const [network, setNetwork] = useState(networkTmp);
     const [profileManager] = useState( new ProfileManager(networkTmp) );
 
-    // Handle wallet connect/disconnect
-    const { status, wallet } = ethos.useWallet();
-    const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
-    useEffect(() => {
-        if (isConnected) {
-            fetchAndSetProfile(wallet.address);
-        } else {
+    const fetchAndSetProfile = async (lookupAddress: SuiAddress|null) => {
+        if (!lookupAddress) {
             setProfile(undefined);
+            return;
         }
-    }, [isConnected]);
-
-    const fetchAndSetProfile = async (lookupAddress: SuiAddress) => {
         try {
             const profiles: Map<SuiAddress, PolymediaProfile> = await profileManager.getProfiles({
                 lookupAddresses: [lookupAddress],
@@ -56,6 +48,10 @@ export function App()
         } catch(error: any) {
             setSuiError(error.message);
         }
+    };
+
+    const unsetProfile = () => {
+        setProfile(undefined);
     };
 
     // Return either 'devnet' or 'testnet'
@@ -91,7 +87,10 @@ export function App()
 
     // HTML
 
-    const addressWidget = <AddressWidget fetchAndSetProfile={fetchAndSetProfile} />;
+    const addressWidget = <AddressWidget
+        fetchAndSetProfile={fetchAndSetProfile}
+        unsetProfile={unsetProfile}
+        />;
 
     let view;
     if (stage === 0) {
@@ -103,26 +102,24 @@ export function App()
     } else if (stage === 3) {
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
-        view = <CreateProfileCard nextStage={nextStage}
-            addressWidget={addressWidget}
-            wallet={wallet}
-            profile={profile}
-            setProfile={setProfile}
-            profileManager={profileManager}
-            suiError={suiError}
-            setSuiError={setSuiError}
-            fetchAndSetProfile={fetchAndSetProfile}
-        />;
+        view = <CreateProfileCard
+                fetchAndSetProfile={fetchAndSetProfile}
+                nextStage={nextStage}
+                addressWidget={addressWidget}
+                profile={profile}
+                profileManager={profileManager}
+                suiError={suiError}
+                setSuiError={setSuiError}
+            />;
     } else if (stage === 5) {
-        view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage}
-            addressWidget={addressWidget}
-            wallet={wallet}
-            profile={profile}
-            setProfile={setProfile}
-            profileManager={profileManager}
-            suiError={suiError}
-            setSuiError={setSuiError}
-        />;
+        view = <ShowProfileCard
+                nextStage={nextStage}
+                prevStage={prevStage}
+                addressWidget={addressWidget}
+                profile={profile}
+                profileManager={profileManager}
+                suiError={suiError}
+            />;
     } else if (stage === 6) {
         view = <GrogExplains network={network} nextStage={nextStage} />;
     } else if (stage === 7) {
@@ -130,15 +127,10 @@ export function App()
     } else if (stage === 8) {
         view = <GrogBye nextStage={nextStage} />;
     }
-    return <EthosConnectProvider
-        ethosConfiguration={{hideEmailSignIn: true}}
-        dappName='Journey to Mount Sogol'
-        dappIcon={<img src={imgLogo} alt='Polymedia logo' />}
-        connectMessage='Journey to Mount Sogol'
-    >
+    return <WalletKitProvider>
         <div id='network-widget'>
             <a className='switch-btn' onClick={toggleNetwork}>{network}</a>
         </div>
         {view}
-    </EthosConnectProvider>;
+    </WalletKitProvider>;
 }

@@ -1,13 +1,29 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
+import { SuiAddress } from '@mysten/sui.js';
+import { useWalletKit, ConnectModal } from '@mysten/wallet-kit';
+import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
 
 import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
-export function CreateProfileCard(props: any) {
-
-    useEffect(() => {
-        document.body.className = 'bg-library dark';
-    }, []);
+export type CreateProfileCardProps = {
+    fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<void>,
+    nextStage: () => void,
+    addressWidget: React.ReactNode,
+    profile: PolymediaProfile|null|undefined,
+    profileManager: ProfileManager,
+    suiError: string,
+    setSuiError: React.Dispatch<React.SetStateAction<string>>,
+}
+export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
+    fetchAndSetProfile,
+    nextStage,
+    addressWidget,
+    profile,
+    profileManager,
+    setSuiError,
+    suiError,
+}) => {
 
     const [waiting, setWaiting] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -21,16 +37,22 @@ export function CreateProfileCard(props: any) {
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
 
+    const { isConnected, currentAccount, signAndExecuteTransaction } = useWalletKit();
+
     useEffect(() => {
-        if (props.profile === undefined) { // fetching profile in progress
+        document.body.className = 'bg-library dark';
+    }, []);
+
+    useEffect(() => {
+        if (profile === undefined) { // fetching profile in progress
             setLoading(true);
         } else
-        if (props.profile === null) { // no profile was found
+        if (profile === null) { // no profile was found
             setLoading(false);
         } else { // found profile
-            props.nextStage();
+            nextStage();
         }
-    }, [props.profile]);
+    }, [profile]);
 
     const validateForm = async (): Promise<boolean> => {
         let isValid = true;
@@ -51,26 +73,23 @@ export function CreateProfileCard(props: any) {
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
         setWaiting(true);
-        props.setSuiError('');
-
+        setSuiError('');
         if (!await validateForm()) {
             setWaiting(false);
             return;
         }
-
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
-
         try {
-            const profileObjectId = await props.profileManager.createProfile({
-                wallet: props.wallet,
-                name: name,
-                image: image,
-                description: description,
+            const profileObjectId = await profileManager.createProfile({
+                signAndExecuteTransaction,
+                name,
+                image,
+                description,
             });
             console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
-            await props.fetchAndSetProfile(profileObjectId);
+            await fetchAndSetProfile(currentAccount);
         } catch(error: any) {
-            props.setSuiError(error.message);
+            setSuiError(error.message);
         }
         setWaiting(false);
     };
@@ -79,10 +98,15 @@ export function CreateProfileCard(props: any) {
         return <div className='loading'>Loading...</div>;
     };
 
-    return <div id='page' className='create-profile-card'>
-        {props.addressWidget}
-        { loading ? <Loading /> :
-        <div className='form-wrap'>
+    let view: React.ReactNode;
+    if (!isConnected) {
+        view = <ConnectModal open={true} onClose={()=>{}} />;
+    }
+    else if (loading) {
+        view = <Loading />;
+    }
+    else {
+        view = <div className='form-wrap'>
         <form onSubmit={onSubmitCreate}>
             <div className={'field' + (nameError && ' error')}>
                 <label className='mario' htmlFor='field-name'>YOUR NAME</label>
@@ -90,7 +114,7 @@ export function CreateProfileCard(props: any) {
                     spellCheck='false' autoCorrect='off' autoComplete='off'
                     className={waiting ? 'disabled' : ''}
                     value={name} onChange={e => {
-                        props.suiError.length && props.setSuiError('');
+                        suiError.length && setSuiError('');
                         nameError.length && setNameError('');
                         setName(e.target.value);
                     }}
@@ -103,7 +127,7 @@ export function CreateProfileCard(props: any) {
                     autoCorrect='off' autoComplete='off'
                     className={waiting ? 'disabled' : ''}
                     value={image} onChange={e => {
-                        props.suiError.length && props.setSuiError('');
+                        suiError.length && setSuiError('');
                         imageError.length && setImageError('');
                         setImage(e.target.value);
                     }}
@@ -124,8 +148,12 @@ export function CreateProfileCard(props: any) {
                 CREATE PROFILE
             </button>
         </form>
-        </div>
-        }
-        { props.suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{props.suiError}</div> }
+        </div>;
+    }
+
+    return <div id='page' className='create-profile-card'>
+        {addressWidget}
+        {view}
+        { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;
 }

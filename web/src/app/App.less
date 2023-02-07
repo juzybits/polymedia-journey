@@ -9,11 +9,11 @@
 }
 
 *, html, body {
-    cursor: var(--cursor-default);
+    cursor: var(--cursor-default) !important;
 }
 
 .hand, a, button, select, input, textarea {
-    cursor: var(--cursor-pointer);
+    cursor: var(--cursor-pointer) !important;
 }
 
 html, body, p, h1, h2, h3, h4, h5, input, button {
@@ -252,6 +252,8 @@ input, textarea {
 // Fade-in effect for texts. NOTE: buggy on Firefox.
 @first-animation-delay: 1s;
 @animation-duration: 2.5s;
+@first-animation-delay: 0;
+@animation-duration: 0;
 .fade-in-1,
 .fade-in-2,
 .fade-in-3,

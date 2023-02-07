@@ -1,27 +1,23 @@
 import { useEffect, FC } from 'react';
 import { SuiAddress } from '@mysten/sui.js';
-import { ethos, EthosConnectStatus } from 'ethos-connect';
-
-import { shorten } from '../lib/common';
+import { useWalletKit, ConnectButton } from '@mysten/wallet-kit';
 
 export type AddressWidgetProps = {
-    fetchAndSetProfile: (lookupAddress: SuiAddress) => Promise<void>,
+    unsetProfile: () => void,
+    fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<void>,
 }
-
-export const AddressWidget: FC<AddressWidgetProps> = ({ fetchAndSetProfile }) =>
-{
-    const { status, wallet } = ethos.useWallet();
-
-    const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
+export const AddressWidget: FC<AddressWidgetProps> = ({
+    fetchAndSetProfile,
+}) => {
+    const { currentAccount  } = useWalletKit();
     useEffect(() => {
-        if (!isConnected) {
-            ethos.showSignInModal();
-        } else {
-            fetchAndSetProfile(wallet.address);
-        }
-    }, [isConnected]);
+        fetchAndSetProfile(currentAccount);
+    }, [currentAccount]);
 
-    return <div className='address-widget' onClick={isConnected ? wallet.disconnect: ethos.showSignInModal}>
-        {isConnected ? shorten(wallet.address) : 'Not connected'}
+    return <div className='address-widget'>
+        <ConnectButton
+            connectText={<>Connect</>}
+            size="md"
+        />
     </div>;
 }
