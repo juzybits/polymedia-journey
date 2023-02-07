@@ -1,7 +1,6 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 
-import { AddressWidget } from './components/AddressWidget';
 import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
@@ -25,15 +24,15 @@ export function CreateProfileCard(props: any) {
     const [imageError, setImageError] = useState('');
 
     useEffect(() => {
-        if (props.profileAddress === 'unknown') { // fetching profile
+        if (props.profile === undefined) { // fetching profile in progress
             setLoading(true);
         } else
-        if (props.profileAddress == 'does_not_exist') { // no profile
+        if (props.profile === null) { // no profile was found
             setLoading(false);
         } else { // found profile
             props.nextStage();
         }
-    }, [props.profileAddress]);
+    }, [props.profile]);
 
     const validateForm = async (): Promise<boolean> => {
         let isValid = true;
@@ -50,6 +49,7 @@ export function CreateProfileCard(props: any) {
         }
         return isValid;
     };
+
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
         setWaiting(true);
@@ -68,15 +68,14 @@ export function CreateProfileCard(props: any) {
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
 
         try {
-            const [profileObj, _dynamicFieldObj] = await props.profileManager.createProfile({
+            const profileObjectId = await props.profileManager.createProfile({
                 wallet: wallet,
                 name: name,
                 image: image,
                 description: description,
             });
-            console.debug('[onSubmitCreate] New profile object:', profileObj);
-            // TODO: props.setProfileObject, then use it in 6_GrogExplains.tsx
-            profileObj && props.setProfileAddress(profileObj.reference.objectId);
+            console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
+            await props.fetchAndSetProfile(profileObjectId);
         } catch(error: any) {
             props.setSuiError(error.message);
         }
@@ -88,13 +87,7 @@ export function CreateProfileCard(props: any) {
     };
 
     return <div id='page' className='create-profile-card'>
-        <AddressWidget
-            profileAddress={props.profileAddress}
-            setProfileAddress={props.setProfileAddress}
-            profileManager={props.profileManager}
-            suiError={props.suiError}
-            setSuiError={props.setSuiError}
-        />
+        {props.addressWidget}
         { loading ? <Loading /> :
         <div className='form-wrap'>
         <form onSubmit={onSubmitCreate}>

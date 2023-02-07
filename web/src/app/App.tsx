@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { SuiAddress } from '@mysten/sui.js';
 import { EthosConnectProvider } from 'ethos-connect';
-import { ProfileManager } from '@polymedia/profile-sdk';
+import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
+import { AddressWidget } from './components/AddressWidget';
 import { Home } from './0_Home';
 import { FindDoor } from './1_FindDoor';
 import { KnockDoor } from './2_KnockDoor';
@@ -18,7 +20,9 @@ import imgLogo from '../img/logo.png';
 export function App()
 {
     const [stage, setStage] = useState(3);
-    const [profileAddress, setProfileAddress] = useState('unknown');
+    // undefined = we haven't looked for the user profile yet
+    // null = the user's address does not have a profile associated to it
+    const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
     const networkTmp = getNetwork();
     const [network, setNetwork] = useState(networkTmp);
@@ -56,6 +60,27 @@ export function App()
         setStage(stage-1);
     };
 
+    const fetchAndSetProfile = async (lookupAddress: SuiAddress) => {
+        try {
+            const profiles: Map<SuiAddress, PolymediaProfile> = await profileManager.getProfiles({
+                lookupAddresses: [lookupAddress],
+                useCache: false,
+            });
+            if (profiles.has(lookupAddress)) {
+                const profile = profiles.get(lookupAddress);
+                console.log('[fetchAndSetProfile] Found profile:', profile ? profile.id : null);
+                setProfile(profile);
+            } else {
+                console.log('[fetchAndSetProfile] Profile not found');
+                setProfile(null);
+            }
+        } catch(error: any) {
+            setSuiError(error.message);
+        }
+    };
+
+    const addressWidget = <AddressWidget fetchAndSetProfile={fetchAndSetProfile} />;
+
     let view;
     if (stage === 0) {
         view = <Home nextStage={nextStage} />;
@@ -67,16 +92,19 @@ export function App()
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
         view = <CreateProfileCard nextStage={nextStage}
-            profileAddress={profileAddress}
-            setProfileAddress={setProfileAddress}
+            addressWidget={addressWidget}
+            profile={profile}
+            setProfile={setProfile}
             profileManager={profileManager}
             suiError={suiError}
             setSuiError={setSuiError}
+            fetchAndSetProfile={fetchAndSetProfile}
         />;
     } else if (stage === 5) {
         view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage}
-            profileAddress={profileAddress}
-            setProfileAddress={setProfileAddress}
+            addressWidget={addressWidget}
+            profile={profile}
+            setProfile={setProfile}
             profileManager={profileManager}
             suiError={suiError}
             setSuiError={setSuiError}

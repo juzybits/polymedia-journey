@@ -1,36 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
+import { SuiAddress } from '@mysten/sui.js';
 import { ethos, EthosConnectStatus } from 'ethos-connect';
 
 import { shorten } from '../lib/common';
 
-export function AddressWidget(props: any)
+export type AddressWidgetProps = {
+    fetchAndSetProfile: (lookupAddress: SuiAddress) => Promise<void>,
+}
+
+export const AddressWidget: FC<AddressWidgetProps> = ({ fetchAndSetProfile }) =>
 {
     const { status, wallet } = ethos.useWallet();
-
-    const fetchProfileObjectId = async (lookupAddress: string) => {
-        try {
-            const objectIds: Map<string,string> = await props.profileManager.findProfileObjectIds({
-                lookupAddresses: [ lookupAddress ],
-            });
-            if (objectIds.has(lookupAddress)) {
-                const profileAddress = objectIds.get(lookupAddress) as string;
-                console.log('[fetchProfileObjectId] Found profile:', profileAddress);
-                props.setProfileAddress(profileAddress);
-            } else {
-                console.log('[fetchProfileObjectId] Profile not found');
-                props.setProfileAddress('does_not_exist');
-            }
-        } catch(error: any) {
-            props.setSuiError(error.message);
-        }
-    };
 
     const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
     useEffect(() => {
         if (!isConnected) {
             ethos.showSignInModal();
         } else {
-            fetchProfileObjectId(wallet.address);
+            fetchAndSetProfile(wallet.address);
         }
     }, [isConnected]);
 
