@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SuiAddress } from '@mysten/sui.js';
-import { EthosConnectProvider } from 'ethos-connect';
+import { ethos, EthosConnectStatus, EthosConnectProvider } from 'ethos-connect';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -28,37 +28,16 @@ export function App()
     const [network, setNetwork] = useState(networkTmp);
     const [profileManager] = useState( new ProfileManager(networkTmp) );
 
-    // Return either 'devnet' or 'testnet'
-    function getNetwork(): string {
-        // Read 'network' URL parameter
-        const params = new URLSearchParams(window.location.search);
-        // Delete query string
-        window.history.replaceState({}, document.title, window.location.pathname);
-        let newNetwork = params.get('network');
-        if (newNetwork === 'devnet' || newNetwork === 'testnet') {
-            // Update localStorage
-            localStorage.setItem('polymedia.network', newNetwork);
-            return newNetwork;
+    // Handle wallet connect/disconnect
+    const { status, wallet } = ethos.useWallet();
+    const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
+    useEffect(() => {
+        if (isConnected) {
+            fetchAndSetProfile(wallet.address);
         } else {
-            return localStorage.getItem('polymedia.network') || 'devnet';
+            setProfile(undefined);
         }
-    }
-
-    const toggleNetwork = () => {
-        const newNetwork = network==='devnet' ? 'testnet' : 'devnet';
-        setNetwork(newNetwork);
-        localStorage.setItem('polymedia.network', newNetwork);
-        window.location.reload();
-    };
-    // NOTE: getNetwork and toggleNetwork are duplicated in gotbeef and chat
-
-    const nextStage = () => {
-        setStage(stage+1);
-    };
-
-    const prevStage = () => {
-        setStage(stage-1);
-    };
+    }, [isConnected]);
 
     const fetchAndSetProfile = async (lookupAddress: SuiAddress) => {
         try {
@@ -79,6 +58,39 @@ export function App()
         }
     };
 
+    // Return either 'devnet' or 'testnet'
+    function getNetwork(): string {
+        // Read 'network' URL parameter
+        const params = new URLSearchParams(window.location.search);
+        // Delete query string
+        window.history.replaceState({}, document.title, window.location.pathname);
+        let newNetwork = params.get('network');
+        if (newNetwork === 'devnet' || newNetwork === 'testnet') {
+            // Update localStorage
+            localStorage.setItem('polymedia.network', newNetwork);
+            return newNetwork;
+        } else {
+            return localStorage.getItem('polymedia.network') || 'devnet';
+        }
+    }
+    const toggleNetwork = () => {
+        const newNetwork = network==='devnet' ? 'testnet' : 'devnet';
+        setNetwork(newNetwork);
+        localStorage.setItem('polymedia.network', newNetwork);
+        window.location.reload();
+    };
+    // NOTE: getNetwork and toggleNetwork are duplicated in gotbeef and chat
+
+    const nextStage = () => {
+        setStage(stage+1);
+    };
+
+    const prevStage = () => {
+        setStage(stage-1);
+    };
+
+    // HTML
+
     const addressWidget = <AddressWidget fetchAndSetProfile={fetchAndSetProfile} />;
 
     let view;
@@ -93,6 +105,7 @@ export function App()
     } else if (stage === 4) {
         view = <CreateProfileCard nextStage={nextStage}
             addressWidget={addressWidget}
+            wallet={wallet}
             profile={profile}
             setProfile={setProfile}
             profileManager={profileManager}
@@ -103,6 +116,7 @@ export function App()
     } else if (stage === 5) {
         view = <ShowProfileCard nextStage={nextStage} prevStage={prevStage}
             addressWidget={addressWidget}
+            wallet={wallet}
             profile={profile}
             setProfile={setProfile}
             profileManager={profileManager}

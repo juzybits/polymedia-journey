@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
-import { ethos } from 'ethos-connect';
 
 import { Card } from './components/Card';
 import './5_ShowProfileCard.less';
 
 export function ShowProfileCard(props: any)
 {
-    const {wallet} = ethos.useWallet();
-
     const disconnect = async () => {
-        wallet && await wallet.disconnect();
-        props.setProfile(undefined);
+        props.wallet && await props.wallet.disconnect();
         props.prevStage();
     };
 

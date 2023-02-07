@@ -1,5 +1,4 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
-import { ethos, EthosConnectStatus } from 'ethos-connect';
 
 import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
@@ -10,7 +9,6 @@ export function CreateProfileCard(props: any) {
         document.body.className = 'bg-library dark';
     }, []);
 
-    const { status, wallet } = ethos.useWallet();
     const [waiting, setWaiting] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -55,11 +53,6 @@ export function CreateProfileCard(props: any) {
         setWaiting(true);
         props.setSuiError('');
 
-        const isConnected = status==EthosConnectStatus.Connected && wallet && wallet.address;
-        if (!isConnected) { // should never happen because AddressWidget shows the modal if disconnected
-            setWaiting(false);
-           return;
-        }
         if (!await validateForm()) {
             setWaiting(false);
             return;
@@ -69,7 +62,7 @@ export function CreateProfileCard(props: any) {
 
         try {
             const profileObjectId = await props.profileManager.createProfile({
-                wallet: wallet,
+                wallet: props.wallet,
                 name: name,
                 image: image,
                 description: description,
