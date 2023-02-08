@@ -1,6 +1,8 @@
 import { useEffect, FC } from 'react';
 import { SuiAddress } from '@mysten/sui.js';
-import { useWalletKit, ConnectButton } from '@mysten/wallet-kit';
+import { useWalletKit } from '@mysten/wallet-kit';
+
+import { shorten } from '../lib/common';
 
 export type AddressWidgetProps = {
     unsetProfile: () => void,
@@ -9,15 +11,16 @@ export type AddressWidgetProps = {
 export const AddressWidget: FC<AddressWidgetProps> = ({
     fetchAndSetProfile,
 }) => {
-    const { currentAccount  } = useWalletKit();
+    const { currentAccount, disconnect  } = useWalletKit();
     useEffect(() => {
         fetchAndSetProfile(currentAccount);
     }, [currentAccount]);
 
-    return <div className='address-widget'>
-        <ConnectButton
-            connectText={<>Connect</>}
-            size="md"
-        />
-    </div>;
+    return <>
+        <div className='address-widget'
+             onClick={ currentAccount ? disconnect : undefined }>
+            {currentAccount ? shorten(currentAccount) : 'Not connected'}
+        </div>
+
+    </>;
 }

@@ -37,7 +37,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
 
-    const { isConnected, currentAccount, signAndExecuteTransaction } = useWalletKit();
+    const { currentAccount, signAndExecuteTransaction } = useWalletKit();
 
     useEffect(() => {
         document.body.className = 'bg-library dark';
@@ -99,7 +99,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     };
 
     let view: React.ReactNode;
-    if (!isConnected) {
+    if (!currentAccount) {
         view = <ConnectModal open={true} onClose={()=>{}} />;
     }
     else if (loading) {
