@@ -33,7 +33,7 @@ export function GrogExplains(props: any)
                 </a>
             </div>
             <div className='paragraph dialog fade-in-3'>
-                Don't see your favorite app? Ask them to integrate <a href='TODO' target='_blank'>Polymedia Profile</a>, it's really easy!
+                Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank'>Polymedia Profile</a>, it's really easy!
             </div>
             <p className='paragraph dialog fade-in-4'>
                 But there's more!
