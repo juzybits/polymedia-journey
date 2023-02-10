@@ -14,14 +14,14 @@ export function MeetGrog(props: any) {
             <img src={imgWizardBrown} alt='wizard' />
         </div>
         <div id='wizard-text'>
-            <p className='paragraph fade-in-1'>
+            <p className='paragraph dialog fade-in-1'>
                 Well, well, well...
                 Welcome to the other side.
                 Few people make it this far — it appears you are quite the explorer!
                 You overcame the initiatory trial and found the door to The Invisible.
                 I am Grog, the keeper of the Polymedia Registry. What's your name?
             </p>
-            <button className='btn fade-in-2' onClick={props.nextStage}>I am...</button>
+            <button className='btn last fade-in-2' onClick={props.nextStage}>I am...</button>
         </div>
     </div>;
 }

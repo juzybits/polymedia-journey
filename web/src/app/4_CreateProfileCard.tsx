@@ -142,7 +142,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 ></textarea>
             </div>
             <button type='submit'
-                className={'btn'+(waiting ? ' disabled' : '')}
+                className={'btn last'+(waiting ? ' disabled' : '')}
                 disabled={waiting}
             >
                 CREATE PROFILE

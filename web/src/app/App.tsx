@@ -18,7 +18,7 @@ import './App.less';
 
 export function App()
 {
-    const [stage, setStage] = useState(3);
+    const [stage, setStage] = useState(6);
     // undefined = we haven't looked for the user profile yet
     // null = the user's address does not have a profile associated to it
     const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
@@ -33,7 +33,7 @@ export function App()
             return;
         }
         try {
-            const profiles: Map<SuiAddress, PolymediaProfile> = await profileManager.getProfiles({
+            const profiles: Map<SuiAddress, PolymediaProfile|null> = await profileManager.getProfiles({
                 lookupAddresses: [lookupAddress],
                 useCache: false,
             });
@@ -79,10 +79,12 @@ export function App()
 
     const nextStage = () => {
         setStage(stage+1);
+        window.scrollTo(0, 0);
     };
 
     const prevStage = () => {
         setStage(stage-1);
+        window.scrollTo(0, 0);
     };
 
     // HTML

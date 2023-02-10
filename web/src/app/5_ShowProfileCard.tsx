@@ -42,7 +42,7 @@ export const ShowProfileCard: React.FC<ShowProfileCardProps> = ({
             />
             <div className='action-buttons'>
                 <button className='btn' onClick={nextStage}>USE THIS PROFILE</button>
-                <button className='btn' onClick={disconnect}>CHANGE WALLET</button>
+                <button className='btn last' onClick={disconnect}>CHANGE WALLET</button>
             </div>
         </> }
         { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }

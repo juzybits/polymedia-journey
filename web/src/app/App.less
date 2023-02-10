@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'SuperMario256';
+    src: url(../fonts/SuperMario256.ttf) format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Righteous';
+    src: url(../fonts/Righteous-Regular.ttf) format('truetype');
+    font-display: swap;
+}
+
 :root {
     --bg-body: #202226;
     --bg-panel: #2a2d30;
@@ -25,12 +37,6 @@ body {
     background-color: var(--bg-body);
     color: var(--text-color);
     user-select: none;
-}
-
-@font-face {
-    font-family: 'SuperMario256';
-    src: url(../fonts/SuperMario256.ttf) format('truetype');
-    font-display: swap;
 }
 
 .mario {
@@ -79,9 +85,11 @@ body {
             url('../img/bg-library.webp');
     }
 }
+
 .italic {
     font-style: italic;
 }
+
 .modal {
     background-color: rgba(0, 0, 0, 0.7);
     width: 100vw;
@@ -91,9 +99,11 @@ body {
     overflow: auto;
     z-index: 1;
 }
+
 .intro {
     text-align: center;
 }
+
 .title {
     margin-top: 5rem;
     margin-bottom: 2.5rem;
@@ -106,9 +116,8 @@ body {
         6px 6px black,
     ;
 }
+
 .paragraph {
-    font-size: 1.8rem;
-    font-variant: small-caps;
     font-weight: bold;
     max-width: 800px;
     display: block;
@@ -123,6 +132,17 @@ body {
     display: table;
     // -webkit-text-stroke: 1px #000;
     text-stroke: 1px #000;
+    &.narrator {
+        font-family: Righteous;
+        font-size: 2.1rem;
+        line-height: 2.1rem;
+        font-variant: small-caps;
+    }
+    &.dialog {
+        font-family: serif;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+    }
 }
 
 :root {
@@ -163,6 +183,9 @@ body {
         background-color: grey;
         text-shadow: var(--btn-text-shadow);
     }
+    &.last {
+        margin-bottom: 3rem;
+    }
 }
 
 input, textarea {
@@ -177,37 +200,6 @@ input, textarea {
     &:focus {
         border-color: #a9f5fa;
     }
-}
-
-.speech-bubble {
-    background: #fff;
-    border-radius: 40px;
-    color: #000;
-    font-family: sans-serif;
-    font-size: 1.125em;
-    left: 50%;
-    line-height: 1.5rem;
-    padding: 24px;
-    position: absolute;
-    text-align: center;
-    top: 1em;
-    transform: translateX(-50%);
-    min-width: 280px;
-    max-width: 380px;
-    box-sizing: border-box;
-}
-
-.speech-bubble:before {
-    border-top: 12px solid #fff;
-    border-right: 12px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-left: 24px solid #fff;
-    bottom: -24px;
-    content: "";
-    height: 0px;
-    left: 32px;
-    position: absolute;
-    width: 0px;
 }
 
 .address-widget, #network-widget {

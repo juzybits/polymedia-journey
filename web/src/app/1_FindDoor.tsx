@@ -69,18 +69,18 @@ export function FindDoor(props: any) {
     const Intro = () => {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>ONE</h1>
-            <p className='paragraph fade-in-2 italic'>
+            <p className='paragraph narrator fade-in-2'>
                 You arrived to the fortress wall that surrounds the castle.
             </p>
-            <p className='paragraph fade-in-3 italic'>
+            <p className='paragraph narrator fade-in-3'>
                 The door to The Invisible may be visible, but it's not easy to find...
                 Not because you cannot see it, but because it's hiding in plain sight.
             </p>
-            <p className='paragraph fade-in-4 italic'>
+            <p className='paragraph narrator fade-in-4'>
                 Your first challenge will be to prove your perspicacious mind:
                 Pick the door that stands apart from all the other doors you'll find.
             </p>
-            <button className='btn fade-in-5' onClick={() => setAct('1_game')}>I'm ready</button>
+            <button className='btn last fade-in-5' onClick={() => setAct('1_game')}>I'm ready</button>
         </div>;
     };
 
