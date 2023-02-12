@@ -1,15 +1,36 @@
 import { useEffect } from 'react';
+import { PolymediaProfile } from '@polymedia/profile-sdk';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
 import './6_GrogExplains.less';
 
-export function GrogExplains(props: any)
-{
+export type GrogExplainsProps = {
+    network: string,
+    nextStage: () => void,
+    prevStage: () => void,
+    profile: PolymediaProfile|null|undefined,
+}
+export const GrogExplains: React.FC<GrogExplainsProps> = ({
+    network,
+    nextStage,
+    prevStage,
+    profile,
+}) => {
     useEffect(() => {
         document.body.className = 'bg-library';
     }, []);
+
+    useEffect(() => {
+        if (!profile) {
+            prevStage();
+        }
+    }, [profile]);
+
+    if (!profile) {
+        return <></>;
+    }
 
     return <div id='page' className='grog-explains'>
         <div id='wizard-wrap'>
@@ -17,17 +38,17 @@ export function GrogExplains(props: any)
         </div>
         <div id='wizard-text'>
             <p className='paragraph dialog fade-in-1'>
-                It's nice to meet you TODO. I see you already have a Polymedia Profile. Good. Now we can proceed.
+                It's nice to meet you, <i>{profile.name}</i>.
             </p>
             <p className='paragraph dialog fade-in-2'>
-                First things first. A Polymedia Profile is an object associated to your address across the Sui Metaverse. Your profile will travel with you everywhere you go:
+                I see you already have a Polymedia Profile. Excellent. Your profile will travel with you everywhere you go in the Sui Metaverse:
             </p>
-            <div className='paragraph dialog profile-usecases fade-in-3'>
-                <a href={'https://chat.polymedia.app/@sui-fans?network='+props.network} target='_blank'>
+            <div className='paragraph narrator profile-usecases fade-in-3'>
+                <a href={'https://chat.polymedia.app/@sui-fans?network='+network} target='_blank'>
                     chat.polymedia.app
                     <img src={imgExampleChat} alt='chat.polymedia.app' />
                 </a>
-                <a href={'https://gotbeef.app?network='+props.network} target='_blank'>
+                <a href={'https://gotbeef.app?network='+network} target='_blank'>
                     gotbeef.app
                     <img src={imgExampleGotbeef} alt='gotbeef.app' />
                 </a>
@@ -38,7 +59,7 @@ export function GrogExplains(props: any)
             <p className='paragraph dialog fade-in-4'>
                 But there's more!
             </p>
-            <button className='btn last fade-in-5' onClick={props.nextStage}>More??</button>
+            <button className='btn last fade-in-5' onClick={nextStage}>More?!</button>
         </div>
     </div>;
 }

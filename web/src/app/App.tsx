@@ -123,7 +123,12 @@ export function App()
                 suiError={suiError}
             />;
     } else if (stage === 6) {
-        view = <GrogExplains network={network} nextStage={nextStage} />;
+        view = <GrogExplains
+                network={network}
+                nextStage={nextStage}
+                prevStage={prevStage}
+                profile={profile}
+            />;
     } else if (stage === 7) {
         view = <MintCardEarlyAdopter nextStage={nextStage} />;
     } else if (stage === 8) {
