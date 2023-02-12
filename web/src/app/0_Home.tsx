@@ -38,7 +38,7 @@ export function Home(props: any) {
         return <div className='act-castle'>
             <h1 className='mario title fade-in-1'>THE CASTLE</h1>
             <p className='home-description paragraph dialog fade-in-2'>
-                <i>"The door to The Invisible must be visible"</i>, that's what the professor used to say. For a long time I wondered what he meant. He sure liked to speak in riddles...
+                <i>"The door to The Invisible must be visible"</i>, that's what the Professor used to say. For a long time I wondered what he meant. He sure liked to speak in riddles...
             </p>
             <p className='home-description paragraph dialog fade-in-3'>
                  Eventually, I learned about "Le Château Invisible," a medieval castle in the Alps that the locals had nicknamed "The Invisible Castle", due to its unexplained origins.

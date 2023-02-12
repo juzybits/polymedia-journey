@@ -37,7 +37,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
 
-    const { currentAccount, signAndExecuteTransaction } = useWalletKit();
+    const { currentAccount, disconnect, signAndExecuteTransaction } = useWalletKit();
 
     useEffect(() => {
         document.body.className = 'bg-library dark';
@@ -94,6 +94,11 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         setWaiting(false);
     };
 
+    const resetErrors = () => {
+        suiError.length && setSuiError('');
+        nameError.length && setNameError('');
+    };
+
     const Loading = () => {
         return <div className='loading'>Loading...</div>;
     };
@@ -113,9 +118,9 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 <input type='text' id='field-name'
                     spellCheck='false' autoCorrect='off' autoComplete='off'
                     className={waiting ? 'disabled' : ''}
-                    value={name} onChange={e => {
-                        suiError.length && setSuiError('');
-                        nameError.length && setNameError('');
+                    value={name}
+                    onChange={e => {
+                        resetErrors();
                         setName(e.target.value);
                     }}
                 />
@@ -126,9 +131,9 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 <input type='text' id='field-image'
                     autoCorrect='off' autoComplete='off'
                     className={waiting ? 'disabled' : ''}
-                    value={image} onChange={e => {
-                        suiError.length && setSuiError('');
-                        imageError.length && setImageError('');
+                    value={image}
+                    onChange={e => {
+                        resetErrors();
                         setImage(e.target.value);
                     }}
                 />
@@ -137,15 +142,19 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             <div className='field'>
                 <label className='mario' htmlFor='field-description'>DESCRIPTION / SOCIALS</label>
                 <textarea id='field-description'
-                    value={description} onChange={e => setDescription(e.target.value)}
                     className={waiting ? 'disabled' : ''}
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
                 ></textarea>
             </div>
             <button type='submit'
-                className={'btn last'+(waiting ? ' disabled' : '')}
+                className={'btn'+(waiting ? ' disabled' : '')}
                 disabled={waiting}
             >
                 CREATE PROFILE
+            </button>
+            <button className='btn last' onClick={(e) => { e.preventDefault(); resetErrors(); disconnect(); }}>
+                CHANGE WALLET
             </button>
         </form>
         </div>;

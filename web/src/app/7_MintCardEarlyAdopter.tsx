@@ -19,7 +19,7 @@ export function MintCardEarlyAdopter(props: any)
                 Yes, more!
             </p>
             <p className='paragraph dialog fade-in-2'>
-                The professor was here earlier and left something for you. He said you would need it in your journey...
+                The Professor was here earlier and left something for you. He said you would need it in your journey...
             </p>
             <button className='btn fade-in-3' onClick={props.nextStage}>SHOW ME PLS</button>
             <div className='paragraph dialog fade-in-4 card'>
