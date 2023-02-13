@@ -130,7 +130,13 @@ export function App()
                 profile={profile}
             />;
     } else if (stage === 7) {
-        view = <MintEarlyAdopterCard nextStage={nextStage} />;
+        view = <MintEarlyAdopterCard
+                nextStage={nextStage}
+                prevStage={prevStage}
+                profile={profile}
+                suiError={suiError}
+                setSuiError={setSuiError}
+            />;
     } else if (stage === 8) {
         view = <GrogBye nextStage={nextStage} />;
     }

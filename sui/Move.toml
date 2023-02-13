@@ -1,0 +1,11 @@
+[package]
+name = "PolymediaJourney"
+version = "0.0.1"
+authors = ["juzybits <https://twitter.com/juzybits>"]
+
+[dependencies]
+Sui = { local = "../../sui/crates/sui-framework" }
+PolymediaProfile = { local = "../../polymedia-profile/sui" }
+
+[addresses]
+polymedia_journey = "0x0"
