@@ -11,7 +11,7 @@ import { MeetGrog } from './3_MeetGrog';
 import { CreateProfileCard } from './4_CreateProfileCard';
 import { ShowProfileCard } from './5_ShowProfileCard';
 import { GrogExplains } from './6_GrogExplains';
-import { MintCardEarlyAdopter } from './7_MintCardEarlyAdopter';
+import { MintEarlyAdopterCard } from './7_MintEarlyAdopterCard';
 import { GrogBye } from './8_GrogBye';
 
 import './App.less';
@@ -130,7 +130,7 @@ export function App()
                 profile={profile}
             />;
     } else if (stage === 7) {
-        view = <MintCardEarlyAdopter nextStage={nextStage} />;
+        view = <MintEarlyAdopterCard nextStage={nextStage} />;
     } else if (stage === 8) {
         view = <GrogBye nextStage={nextStage} />;
     }

@@ -33,10 +33,10 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
     }
 
     return <div id='page' className='grog-explains'>
-        <div id='wizard-wrap'>
+        <div className='wizard-wrap'>
             <img src={imgWizardBrown} alt='wizard' />
         </div>
-        <div id='wizard-text'>
+        <div>
             <p className='paragraph dialog fade-in-1'>
                 It's nice to meet you, <i>{profile.name}</i>.
             </p>

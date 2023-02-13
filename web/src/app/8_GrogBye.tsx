@@ -13,10 +13,10 @@ export function GrogBye(props: any)
     const tweetHref = `https://twitter.com/share?text=${tweetText}`;
 
     return <div id='page' className='grog-bye'>
-        <div id='wizard-wrap'>
+        <div className='wizard-wrap'>
             <img src={imgWizardBrown} alt='wizard' />
         </div>
-        <div id='wizard-text'>
+        <div>
             <p className='paragraph dialog fade-in-1'>
                 All done! (for now...)
             </p>

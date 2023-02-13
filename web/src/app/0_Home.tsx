@@ -26,7 +26,7 @@ export function Home(props: any) {
                 In fact, Mount Sogol is to be found on a different plane of existence, not in the physical world. But how can it be reached? Well...
             </p>
             <p className='home-description paragraph narrator fade-in-4'>
-                "The door to The Invisible must be visible"
+                “The door to The Invisible must be visible”
             </p>
             <button className='btn last fade-in-5' onClick={() => setAct('1_castle')}>
                 BEGIN
@@ -38,13 +38,13 @@ export function Home(props: any) {
         return <div className='act-castle'>
             <h1 className='mario title fade-in-1'>THE CASTLE</h1>
             <p className='home-description paragraph dialog fade-in-2'>
-                <i>"The door to The Invisible must be visible"</i>, that's what the Professor used to say. For a long time I wondered what he meant. He sure liked to speak in riddles...
+                <i>“The door to The Invisible must be visible”</i>, that's what the Professor used to say. For a long time I wondered what he meant...
             </p>
             <p className='home-description paragraph dialog fade-in-3'>
-                 Eventually, I learned about "Le Château Invisible," a medieval castle in the Alps that the locals had nicknamed "The Invisible Castle", due to its unexplained origins.
+                Eventually I learned about “Le Château Invisible”, a medieval castle deep in the Alps that the locals had nicknamed “The Invisible Castle”, due to its unexplained origins.
             </p>
             <p className='home-description paragraph dialog fade-in-4'>
-                The castle's remote location makes it only accessible by foot. It wasn't easy, but I found it, I finally found it! Now I just need to find a way to get up there.
+                The castle's remote location makes it only accessible by foot, and it took me a <i>looong</i> time to get here. But I found it, I finally found it!
             </p>
             <button className='btn fade-in-5' onClick={props.nextStage}>
                 LET'S GO! 💪
