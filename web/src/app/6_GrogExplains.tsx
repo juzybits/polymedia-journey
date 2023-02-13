@@ -41,7 +41,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                 It's nice to meet you, <i>{profile.name}</i>.
             </p>
             <p className='paragraph dialog fade-in-2'>
-                I see you already have a Polymedia Profile. Excellent. Your profile will travel with you everywhere you go in the Sui Metaverse:
+                I see you already have a Polymedia Profile. Excellent! Your profile is an <i>object</i> that will accompany you everywhere in the Sui Metaverse:
             </p>
             <div className='paragraph narrator profile-usecases fade-in-3'>
                 <a href={'https://chat.polymedia.app/@sui-fans?network='+network} target='_blank'>
@@ -57,7 +57,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                 Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank'>Polymedia Profile</a>, it's really easy!
             </div>
             <p className='paragraph dialog fade-in-4'>
-                But there's more!
+                But there's more.
             </p>
             <button className='btn last fade-in-5' onClick={nextStage}>More?!</button>
         </div>

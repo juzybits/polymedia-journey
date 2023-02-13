@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import './8_GrogBye.less';
 
-export function GrogBye(props: any)
+export function GrogBye()
 {
     useEffect(() => {
         document.body.className = 'bg-library';
@@ -24,9 +24,8 @@ export function GrogBye(props: any)
                 Better <a href={tweetHref} target='_blank'>let Polymedia know</a> that you made it this far. They will be happy to hear from you.
             </p>
             <p className='paragraph dialog fade-in-3'>
-                The Journey to Mount Sogol continues on Sui Mainnet!
+                Now, why don't you get some rest. We have a guest room ready for you in the castle. We will talk more in the morning, before you continue on your Journey to Mount Sogol.
             </p>
-            <button className='btn last fade-in-4' onClick={props.nextStage}>OUTTRO</button>
         </div>
     </div>;
 }

@@ -117,7 +117,10 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             <div className='paragraph dialog fade-in-1 card'>
                 <img src={imgCardEarlyAdopter} alt='chat.polymedia.app' />
             </div>
-            <button className='btn last fade-in-2' onClick={mintCard}>COLLECT</button>
+            <p className='paragraph dialog fade-in-2'>
+                You can attach this card to your Polymedia Profile as a <i>dynamic field object</i>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later.
+            </p>
+            <button className='btn last fade-in-3' onClick={mintCard}>COLLECT</button>
         </>;
     }
     else {
