@@ -10,10 +10,10 @@ export function MeetGrog(props: any) {
     }, []);
 
     return <div id='page' className='meet-grog'>
-        <div class='wizard-wrap'>
+        <div className='wizard-wrap'>
             <img src={imgWizardBrown} alt='wizard' />
         </div>
-        <div class='wizard-text'>
+        <div className='wizard-text'>
             <p className='paragraph dialog fade-in-1'>
                 Well, well, well...
                 Welcome to the other side.

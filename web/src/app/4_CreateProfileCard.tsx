@@ -83,7 +83,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             const profileObjectId = await profileManager.createProfile({
                 signAndExecuteTransaction,
                 name,
-                image,
+                url: image,
                 description,
             });
             console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
