@@ -22,6 +22,7 @@ export function App()
     // undefined = we haven't looked for the user profile yet
     // null = the user's address does not have a profile associated to it
     const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
+    const [earlyAdopterCardId, setEarlyAdopterCardId] = useState<string|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
     const networkTmp = getNetwork();
     const [network, setNetwork] = useState(networkTmp);
@@ -39,10 +40,10 @@ export function App()
             });
             if (profiles.has(lookupAddress)) {
                 const profile = profiles.get(lookupAddress);
-                console.log('[fetchAndSetProfile] Found profile:', profile ? profile.id : null);
+                console.debug('[fetchAndSetProfile] Found profile:', profile ? profile.id : null);
                 setProfile(profile);
             } else {
-                console.log('[fetchAndSetProfile] Profile not found');
+                console.debug('[fetchAndSetProfile] Profile not found');
                 setProfile(null);
             }
         } catch(error: any) {
@@ -128,17 +129,21 @@ export function App()
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}
+                setEarlyAdopterCardId={setEarlyAdopterCardId}
+                suiError={suiError}
+                setSuiError={setSuiError}
             />;
     } else if (stage === 7) {
         view = <MintEarlyAdopterCard
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}
+                earlyAdopterCardId={earlyAdopterCardId}
                 suiError={suiError}
                 setSuiError={setSuiError}
             />;
     } else if (stage === 8) {
-        view = <GrogBye nextStage={nextStage} />;
+        view = <GrogBye />;
     }
     return <WalletKitProvider>
         <div id='network-widget'>

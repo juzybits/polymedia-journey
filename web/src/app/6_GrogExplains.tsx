@@ -1,4 +1,10 @@
 import { useEffect } from 'react';
+import {
+    GetObjectDataResponse,
+    JsonRpcProvider,
+    Network,
+    SuiObject,
+} from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
@@ -6,20 +12,30 @@ import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
 import './6_GrogExplains.less';
 
+const rpc = new JsonRpcProvider(Network.DEVNET); // TODO
+
 export type GrogExplainsProps = {
     network: string,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
+    setEarlyAdopterCardId: React.Dispatch<React.SetStateAction<string|null|undefined>>,
+    suiError: string,
+    setSuiError: React.Dispatch<React.SetStateAction<string>>,
 }
 export const GrogExplains: React.FC<GrogExplainsProps> = ({
     network,
     nextStage,
     prevStage,
     profile,
+    setEarlyAdopterCardId,
+    setSuiError,
+    suiError,
 }) => {
     useEffect(() => {
         document.body.className = 'bg-library';
+        setSuiError('');
+        fetchAndSetEarlyAdopterCard();
     }, []);
 
     useEffect(() => {
@@ -27,6 +43,30 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
             prevStage();
         }
     }, [profile]);
+
+    const fetchAndSetEarlyAdopterCard = () => {
+        if (!profile) return;
+
+        rpc.getDynamicFieldObject(
+            profile.id,
+            // 'Early Adopter',
+            '0x1::string::String {bytes: vector[69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
+        ).then((resp: GetObjectDataResponse) => {
+            console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp)
+            const cardId = (resp.details as SuiObject).reference.objectId;
+            setEarlyAdopterCardId(cardId);
+        })
+        .catch( (error: any) => {
+            if (error.message.includes('Cannot find dynamic field')) {
+                console.debug('[fetchAndSetEarlyAdopterCard] Card not found')
+            } else {
+                console.warn('[fetchAndSetEarlyAdopterCard] Error:', error)
+                setSuiError(error.message);
+            }
+        })
+    };
+
+    /* HTML */
 
     if (!profile) {
         return <></>;
@@ -41,7 +81,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                 It's nice to meet you, <i>{profile.name}</i>.
             </p>
             <p className='paragraph dialog fade-in-2'>
-                I see you already have a Polymedia Profile. Excellent! Your profile is an <i>object</i> that will accompany you everywhere in the Sui Metaverse:
+                I see you already created a Polymedia Profile. Excellent! Your profile is an <i>object</i> that will accompany you everywhere in the Sui Metaverse:
             </p>
             <div className='paragraph narrator profile-usecases fade-in-3'>
                 <a href={'https://chat.polymedia.app/@sui-fans?network='+network} target='_blank'>
@@ -61,5 +101,6 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
             </p>
             <button className='btn last fade-in-5' onClick={nextStage}>More?!</button>
         </div>
+        { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;
 }

@@ -56,6 +56,7 @@ export type MintEarlyAdopterCardProps = {
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
+    earlyAdopterCardId: string|null|undefined,
     suiError: string,
     setSuiError: React.Dispatch<React.SetStateAction<string>>,
 }
@@ -63,6 +64,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     nextStage,
     prevStage,
     profile,
+    earlyAdopterCardId,
     setSuiError,
     suiError,
 }) => {
@@ -71,7 +73,6 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     }, []);
 
     const [act, setAct] = useState('0_intro');
-
     const { signAndExecuteTransaction } = useWalletKit();
 
     useEffect(() => {
@@ -95,6 +96,14 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
         .catch( (error: any) => setSuiError(error.message) )
     };
 
+    const ButtonCollect: React.FC = () => {
+        return <button className='btn last fade-in-3' onClick={mintCard}>COLLECT</button>;
+    };
+
+    const ButtonContinue: React.FC = () => {
+        return <button className='btn last fade-in-3' onClick={nextStage}>CONTINUE</button>;
+    };
+
     let contents = <></>;
     if (act=='0_intro') {
         contents = <>
@@ -113,6 +122,8 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
         </>;
     }
     else if (act=='1_mint') {
+        const button = earlyAdopterCardId ? <ButtonContinue /> : <ButtonCollect />;
+
         contents = <>
             <div className='paragraph dialog fade-in-1 card'>
                 <img src={imgCardEarlyAdopter} alt='chat.polymedia.app' />
@@ -120,7 +131,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             <p className='paragraph dialog fade-in-2'>
                 You can attach this card to your Polymedia Profile as a <i>dynamic field object</i>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later.
             </p>
-            <button className='btn last fade-in-3' onClick={mintCard}>COLLECT</button>
+            {button}
         </>;
     }
     else {
