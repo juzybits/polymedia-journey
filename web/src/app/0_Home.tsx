@@ -26,7 +26,7 @@ export function Home(props: any) {
                 In fact, Mount Sogol is to be found on a different plane of existence, not in the physical world. But how can it be reached? Well...
             </p>
             <p className='home-description paragraph narrator fade-in-4'>
-                “The door to The Invisible must be visible”
+                <i>“The door to The Invisible must be visible”</i>
             </p>
             <button className='btn last fade-in-5' onClick={() => setAct('1_castle')}>
                 BEGIN

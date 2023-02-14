@@ -74,7 +74,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
                 <p className='paragraph dialog fade-in-2'>
                     The Professor was here earlier and left something for you. He said you would need it in your journey...
                 </p>
-                <button className='btn fade-in-3' onClick={() => setAct('1_mint')}>SHOW ME PLS</button>
+                <button className='btn fade-in-3 last' onClick={() => setAct('1_mint')}>WHAT IS IT?</button>
             </div>
         </>;
     }

@@ -24,7 +24,7 @@ export function GrogBye()
                 Better <a href={tweetHref} target='_blank'>let Polymedia know</a> that you made it this far. They will be happy to hear from you.
             </p>
             <p className='paragraph dialog fade-in-3'>
-                Now, why don't you get some rest. We have a guest room ready for you in the castle. We will talk more in the morning, before you continue on your Journey to Mount Sogol.
+                Now, why don't you get some rest. There is a guest room ready for you upstairs. We will talk more in the morning, before you continue your Journey to Mount Sogol.
             </p>
         </div>
     </div>;

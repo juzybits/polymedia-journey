@@ -14,6 +14,6 @@ export function Teaser() {
             <p className='home-description paragraph narrator fade-in-2'>
                 Coming soon...
             </p>
-        </div>;
+        </div>
     </div>;
 }
