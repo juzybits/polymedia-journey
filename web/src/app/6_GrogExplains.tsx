@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import {
     GetObjectDataResponse,
-    JsonRpcProvider,
-    Network,
     SuiObject,
 } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
+import { getRpcProvider } from './lib/sui_client';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
 import './6_GrogExplains.less';
-
-const rpc = new JsonRpcProvider(Network.DEVNET); // TODO
 
 export type GrogExplainsProps = {
     network: string,
@@ -44,6 +41,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
         }
     }, [profile]);
 
+    const rpc = getRpcProvider(network);
     const fetchAndSetEarlyAdopterCard = () => {
         if (!profile) return;
 

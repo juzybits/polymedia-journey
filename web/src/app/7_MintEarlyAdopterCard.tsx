@@ -1,58 +1,14 @@
 import { useEffect, useState } from 'react';
-import {
-    SignableTransaction,
-    SuiAddress,
-    TransactionEffects,
-} from '@mysten/sui.js';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
+import { createQuest } from './lib/sui_client';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
 import './7_MintEarlyAdopterCard.less';
 
-const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x12ba3c5ae01b5691fbb9bfea752bcab053779ea0';
-
-async function createQuest({
-    signAndExecuteTransaction,
-    packageId,
-    profileId,
-    name,
-    url,
-} : {
-    signAndExecuteTransaction: (transaction: SignableTransaction) => Promise<any>,
-    packageId: SuiAddress,
-    profileId: SuiAddress,
-    name: string,
-    url: string,
-}): Promise<any>
-{
-    const resp = await signAndExecuteTransaction({
-        kind: 'moveCall',
-        data: {
-            packageObjectId: packageId,
-            module: 'journey',
-            function: 'save_quest',
-            typeArguments: [],
-            arguments: [
-                profileId,
-                name,
-                url,
-            ],
-            gasBudget: 1000,
-        }
-    });
-
-    // Verify the transaction results
-    //                  Sui/Ethos || Suiet
-    const effects = (resp.effects || resp.EffectsCert?.effects?.effects) as TransactionEffects;
-    if (effects.status.status !== 'success') {
-        throw new Error(effects.status.error);
-    }
-    return resp;
-}
-
 export type MintEarlyAdopterCardProps = {
+    network: string,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
@@ -61,6 +17,7 @@ export type MintEarlyAdopterCardProps = {
     setSuiError: React.Dispatch<React.SetStateAction<string>>,
 }
 export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
+    network,
     nextStage,
     prevStage,
     profile,
@@ -84,14 +41,14 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     const mintCard = () => {
         profile && createQuest({
             signAndExecuteTransaction,
-            packageId: POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET,
+            network,
             profileId: profile.id,
             name: 'Early Adopter',
             url: 'https://mountsogol.com/img/card_early_adopter.webp', // TODO: serve this image
         })
         .then( (resp: any) => {
             console.debug('[mintCard] Success. Response:', resp);
-            setAct('2_done');
+            nextStage();
         })
         .catch( (error: any) => setSuiError(error.message) )
     };

@@ -135,6 +135,7 @@ export function App()
             />;
     } else if (stage === 7) {
         view = <MintEarlyAdopterCard
+                network={network}
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}
