@@ -5,7 +5,7 @@ module polymedia_journey::journey
     use sui::tx_context::{TxContext};
     use sui::url::{Self, Url};
 
-    use polymedia_profile::profile::{Profile, add_dynamic_object_field};
+    use polymedia_profile::profile::{Profile, set_dynamic_object_field};
 
     struct Quest has key, store {
         id: UID,
@@ -26,6 +26,6 @@ module polymedia_journey::journey
             name,
             url,
         };
-        add_dynamic_object_field(profile, name, quest);
+        set_dynamic_object_field(profile, name, quest);
     }
 }
