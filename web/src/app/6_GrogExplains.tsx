@@ -91,13 +91,13 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                     <img src={imgExampleGotbeef} alt='gotbeef.app' />
                 </a>
             </div>
-            <div className='paragraph dialog fade-in-3'>
+            {/*<div className='paragraph dialog fade-in-3'>
                 Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank'>Polymedia Profile</a>, it's really easy!
-            </div>
-            <p className='paragraph dialog fade-in-4'>
+            </div>*/}
+            <p className='paragraph dialog fade-in-3'>
                 But there's more.
             </p>
-            <button className='btn last fade-in-5' onClick={nextStage}>More?!</button>
+            <button className='btn last fade-in-4' onClick={nextStage}>More?!</button>
         </div>
         { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;

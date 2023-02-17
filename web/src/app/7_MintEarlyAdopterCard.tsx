@@ -69,7 +69,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             </div>
             <div>
                 <p className='paragraph dialog fade-in-1'>
-                    The Professor was here earlier and left something for you. He said you would need it in your journey...
+                    The Professor was here earlier and left something for you. He said it would be useful in your journey...
                 </p>
                 <button className='btn fade-in-2 last' onClick={() => setAct('1_mint')}>WHAT IS IT?</button>
             </div>
@@ -83,7 +83,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
                 <img src={imgCardEarlyAdopter} alt='chat.polymedia.app' />
             </div>
             <p className='paragraph dialog fade-in-2'>
-                You can attach this card to your Polymedia Profile as a <i>dynamic object field</i>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later.
+                You can attach this card to your Polymedia Profile as a <i>dynamic object field</i>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later on.
             </p>
             {button}
         </>;
