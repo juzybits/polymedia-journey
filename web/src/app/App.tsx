@@ -4,7 +4,6 @@ import { WalletKitProvider } from '@mysten/wallet-kit';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
-import { Teaser } from './0_Teaser';
 import { Home } from './0_Home';
 import { FindDoor } from './1_FindDoor';
 import { KnockDoor } from './2_KnockDoor';
@@ -97,10 +96,6 @@ export function App()
         />;
 
     let view;
-    const showTeaser = (window.location.hostname == 'mountsogol.com');
-    if (showTeaser) {
-        view = <Teaser />;
-    } else
     if (stage === 0) {
         view = <Home nextStage={nextStage} />;
     } else if (stage === 1) {
@@ -152,11 +147,9 @@ export function App()
         view = <GrogBye />;
     }
     return <WalletKitProvider>
-        {!showTeaser &&
         <div id='network-widget'>
             <a className='switch-btn' onClick={toggleNetwork}>{network}</a>
         </div>
-        }
         {view}
     </WalletKitProvider>;
 }
