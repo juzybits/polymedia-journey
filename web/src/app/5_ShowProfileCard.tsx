@@ -6,6 +6,7 @@ import { Card } from './components/Card';
 import './5_ShowProfileCard.less';
 
 export type ShowProfileCardProps = {
+    network: string,
     nextStage: () => void,
     prevStage: () => void,
     addressWidget: React.ReactNode,
@@ -14,6 +15,7 @@ export type ShowProfileCardProps = {
     suiError: string,
 }
 export const ShowProfileCard: React.FC<ShowProfileCardProps> = ({
+    network,
     nextStage,
     prevStage,
     addressWidget,
@@ -37,6 +39,7 @@ export const ShowProfileCard: React.FC<ShowProfileCardProps> = ({
         {profile && <>
             {addressWidget}
             <Card
+                network={network}
                 profile={profile}
                 registryId={profileManager.getRegistryId()}
             />

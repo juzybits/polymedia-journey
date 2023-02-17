@@ -38,7 +38,7 @@ export function KnockDoor(props: any) {
         "😤",
         "😤😡",
         "😤😡🌋",
-        "GRRR. OK, OK, I'LL OPEN THE DOOR! You're really tenacious... Come in!",
+        "GRRR. OK, OK! I'LL OPEN THE DOOR! You're really tenacious... Come in!",
         '',
     ];
 

@@ -18,7 +18,7 @@ import './App.less';
 
 export function App()
 {
-    const [stage, setStage] = useState(4);
+    const [stage, setStage] = useState(0);
     // undefined = we haven't looked for the user profile yet
     // null = the user's address does not have a profile associated to it
     const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
@@ -120,6 +120,7 @@ export function App()
             />;
     } else if (stage === 5) {
         view = <ShowProfileCard
+                network={network}
                 nextStage={nextStage}
                 prevStage={prevStage}
                 addressWidget={addressWidget}

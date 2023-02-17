@@ -23,7 +23,7 @@ export function GrogBye()
             <p className='paragraph dialog fade-in-2'>
                 Better <a href={tweetHref} target='_blank'>let Polymedia know</a> that you made it this far. They will be happy to hear from you.
             </p>
-            <p className='paragraph dialog fade-in-3'>
+            <p className='paragraph dialog fade-in-3 last'>
                 Now, why don't you get some rest. There is a guest room ready for you upstairs. We will talk more in the morning, before you continue your Journey to Mount Sogol.
             </p>
         </div>

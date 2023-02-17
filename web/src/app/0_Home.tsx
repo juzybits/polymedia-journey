@@ -28,7 +28,7 @@ export function Home(props: any) {
             <p className='home-description paragraph narrator fade-in-4'>
                 <i>“The door to The Invisible must be visible”</i>
             </p>
-            <button className='btn last fade-in-5' onClick={() => setAct('1_castle')}>
+            <button className='btn last fade-in-5' onClick={() => { setAct('1_castle'); window.scrollTo(0, 0); }}>
                 BEGIN
             </button>
         </div>;

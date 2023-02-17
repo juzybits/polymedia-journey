@@ -76,9 +76,9 @@ export function Card(props: any)
         <div className='card-back-frame'>
             <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
             <div className='card-back-info'>
-                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=devnet`}>{profile.owner}</a>}<br/>
-                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=devnet`}>{profile.id}</a>}<br/>
-                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=devnet`}>{props.registryId}</a>}<br/>
+                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=${props.network}`}>{profile.owner}</a>}<br/>
+                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=${props.network}`}>{profile.id}</a>}<br/>
+                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=${props.network}`}>{props.registryId}</a>}<br/>
             </div>
         </div>
     </div>
