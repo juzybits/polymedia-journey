@@ -24,8 +24,9 @@ export function App()
     const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
     const [earlyAdopterCardId, setEarlyAdopterCardId] = useState<string|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
-    const networkTmp = getNetwork();
-    const [network, setNetwork] = useState(networkTmp);
+    // const networkTmp = getNetwork();
+    const networkTmp = 'devnet';
+    const [network, _setNetwork] = useState(networkTmp);
     const [profileManager] = useState( new ProfileManager(networkTmp) );
 
     const fetchAndSetProfile = async (lookupAddress: SuiAddress|null) => {
@@ -51,9 +52,8 @@ export function App()
         }
     };
 
-    const unsetProfile = () => {
-        setProfile(undefined);
-    };
+    /*
+    // NOTE: getNetwork() and toggleNetwork() are duplicated in other Polymedia projects
 
     // Return either 'devnet' or 'testnet'
     function getNetwork(): string {
@@ -76,7 +76,11 @@ export function App()
         localStorage.setItem('polymedia.network', newNetwork);
         window.location.reload();
     };
-    // NOTE: getNetwork and toggleNetwork are duplicated in gotbeef and chat
+    */
+
+    const unsetProfile = () => {
+        setProfile(undefined);
+    };
 
     const nextStage = () => {
         setStage(stage+1);
@@ -147,9 +151,9 @@ export function App()
         view = <GrogBye />;
     }
     return <WalletKitProvider>
-        <div id='network-widget'>
+        {/*<div id='network-widget'>
             <a className='switch-btn' onClick={toggleNetwork}>{network}</a>
-        </div>
+        </div>*/}
         {view}
     </WalletKitProvider>;
 }
