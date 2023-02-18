@@ -9,7 +9,7 @@ export function GrogBye()
         document.body.className = 'bg-library';
     }, []);
 
-    const tweetText = encodeURIComponent('🤔Yo, what even is Mount Sogol? I have no clue haha, but I just got an Early Adopter NFT by creating my Polymedia Profile!\n\nWho knows, it might be useful later on... (idk tho, might be psyops)\n\nhttps://mountsogol.com | @polymedia_app');
+    const tweetText = encodeURIComponent('🤔Yo, what even is Mount Sogol? I have no clue haha, but I just got an Early Adopter NFT by creating my Polymedia Profile!\n\nWho knows, it might be useful later on... (idk tho, could be psyops)\n\nhttps://mountsogol.com | @polymedia_app | #SuiNetwork');
     const tweetHref = `https://twitter.com/share?text=${tweetText}`;
 
     return <div id='page' className='grog-bye'>

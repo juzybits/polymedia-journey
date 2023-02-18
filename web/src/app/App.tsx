@@ -27,7 +27,7 @@ export function App()
     // const networkTmp = getNetwork();
     const networkTmp = 'devnet';
     const [network, _setNetwork] = useState(networkTmp);
-    const [profileManager] = useState( new ProfileManager(networkTmp) );
+    const [profileManager] = useState( new ProfileManager({network: networkTmp}) );
 
     const fetchAndSetProfile = async (lookupAddress: SuiAddress|null) => {
         if (!lookupAddress) {
