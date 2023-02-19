@@ -5,14 +5,16 @@ import { useWalletKit } from '@mysten/wallet-kit';
 import { shorten } from '../lib/common';
 
 export type AddressWidgetProps = {
-    unsetProfile: () => void,
     fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<void>,
+    setSuiError: React.Dispatch<React.SetStateAction<string>>,
 }
 export const AddressWidget: FC<AddressWidgetProps> = ({
     fetchAndSetProfile,
+    setSuiError,
 }) => {
     const { currentAccount, disconnect  } = useWalletKit();
     useEffect(() => {
+        setSuiError('');
         fetchAndSetProfile(currentAccount);
     }, [currentAccount]);
 

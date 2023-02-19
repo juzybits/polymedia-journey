@@ -59,7 +59,7 @@ export async function createQuest({
                 name,
                 url,
             ],
-            gasBudget: 1000,
+            gasBudget: 10000,
         }
     });
 

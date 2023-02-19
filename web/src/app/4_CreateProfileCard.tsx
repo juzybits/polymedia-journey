@@ -89,14 +89,16 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
             await fetchAndSetProfile(currentAccount);
         } catch(error: any) {
-            setSuiError(error.message);
+            const errorString = String(error.stack || error.message || error);
+            console.warn(errorString);
+            setSuiError(errorString);
         }
         setWaiting(false);
     };
 
     const resetErrors = () => {
-        suiError.length && setSuiError('');
-        nameError.length && setNameError('');
+        suiError && setSuiError('');
+        nameError && setNameError('');
     };
 
     const Loading = () => {

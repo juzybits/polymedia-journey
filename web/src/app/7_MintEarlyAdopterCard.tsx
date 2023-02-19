@@ -50,7 +50,11 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             console.debug('[mintCard] Success. Response:', resp);
             nextStage();
         })
-        .catch( (error: any) => setSuiError(error.message) )
+        .catch( (error: any) => {
+            const errorString = String(error.stack || error.message || error);
+            console.warn(errorString);
+            setSuiError(errorString);
+        })
     };
 
     const ButtonCollect: React.FC = () => {

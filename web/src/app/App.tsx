@@ -78,10 +78,6 @@ export function App()
     };
     */
 
-    const unsetProfile = () => {
-        setProfile(undefined);
-    };
-
     const nextStage = () => {
         setStage(stage+1);
         window.scrollTo(0, 0);
@@ -96,7 +92,7 @@ export function App()
 
     const addressWidget = <AddressWidget
         fetchAndSetProfile={fetchAndSetProfile}
-        unsetProfile={unsetProfile}
+        setSuiError={setSuiError}
         />;
 
     let view;
