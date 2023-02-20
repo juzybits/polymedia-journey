@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgDoorClosed from '../img/door_closed.webp';
+import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 
 import './1_FindDoor.less';
 
@@ -11,6 +11,9 @@ export function FindDoor(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-castle-wall';
+        // Preload images
+        (new Image()).src = imgDoorClosed;
+        (new Image()).src = imgDoorClosedDiff;
     }, []);
 
     const [modal, setModal]: any = useState(null);

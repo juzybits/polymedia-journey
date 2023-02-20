@@ -10,6 +10,10 @@ export function KnockDoor(props: any) {
 
     useEffect(() => {
         document.body.className = 'bg-bricks';
+        // Preload images
+        (new Image()).src = imgDoorClosed;
+        (new Image()).src = imgDoorOpen;
+        (new Image()).src = imgTorch;
     }, []);
 
     const [act, setAct] = useState('0_intro');
