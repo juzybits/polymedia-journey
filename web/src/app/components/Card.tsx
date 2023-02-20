@@ -44,7 +44,7 @@ export function Card(props: any)
                 </header>
 
                 <div className='art'>
-                    <img src={pfpUrl} alt='profile picture' width='100%' height='auto' />
+                    <img src={pfpUrl} alt='profile picture' />
                 </div>
 
                 <header className='card-type'>

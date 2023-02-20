@@ -81,6 +81,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
         try {
             const profileObjectId = await profileManager.createProfile({
+                // @ts-ignore
                 signAndExecuteTransaction,
                 name,
                 url: image,

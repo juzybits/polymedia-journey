@@ -13,6 +13,12 @@
     display: flex;
     justify-content: center;
     /* card sizing and background */
+    @media (max-width: 600px) {
+        transform: scale(0.9);
+    }
+    @media (max-width: 500px) {
+        transform: scale(0.8);
+    }
     .card {
         background: #000;
         padding: 17px;
@@ -60,15 +66,14 @@
         top: -485px;
         width: 326px;
         height: 326px;
-
     }
 
     div.art img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
         position: relative;
         top: -11px;
-        aspect-ratio: 1/1;
         border: 2px solid #333;
     }
 
