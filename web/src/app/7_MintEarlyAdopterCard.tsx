@@ -57,14 +57,6 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
         })
     };
 
-    const ButtonCollect: React.FC = () => {
-        return <button className='btn last fade-in-3' onClick={mintCard}>COLLECT</button>;
-    };
-
-    const ButtonContinue: React.FC = () => {
-        return <button className='btn last fade-in-3' onClick={nextStage}>CONTINUE</button>;
-    };
-
     let contents = <></>;
     if (act=='0_intro') {
         contents = <>
