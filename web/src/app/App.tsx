@@ -25,6 +25,8 @@ export function App()
     const [earlyAdopterCardId, setEarlyAdopterCardId] = useState<string|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
     // const networkTmp = getNetwork();
+    // Delete query string
+    window.history.replaceState({}, document.title, window.location.pathname);
     const networkTmp = 'devnet';
     const [network, _setNetwork] = useState(networkTmp);
     const [profileManager] = useState( new ProfileManager({network: networkTmp}) );
@@ -145,7 +147,10 @@ export function App()
                 setSuiError={setSuiError}
             />;
     } else if (stage === 8) {
-        view = <GrogBye />;
+        view = <GrogBye
+                network={network}
+                profile={profile}
+            />;
     }
     return <WalletKitProvider>
         {/*<div id='network-widget'>
