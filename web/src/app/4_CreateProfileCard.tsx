@@ -73,7 +73,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
         setWaiting(true);
-        setSuiError('');
+        resetErrors();
         if (!await validateForm()) {
             setWaiting(false);
             return;
@@ -100,6 +100,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const resetErrors = () => {
         suiError && setSuiError('');
         nameError && setNameError('');
+        imageError && setImageError('');
     };
 
     const Loading = () => {
@@ -147,7 +148,10 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 <textarea id='field-description'
                     className={waiting ? 'disabled' : ''}
                     value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={e => {
+                        resetErrors();
+                        setDescription(e.target.value);
+                    }}
                 ></textarea>
             </div>
             <button type='submit'

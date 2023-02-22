@@ -8,7 +8,7 @@ export function shorten(text: string, start=6, end=4, separator='..'): string {
 // Check if an image exists behind a given URL
 export async function isImageUrl(url: string): Promise<boolean> {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, { method: 'HEAD' });
         const contentType = response.headers.get('Content-Type');
         return Boolean( contentType && contentType.startsWith('image/') );
     } catch (error) {
