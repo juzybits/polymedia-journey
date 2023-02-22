@@ -47,8 +47,8 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
 
         rpc.getDynamicFieldObject(
             profile.id,
-            // 'Early Adopter',
-            '0x1::string::String {bytes: vector[69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
+            // 'Polymedia: Early Adopter'
+            '0x1::string::String {bytes: vector[80u8, 111u8, 108u8, 121u8, 109u8, 101u8, 100u8, 105u8, 97u8, 58u8, 32u8, 69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
         ).then((resp: GetObjectDataResponse) => {
             console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp)
             const cardId = (resp.details as SuiObject).reference.objectId;

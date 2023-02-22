@@ -43,7 +43,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             signAndExecuteTransaction,
             network,
             profileId: profile.id,
-            name: 'Early Adopter',
+            name: 'Polymedia: Early Adopter',
             url: 'https://mountsogol.com/img/card_early_adopter.webp',
         })
         .then( (resp: any) => {
