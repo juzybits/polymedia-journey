@@ -30,9 +30,14 @@ export const GrogBye: React.FC<GrogByeProps> = ({
             <p className='paragraph dialog fade-in-2'>
                 Better <a href={tweetHref} target='_blank'>let Polymedia know</a> that you made it this far. They will be happy to hear from you.
             </p>
-            <p className='paragraph dialog fade-in-3 last'>
+            <p className='paragraph dialog fade-in-3'>
                 Now, why don't you get some rest. There is a guest room ready for you upstairs. We will talk more in the morning, before you continue your Journey to Mount Sogol.
             </p>
+
+            <button className='btn fade-in-4 last' onClick={() => window.open('https://chat.polymedia.app/@sui-fans?network='+network, '_self')}>
+                GO TO LOBBY
+            </button>
+
         </div>
     </div>;
 }

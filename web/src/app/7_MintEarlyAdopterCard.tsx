@@ -85,9 +85,6 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             {button}
         </>;
     }
-    else {
-        <button className='btn last' onClick={nextStage}>CONTINUE</button>
-    }
 
     return <div id='page' className='mint-early-adopter-card'>
         {contents}
