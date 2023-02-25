@@ -1,15 +1,15 @@
 import {
+    devnetConnection,
     JsonRpcProvider,
-    Network,
     SignableTransaction,
     SuiAddress,
     TransactionEffects,
 } from '@mysten/sui.js';
 
-const RPC_DEVNET = new JsonRpcProvider(Network.DEVNET);
+const RPC_DEVNET = new JsonRpcProvider(devnetConnection);
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x4671ac9d29e51d88bfbde2cd763c350acbd8e9b2';
 
-const RPC_TESTNET = new JsonRpcProvider('https://fullnode.testnet.sui.io:443');
+const RPC_TESTNET = new JsonRpcProvider(devnetConnection);
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
 
 export function getRpcProvider(network: string): JsonRpcProvider {
