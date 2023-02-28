@@ -31,10 +31,11 @@ export function App()
     const [network, _setNetwork] = useState(networkTmp);
     const [profileManager] = useState( new ProfileManager({network: networkTmp}) );
 
-    const fetchAndSetProfile = async (lookupAddress: SuiAddress|null) => {
+    const fetchAndSetProfile = async (lookupAddress: SuiAddress|null): Promise<PolymediaProfile|null|undefined> =>
+    {
         if (!lookupAddress) {
             setProfile(undefined);
-            return;
+            return undefined;
         }
         try {
             const profiles: Map<SuiAddress, PolymediaProfile|null> = await profileManager.getProfiles({
@@ -45,9 +46,11 @@ export function App()
                 const profile = profiles.get(lookupAddress);
                 console.debug('[fetchAndSetProfile] Found profile:', profile ? profile.id : null);
                 setProfile(profile);
+                return profile;
             } else {
                 console.debug('[fetchAndSetProfile] Profile not found');
                 setProfile(null);
+                return null;
             }
         } catch(error: any) {
             setSuiError(error.message);

@@ -7,7 +7,7 @@ import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
 export type CreateProfileCardProps = {
-    fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<void>,
+    fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<PolymediaProfile|null|undefined>,
     nextStage: () => void,
     addressWidget: React.ReactNode,
     profile: PolymediaProfile|null|undefined,
@@ -88,7 +88,12 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 description,
             });
             console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
-            await fetchAndSetProfile(currentAccount);
+            let newProfile;
+            do {
+                // Handle RPC lag by retrying until we get the new profile
+                newProfile = await fetchAndSetProfile(currentAccount);
+            }
+            while (!newProfile);
         } catch(error: any) {
             const errorString = String(error.stack || error.message || error);
             console.warn(errorString);
