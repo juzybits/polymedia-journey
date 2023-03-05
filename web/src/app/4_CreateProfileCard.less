@@ -28,14 +28,22 @@
                 border-color: red;
             }
         }
-        .field-error {
+        .field-error, .field-info {
             background: rgba(0, 0, 0, 0.6);
             border-radius: 0.5em;
-            color: red;
             display: table;
-            font-size: 0.6em;
+            margin-bottom: 0.15em;
+            margin-top: 0.15em;
             padding: 0.1em 0.3em;
+        }
+        .field-error {
+            color: red;
+            font-size: 0.6em;
             text-align: left;
+        }
+        .field-info {
+            font-style: italic;
+            font-size: 0.5em;
         }
     }
 }

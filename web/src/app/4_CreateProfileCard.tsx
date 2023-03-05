@@ -133,7 +133,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                         setName(e.target.value);
                     }}
                 />
-                <div className='field-error'>{nameError}</div>
+                {nameError && <div className='field-error'>{nameError}</div>}
             </div>
             <div className={'field' + (imageError && ' error')}>
                 <label className='mario' htmlFor='field-image'>PROFILE PICTURE URL</label>
@@ -146,7 +146,8 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                         setImage(e.target.value);
                     }}
                 />
-                <div className='field-error'>{imageError}</div>
+                {imageError && <div className='field-error'>{imageError}</div>}
+                <div className='field-info'>Right click → Copy Image Address. To use a picture from your device, upload it to a service like <a href='https://imgur.com' target='_blank'>Imgur</a> and then copy the image address.</div>
             </div>
             <div className='field'>
                 <label className='mario' htmlFor='field-description'>DESCRIPTION / SOCIALS</label>
