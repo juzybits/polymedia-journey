@@ -6,7 +6,7 @@ import {
     TransactionEffects,
 } from '@mysten/sui.js';
 
-export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x4671ac9d29e51d88bfbde2cd763c350acbd8e9b2';
+export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x407c2685b33cf3fdfa129bbb6e44733d09e3f973';
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
 
 const RPC_DEVNET = new JsonRpcProvider(new Connection({
