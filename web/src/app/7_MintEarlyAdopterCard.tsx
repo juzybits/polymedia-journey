@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
-import { createQuest } from './lib/sui_client';
+import { createQuest } from './lib/mountsogol';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
 import './7_MintEarlyAdopterCard.less';

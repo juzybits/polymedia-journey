@@ -5,7 +5,7 @@ import {
 } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
-import { getRpcProvider } from './lib/sui_client';
+import { getRpcProvider } from './lib/mountsogol';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
