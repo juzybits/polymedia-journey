@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
+import imgBgBricks from '../img/bg-bricks.webp';
 
 import './1_FindDoor.less';
 
@@ -14,6 +15,8 @@ export function FindDoor(props: any) {
         // Preload images
         (new Image()).src = imgDoorClosed;
         (new Image()).src = imgDoorClosedDiff;
+        // Preload next background
+        (new Image()).src = imgBgBricks;
     }, []);
 
     const [modal, setModal]: any = useState(null);
