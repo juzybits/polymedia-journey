@@ -55,7 +55,7 @@ export function Home(props: any) {
             <button className='btn fade-in-5' onClick={props.nextStage}>
                 LET'S GO! 💪
             </button>
-            <button className='btn last fade-in-5' onClick={() => window.open('https://jobs.mchire.com', '_self')}>
+            <button className='btn last fade-in-5' onClick={() => window.open('https://jobs.mchire.com', '_blank')}>
                 I'M SCARED 😭
             </button>
         </div>;
