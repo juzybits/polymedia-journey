@@ -10,8 +10,8 @@ export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x407c2685b33cf3fdfa129bbb6e
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
 
 const RPC_DEVNET = new JsonRpcProvider(new Connection({
-  // fullnode: 'https://node.shinami.com/api/v1/186668da9c42b69678719e785ed644a2',
-  fullnode: 'https://fullnode.devnet.sui.io:443/',
+  fullnode: 'https://node.shinami.com/api/v1/186668da9c42b69678719e785ed644a2',
+  // fullnode: 'https://fullnode.devnet.sui.io:443/',
   faucet: 'https://faucet.devnet.sui.io/gas',
 }));
 
