@@ -3,7 +3,7 @@ import { SuiAddress } from '@mysten/sui.js';
 import { useWalletKit, ConnectModal } from '@mysten/wallet-kit';
 import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
 
-import { isImageUrl } from './lib/common';
+// import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
 export type CreateProfileCardProps = {
@@ -63,10 +63,10 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             setNameError('Too long');
             isValid = false;
         }
-        if (image.length > 0 && !await isImageUrl(image)) {
-            setImageError('Not an image');
-            isValid = false;
-        }
+        // if (image.length > 0 && !await isImageUrl(image)) {
+        //     setImageError('Not an image');
+        //     isValid = false;
+        // }
         return isValid;
     };
 
