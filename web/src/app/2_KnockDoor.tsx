@@ -4,6 +4,7 @@ import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 import imgTorch from '../img/torch.gif';
 import imgBgLibrary from '../img/bg-library.webp';
+import imgWizardBrown from '../img/wizard_brown.webp';
 
 import './2_KnockDoor.less';
 
@@ -15,8 +16,9 @@ export function KnockDoor(props: any) {
         (new Image()).src = imgDoorClosed;
         (new Image()).src = imgDoorOpen;
         (new Image()).src = imgTorch;
-        // Preload next background
+        // Preload next scene
         (new Image()).src = imgBgLibrary;
+        (new Image()).src = imgWizardBrown;
     }, []);
 
     const [act, setAct] = useState('0_intro');
