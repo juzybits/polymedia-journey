@@ -16,13 +16,13 @@ export const AddressWidget: FC<AddressWidgetProps> = ({
     const { currentAccount, disconnect  } = useWalletKit();
     useEffect(() => {
         setSuiError('');
-        fetchAndSetProfile(currentAccount);
+        fetchAndSetProfile(currentAccount?.address || null);
     }, [currentAccount]);
 
     return <>
         <div className='address-widget'
              onClick={ currentAccount ? disconnect : undefined }>
-            {currentAccount ? shorten(currentAccount) : 'Not connected'}
+            {currentAccount ? shorten(currentAccount.address) : 'Not connected'}
         </div>
 
     </>;

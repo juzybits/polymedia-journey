@@ -30,7 +30,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     }, []);
 
     const [act, setAct] = useState('0_intro');
-    const { signAndExecuteTransaction } = useWalletKit();
+    const { signAndExecuteTransactionBlock } = useWalletKit();
 
     useEffect(() => {
         if (!profile) {
@@ -40,7 +40,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
 
     const mintCard = () => {
         profile && createQuest({
-            signAndExecuteTransaction,
+            signAndExecuteTransactionBlock,
             network,
             profileId: profile.id,
             name: 'Polymedia: Early Adopter',

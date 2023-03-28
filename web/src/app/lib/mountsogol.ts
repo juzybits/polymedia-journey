@@ -1,8 +1,8 @@
 import {
     Connection,
     JsonRpcProvider,
-    SignableTransaction,
     SuiAddress,
+    TransactionBlock,
     TransactionEffects,
 } from '@mysten/sui.js';
 
@@ -42,13 +42,13 @@ function getJourneyPackageId(network: string): string {
 }
 
 export async function createQuest({
-    signAndExecuteTransaction,
+    signAndExecuteTransactionBlock,
     network,
     profileId,
     name,
     url,
 } : {
-    signAndExecuteTransaction: (transaction: SignableTransaction) => Promise<any>,
+    signAndExecuteTransactionBlock: (input: any) => Promise<any>, // TODO: add type
     network: string,
     profileId: SuiAddress,
     name: string,
@@ -56,21 +56,24 @@ export async function createQuest({
 }): Promise<any>
 {
     const packageId = getJourneyPackageId(network);
-    const resp = await signAndExecuteTransaction({
-        kind: 'moveCall',
-        data: {
-            packageObjectId: packageId,
-            module: 'journey',
-            function: 'save_quest',
-            typeArguments: [],
-            arguments: [
-                profileId,
-                name,
-                url,
-            ],
-            gasBudget: 10000,
-        }
+
+    const tx = new TransactionBlock();
+    tx.moveCall({
+        target: `${packageId}::journey::save_quest`,
+        typeArguments: [],
+        arguments: [
+            tx.object(profileId),
+            tx.pure(name),
+            tx.pure(url),
+        ],
     });
+
+    const resp = await signAndExecuteTransactionBlock({
+        transactionBlock: tx,
+        options: {
+            showEffects: true,
+        },
+    })
 
     // Verify the transaction results
     //                  Sui/Ethos || Suiet

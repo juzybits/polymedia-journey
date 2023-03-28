@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {
-    GetObjectDataResponse,
-    SuiObject,
+    SuiMoveObject,
+    SuiObjectResponse,
 } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
@@ -45,23 +45,33 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
     const fetchAndSetEarlyAdopterCard = () => {
         if (!profile) return;
 
-        rpc.getDynamicFieldObject(
-            profile.id,
+        rpc.getDynamicFieldObject({
+            parentId: profile.id,
             // 'Polymedia: Early Adopter'
-            '0x1::string::String {bytes: vector[80u8, 111u8, 108u8, 121u8, 109u8, 101u8, 100u8, 105u8, 97u8, 58u8, 32u8, 69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
-        ).then((resp: GetObjectDataResponse) => {
+            // name: '0x1::string::String {bytes: vector[80u8, 111u8, 108u8, 121u8, 109u8, 101u8, 100u8, 105u8, 97u8, 58u8, 32u8, 69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
+            name: {
+                type: '0x1::string::String',
+                value: 'Polymedia: Early Adopter',
+            }
+        }).then((resp: SuiObjectResponse) => {
+            if (resp.error || !resp.data) {
+                const errMsg = '[fetchAndSetEarlyAdopterCard] unexpected error: ' + JSON.stringify(resp.error);
+                console.warn(errMsg);
+                setSuiError(errMsg);
+                return;
+            }
             console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp)
-            const cardId = (resp.details as SuiObject).reference.objectId;
-            setEarlyAdopterCardId(cardId);
+            const objData = resp.data.content as SuiMoveObject;
+            setEarlyAdopterCardId(objData.fields.id.id);
         })
         .catch( (error: any) => {
             if (error.message.includes('Cannot find dynamic field')) {
                 console.debug('[fetchAndSetEarlyAdopterCard] Card not found')
             } else {
-                console.warn('[fetchAndSetEarlyAdopterCard] Error:', error)
+                console.warn('[fetchAndSetEarlyAdopterCard] Error:', error);
                 setSuiError(error.message);
             }
-        })
+        });
     };
 
     /* HTML */

@@ -37,7 +37,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
 
-    const { currentAccount, disconnect, signAndExecuteTransaction } = useWalletKit();
+    const { currentAccount, disconnect, signAndExecuteTransactionBlock } = useWalletKit();
 
     useEffect(() => {
         document.body.className = 'bg-library dark';
@@ -81,8 +81,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
         try {
             const profileObjectId = await profileManager.createProfile({
-                // @ts-ignore
-                signAndExecuteTransaction,
+                signAndExecuteTransactionBlock,
                 name,
                 url: image,
                 description,
@@ -91,7 +90,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             let newProfile;
             do {
                 // Handle RPC lag by retrying until we get the new profile
-                newProfile = await fetchAndSetProfile(currentAccount);
+                newProfile = await fetchAndSetProfile(currentAccount?.address || null);
             }
             while (!newProfile);
         } catch(error: any) {
