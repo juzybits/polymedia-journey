@@ -35,6 +35,8 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     useEffect(() => {
         if (!profile) {
             prevStage();
+        } else {
+            nextStage();
         }
     }, [profile]);
 
