@@ -46,13 +46,15 @@ export async function createQuest({
     network,
     profileId,
     name,
-    url,
+    image,
+    description,
 } : {
     signAndExecuteTransactionBlock: (input: any) => Promise<any>, // TODO: add type
     network: string,
     profileId: SuiAddress,
     name: string,
-    url: string,
+    image: string,
+    description: string,
 }): Promise<any>
 {
     const packageId = getJourneyPackageId(network);
@@ -64,7 +66,8 @@ export async function createQuest({
         arguments: [
             tx.object(profileId),
             tx.pure(name),
-            tx.pure(url),
+            tx.pure(image),
+            tx.pure(description),
         ],
     });
 

@@ -13,12 +13,12 @@ export function Card(props: any)
     useEffect(() => {
         if (!profile) {
             setPfpUrl('');
-        } else if (!profile.url) {
+        } else if (!profile.imageUrl) {
             setPfpUrl(imgGhostPfp);
         } else {
             (async () => {
-                const isImage = await isImageUrl(profile.url);
-                setPfpUrl(isImage ? profile.url : imgGhostPfp);
+                const isImage = await isImageUrl(profile.imageUrl);
+                setPfpUrl(isImage ? profile.imageUrl : imgGhostPfp);
             })();
         }
     }, [profile]);

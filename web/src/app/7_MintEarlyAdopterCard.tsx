@@ -46,7 +46,8 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             network,
             profileId: profile.id,
             name: 'Polymedia: Early Adopter',
-            url: 'https://mountsogol.com/img/card_early_adopter.webp',
+            image: 'https://mountsogol.com/img/card_early_adopter.webp',
+            description: 'The door to the invisible must be visible',
         })
         .then( (resp: any) => {
             console.debug('[mintCard] Success. Response:', resp);
