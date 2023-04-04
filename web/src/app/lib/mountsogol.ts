@@ -65,9 +65,9 @@ export async function createQuest({
         typeArguments: [],
         arguments: [
             tx.object(profileId),
-            tx.pure(name),
-            tx.pure(image),
-            tx.pure(description),
+            tx.pure(Array.from( (new TextEncoder()).encode(name) )),
+            tx.pure(Array.from( (new TextEncoder()).encode(image) )),
+            tx.pure(Array.from( (new TextEncoder()).encode(description) )),
         ],
     });
 
