@@ -20,7 +20,7 @@ export const AddressWidget: FC<AddressWidgetProps> = ({
     }, [currentAccount]);
 
     return <>
-        <div className='address-widget'
+        <div id='address-widget'
              onClick={ currentAccount ? disconnect : undefined }>
             {currentAccount ? shorten(currentAccount.address) : 'Not connected'}
         </div>

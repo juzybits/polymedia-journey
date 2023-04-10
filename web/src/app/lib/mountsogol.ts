@@ -4,9 +4,9 @@ import {
     TransactionEffects,
 } from '@mysten/sui.js';
 
-export const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x545d5128f17c7e766265893ce594f6cfba0973876ab06d35e805b43aa26caf85';
-export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x407c2685b33cf3fdfa129bbb6e44733d09e3f973';
-export const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x545d5128f17c7e766265893ce594f6cfba0973876ab06d35e805b43aa26caf85';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x123';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
 
 function getJourneyPackageId(network: string): string {
     if (network === 'localnet') {

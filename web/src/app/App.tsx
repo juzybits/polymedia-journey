@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
 import { WalletKitProvider } from '@mysten/wallet-kit';
-import { NetworkName, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
+import { NetworkName, NetworkSelector, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -148,9 +148,7 @@ export function App()
             />;
     }
     return <WalletKitProvider>
-        {/*<div id='network-widget'>
-            <a className='switch-btn' onClick={toggleNetwork}>{network}</a>
-        </div>*/}
+        <NetworkSelector currentNetwork={network} />
         {view}
     </WalletKitProvider>;
 }

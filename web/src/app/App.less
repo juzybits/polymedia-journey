@@ -204,24 +204,26 @@ input, textarea {
     }
 }
 
-.address-widget, #network-widget {
+#address-widget, #network-selector {
     font-family: monospace;
     font-size: 1.4em;
     position: absolute;
     top: 0.8rem;
-    &:hover {
-        color: yellow;
-        text-decoration: underline;
-        cursor: var(--cursor-pointer);
-    }
 }
-.address-widget, #network-widget .switch-btn {
+#address-widget,
+#network-selector .network-option {
     color: white;
 }
-.address-widget {
+#address-widget&:hover,
+#network-selector .network-option&:hover:not(.selected) {
+    color: yellow;
+    text-decoration: underline;
+    cursor: var(--cursor-pointer);
+}
+#address-widget {
     right: 1rem;
 }
-#network-widget {
+#network-selector {
     left: 1rem;
 }
 
