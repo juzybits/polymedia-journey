@@ -1,45 +1,17 @@
 import {
-    Connection,
-    JsonRpcProvider,
     SuiAddress,
     TransactionBlock,
     TransactionEffects,
 } from '@mysten/sui.js';
-import { RPC_CONFIG } from '@polymedia/webutils';
 
+export const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x545d5128f17c7e766265893ce594f6cfba0973876ab06d35e805b43aa26caf85';
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0x407c2685b33cf3fdfa129bbb6e44733d09e3f973';
 export const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x123';
 
-const RPC_LOCALNET = new JsonRpcProvider(new Connection({
-    fullnode: RPC_CONFIG.LOCALNET_FULLNODE,
-    faucet: RPC_CONFIG.LOCALNET_FAUCET,
-}));
-
-const RPC_DEVNET = new JsonRpcProvider(new Connection({
-    // fullnode: 'https://node.shinami.com/api/v1/186668da9c42b69678719e785ed644a2',
-    fullnode: RPC_CONFIG.DEVNET_FULLNODE,
-    faucet: RPC_CONFIG.DEVNET_FAUCET,
-}));
-
-const RPC_TESTNET = new JsonRpcProvider(new Connection({
-    fullnode: RPC_CONFIG.TESTNET_FULLNODE,
-    faucet: RPC_CONFIG.TESTNET_FAUCET,
-}));
-
-export function getRpcProvider(network: string): JsonRpcProvider {
-    if (network === 'localnet') {
-        return RPC_LOCALNET;
-    } else if (network === 'devnet') {
-        return RPC_DEVNET;
-    } else if (network === 'testnet') {
-        return RPC_TESTNET;
-    } else {
-        throw new Error('Network not recognized: ' + network);
-    }
-}
-
 function getJourneyPackageId(network: string): string {
-    if (network === 'devnet') {
+    if (network === 'localnet') {
+        return POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET;
+    } else if (network === 'devnet') {
         return POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET;
     } else if (network === 'testnet') {
         return POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET;

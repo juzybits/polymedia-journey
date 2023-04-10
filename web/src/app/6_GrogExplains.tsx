@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import {
+    JsonRpcProvider,
     SuiMoveObject,
     SuiObjectResponse,
 } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
-import { getRpcProvider } from './lib/mountsogol';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
@@ -13,6 +13,7 @@ import './6_GrogExplains.less';
 
 export type GrogExplainsProps = {
     network: string,
+    rpcProvider: JsonRpcProvider,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
@@ -22,6 +23,7 @@ export type GrogExplainsProps = {
 }
 export const GrogExplains: React.FC<GrogExplainsProps> = ({
     network,
+    rpcProvider,
     nextStage,
     prevStage,
     profile,
@@ -41,12 +43,10 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
         }
     }, [profile]);
 
-    const rpc = getRpcProvider(network);
     const fetchAndSetEarlyAdopterCard = () => { // TODO: reimplement
-        return;
         if (!profile) return;
 
-        rpc.getDynamicFieldObject({
+        rpcProvider.getDynamicFieldObject({
             parentId: profile.id,
             // 'Polymedia: Early Adopter'
             // name: '0x1::string::String {bytes: vector[80u8, 111u8, 108u8, 121u8, 109u8, 101u8, 100u8, 105u8, 97u8, 58u8, 32u8, 69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',

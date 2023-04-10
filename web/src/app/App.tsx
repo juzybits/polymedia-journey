@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { SuiAddress } from '@mysten/sui.js';
+import { useEffect, useState } from 'react';
+import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
 import { WalletKitProvider } from '@mysten/wallet-kit';
+import { NetworkName, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -27,13 +28,25 @@ export function App()
     // const networkTmp = getNetwork();
     // Delete query string
     window.history.replaceState({}, document.title, window.location.pathname);
-    const networkTmp = 'devnet';
-    const [network, _setNetwork] = useState(networkTmp);
-    const [profileManager] = useState( new ProfileManager({network: networkTmp}) );
+    const [network, setNetwork] = useState<NetworkName|null>(null);
+    const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
+    const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
+
+    useEffect(() => {
+        async function initialize() {
+            const network = loadNetwork();
+            const rpcConfig = await loadRpcConfig({network});
+            const rpcProvider = new JsonRpcProvider(new Connection(rpcConfig));
+            setNetwork(network);
+            setRpcProvider(rpcProvider);
+            setProfileManager( new ProfileManager({network, rpcProvider}) );
+        };
+        initialize();
+    }, []);
 
     const fetchAndSetProfile = async (lookupAddress: SuiAddress|null): Promise<PolymediaProfile|null|undefined> =>
     {
-        if (!lookupAddress) {
+        if (!lookupAddress || !profileManager) {
             setProfile(undefined);
             return undefined;
         }
@@ -57,31 +70,9 @@ export function App()
         }
     };
 
-    /*
-    // NOTE: getNetwork() and toggleNetwork() are duplicated in other Polymedia projects
-
-    // Return either 'devnet' or 'testnet'
-    function getNetwork(): string {
-        // Read 'network' URL parameter
-        const params = new URLSearchParams(window.location.search);
-        // Delete query string
-        window.history.replaceState({}, document.title, window.location.pathname);
-        let newNetwork = params.get('network');
-        if (newNetwork === 'devnet' || newNetwork === 'testnet') {
-            // Update localStorage
-            localStorage.setItem('polymedia.network', newNetwork);
-            return newNetwork;
-        } else {
-            return localStorage.getItem('polymedia.network') || 'devnet';
-        }
+    if (!network || !rpcProvider || !profileManager) {
+        return <></>;
     }
-    const toggleNetwork = () => {
-        const newNetwork = network==='devnet' ? 'testnet' : 'devnet';
-        setNetwork(newNetwork);
-        localStorage.setItem('polymedia.network', newNetwork);
-        window.location.reload();
-    };
-    */
 
     const nextStage = () => {
         setStage(stage+1);
@@ -132,6 +123,7 @@ export function App()
     } else if (stage === 6) {
         view = <GrogExplains
                 network={network}
+                rpcProvider={rpcProvider}
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}
