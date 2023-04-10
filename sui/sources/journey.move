@@ -19,7 +19,7 @@ module polymedia_journey::journey
     public entry fun save_quest(
         profile: &mut Profile,
         name: vector<u8>,
-        image: vector<u8>,
+        image_url: vector<u8>,
         description: vector<u8>,
         ctx: &mut TxContext,
     ) {
@@ -27,7 +27,7 @@ module polymedia_journey::journey
         let quest = Quest {
             id: object::new(ctx),
             name: quest_name,
-            image_url: utf8(image),
+            image_url: utf8(image_url),
             description: utf8(description),
         };
         add_dynamic_object_field(profile, quest_name, quest);

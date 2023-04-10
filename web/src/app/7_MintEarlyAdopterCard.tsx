@@ -35,8 +35,6 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     useEffect(() => {
         if (!profile) {
             prevStage();
-        } else {
-            nextStage();
         }
     }, [profile]);
 
@@ -46,7 +44,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             network,
             profileId: profile.id,
             name: 'Polymedia: Early Adopter',
-            image: 'https://mountsogol.com/img/card_early_adopter.webp',
+            imageUrl: 'https://mountsogol.com/img/card_early_adopter.webp',
             description: 'The door to the invisible must be visible',
         })
         .then( (resp: any) => {

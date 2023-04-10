@@ -48,8 +48,6 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
 
         rpcProvider.getDynamicFieldObject({
             parentId: profile.id,
-            // 'Polymedia: Early Adopter'
-            // name: '0x1::string::String {bytes: vector[80u8, 111u8, 108u8, 121u8, 109u8, 101u8, 100u8, 105u8, 97u8, 58u8, 32u8, 69u8, 97u8, 114u8, 108u8, 121u8, 32u8, 65u8, 100u8, 111u8, 112u8, 116u8, 101u8, 114u8]}',
             name: {
                 type: '0x1::string::String',
                 value: 'Polymedia: Early Adopter',
@@ -61,17 +59,12 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                 setSuiError(errMsg);
                 return;
             }
-            console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp)
+            console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp);
             const objData = resp.data.content as SuiMoveObject;
-            setEarlyAdopterCardId(objData.fields.id.id);
+            setEarlyAdopterCardId(objData.fields.id.id); // TODO: check the object type is ...::journey::Quest
         })
         .catch( (error: any) => {
-            if (error.message.includes('Cannot find dynamic field')) {
-                console.debug('[fetchAndSetEarlyAdopterCard] Card not found')
-            } else {
-                console.warn('[fetchAndSetEarlyAdopterCard] Error:', error);
-                setSuiError(error.message);
-            }
+            console.warn('[fetchAndSetEarlyAdopterCard] Card not found', error.stack);
         });
     };
 
@@ -103,16 +96,13 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                     <img src={imgExampleGotbeef} alt='gotbeef.app' />
                 </a>
             </div>
-            {/*<div className='paragraph dialog fade-in-3'>
+            <div className='paragraph dialog fade-in-3'>
                 Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank'>Polymedia Profile</a>, it's really easy!
-            </div>*/}
-            {/*
+            </div>
             <p className='paragraph dialog fade-in-3'>
                 But there's more.
             </p>
             <button className='btn last fade-in-4' onClick={nextStage}>More?!</button>
-            */}
-            <button className='btn last fade-in-4' onClick={nextStage}>Continue</button>
         </div>
         { suiError && <div className='sui-error'>⚠️ SUI ERROR:<br/>{suiError}</div> }
     </div>;
