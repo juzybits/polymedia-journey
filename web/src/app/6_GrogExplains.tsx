@@ -43,7 +43,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
         }
     }, [profile]);
 
-    const fetchAndSetEarlyAdopterCard = () => { // TODO: reimplement
+    const fetchAndSetEarlyAdopterCard = () => {
         if (!profile) return;
 
         rpcProvider.getDynamicFieldObject({

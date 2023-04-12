@@ -49,7 +49,7 @@ export function Card(props: any)
 
                 <header className='card-type'>
                     <div className='title-wrapper'>
-                        <h2>{profile.owner}</h2>
+                        <h2>{shorten(profile.owner, 14, 14, '...')}</h2>
                     </div>
                 </header>
                 <div className='textBox'>
@@ -76,9 +76,9 @@ export function Card(props: any)
         <div className='card-back-frame'>
             <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
             <div className='card-back-info'>
-                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=${props.network}`}>{profile.owner}</a>}<br/>
-                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=${props.network}`}>{profile.id}</a>}<br/>
-                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=${props.network}`}>{props.registryId}</a>}<br/>
+                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=${props.network}`}>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
+                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=${props.network}`}>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
+                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=${props.network}`}>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
             </div>
         </div>
     </div>
