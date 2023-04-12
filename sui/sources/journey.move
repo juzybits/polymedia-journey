@@ -2,7 +2,8 @@ module polymedia_journey::journey
 {
     use std::string::{String, utf8};
     use sui::display;
-    use sui::object::{Self, UID};
+    use sui::event;
+    use sui::object::{Self, ID, UID};
     use sui::package;
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};
@@ -14,6 +15,11 @@ module polymedia_journey::journey
         name: String,
         image_url: String,
         description: String,
+    }
+
+    struct EventSaveQuest has copy, drop {
+        profile_id: ID,
+        quest_name: String,
     }
 
     public entry fun save_quest(
@@ -31,6 +37,11 @@ module polymedia_journey::journey
             description: utf8(description),
         };
         add_dynamic_object_field(profile, quest_name, quest);
+
+        event::emit(EventSaveQuest {
+            profile_id: object::id(profile),
+            quest_name,
+        });
     }
 
     // One-Time-Witness
