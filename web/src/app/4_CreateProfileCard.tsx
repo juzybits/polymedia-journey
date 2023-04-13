@@ -3,7 +3,7 @@ import { SuiAddress } from '@mysten/sui.js';
 import { useWalletKit, ConnectModal } from '@mysten/wallet-kit';
 import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
 
-// import { isImageUrl } from './lib/common';
+import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
 export type CreateProfileCardProps = {
@@ -54,7 +54,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         }
     }, [profile]);
 
-    const validateForm = async (): Promise<boolean> => {
+    const validateForm = (): boolean => {
         let isValid = true;
         if (name.length < 3) {
             setNameError('Too short');
@@ -63,18 +63,13 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
             setNameError('Too long');
             isValid = false;
         }
-        // if (image.length > 0 && !await isImageUrl(image)) {
-        //     setImageError('Not an image');
-        //     isValid = false;
-        // }
         return isValid;
     };
 
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
         setWaiting(true);
-        resetErrors();
-        if (!await validateForm()) {
+        if (!validateForm()) {
             setWaiting(false);
             return;
         }
@@ -101,12 +96,6 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         setWaiting(false);
     };
 
-    const resetErrors = () => {
-        suiError && setSuiError('');
-        nameError && setNameError('');
-        imageError && setImageError('');
-    };
-
     const Loading = () => {
         return <div className='loading'>Loading...</div>;
     };
@@ -119,6 +108,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         view = <Loading />;
     }
     else {
+        const hasFormErrors = !!nameError || !!imageError;
         view = <div className='form-wrap'>
         <form onSubmit={onSubmitCreate}>
             <div className={'field' + (nameError && ' error')}>
@@ -128,7 +118,8 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                     className={waiting ? 'disabled' : ''}
                     value={name}
                     onChange={e => {
-                        resetErrors();
+                        setSuiError('');
+                        setNameError('');
                         setName(e.target.value);
                     }}
                 />
@@ -141,8 +132,17 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                     className={waiting ? 'disabled' : ''}
                     value={image}
                     onChange={e => {
-                        resetErrors();
+                        setSuiError('');
                         setImage(e.target.value);
+                        if (!e.target.value) {
+                            setImageError('');
+                        } else {
+                            isImageUrl(e.target.value)
+                            .then(isValid => {
+                                if (isValid) { setImageError(''); }
+                                else { setImageError("That doesn't look like a valid image URL"); }
+                            });
+                        }
                     }}
                 />
                 {imageError && <div className='field-error'>{imageError}</div>}
@@ -154,18 +154,24 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                     className={waiting ? 'disabled' : ''}
                     value={description}
                     onChange={e => {
-                        resetErrors();
                         setDescription(e.target.value);
                     }}
                 ></textarea>
             </div>
             <button type='submit'
-                className={'btn'+(waiting ? ' disabled' : '')}
-                disabled={waiting}
+                className={'btn'+(waiting||hasFormErrors ? ' disabled' : '')}
+                disabled={waiting||hasFormErrors}
             >
                 CREATE PROFILE
             </button>
-            <button className='btn last' onClick={(e) => { e.preventDefault(); resetErrors(); disconnect(); }}>
+            <button className='btn last' onClick={e => {
+                    e.preventDefault();
+                    setName(''); setNameError('');
+                    setImage(''); setImageError('');
+                    setDescription('');
+                    disconnect();
+                }
+            }>
                 CHANGE WALLET
             </button>
         </form>
