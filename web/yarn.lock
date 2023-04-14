@@ -877,10 +877,10 @@
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
-"@polymedia/profile-sdk@latest":
-  version "0.1.22"
-  resolved "https://registry.yarnpkg.com/@polymedia/profile-sdk/-/profile-sdk-0.1.22.tgz#71e8214110f5db134cb261ec55192dc5ccad6705"
-  integrity sha512-EJ1vMuSYUX4MFyHvKSFlaDmcaTvnot5NDRtdDIC5bDZVNTYQqrpuKjnnKx+leJETQVtpsr7EOFafR3gy1C28gA==
+"@polymedia/profile-sdk@^0.1.23":
+  version "0.1.23"
+  resolved "https://registry.yarnpkg.com/@polymedia/profile-sdk/-/profile-sdk-0.1.23.tgz#b1fc33210a715f0c4c70690eb1f7c6c5f62485b2"
+  integrity sha512-+QV8E3V9Kl7L+Go8BIN8nz9DKJnbzkv1h656FsXCPcGCtuusJgP6/X3/LqSYBwZrKq/2RiLeribi/Rml0NVMpA==
   dependencies:
     "@mysten/bcs" latest
     "@mysten/sui.js" latest
@@ -888,9 +888,9 @@
     "@polymedia/webutils" latest
 
 "@polymedia/webutils@latest":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@polymedia/webutils/-/webutils-0.1.7.tgz#bd4926f5c2c2ec45317d7aa9bf35f08858e404c5"
-  integrity sha512-oUVXrmxHuJtHvABgAGf9IZLCAfcxmhCLH0O2DvBGMYwRMpc5CIzrWjPsA+LPrC1fx63VFDXqSWParR7u33VtCA==
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@polymedia/webutils/-/webutils-0.1.8.tgz#0d9a0aada10b96f23b23c923b1457f143fe127dc"
+  integrity sha512-h0fPrL4iXdZm5+FK5teQS1wpF3w/7I7Ner2AxJHz2MrRfeCQZ1eLHD72oypzeyfErEIKKW7hOdCXg7PAnQl2Dw==
 
 "@scure/base@~1.1.0":
   version "1.1.1"
@@ -1685,14 +1685,14 @@ duplexer3@^0.1.4:
   integrity sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA==
 
 electron-to-chromium@^1.4.284:
-  version "1.4.363"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.363.tgz#a3d51d16169d8f212f00bafb78cf0667e24c3647"
-  integrity sha512-ReX5qgmSU7ybhzMuMdlJAdYnRhT90UB3k9M05O5nF5WH3wR5wgdJjXw0uDeFyKNhmglmQiOxkAbzrP0hMKM59g==
+  version "1.4.365"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.365.tgz#ccd9e352d4493aa288d87e6ea36f3edf350c045e"
+  integrity sha512-FRHZO+1tUNO4TOPXmlxetkoaIY8uwHzd1kKopK/Gx2SKn1L47wJXWD44wxP5CGRyyP98z/c8e1eBzJrgPeiBOg==
 
 electron@^23.1.2:
-  version "23.2.3"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-23.2.3.tgz#527407a685c7c480f51898cda8b62af005bfb164"
-  integrity sha512-cw844B2eMehG/j7YmJenCzYSqZYNV/YOV+lqFqFzgd4YMVo3LSBS1w+izKcfWPbqgP4Zdz4iR6p8Pdjm9hNaTQ==
+  version "23.2.4"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-23.2.4.tgz#6f19be9e45c5e5cdf736d0ed747ce4ed4c4bbfeb"
+  integrity sha512-ceFd+KIhzK3srGY22kcBu8QH7hV1G3DHlgrg2LGjg7mgtzxlXeyKzk2Efq0iFNu3ly14QKfiN5gYdvEenmzOAA==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^16.11.26"

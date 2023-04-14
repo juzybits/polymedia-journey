@@ -64,7 +64,7 @@ export function Home(props: any) {
 
     let contents = <></>;
     if (act=='0_stars') {
-        contents = <Stars />;
+        contents = <Stars />; // TODO: add Polymedia logo and link, bottom left/right
     } else {
         contents = <Castle />
     }

@@ -68,6 +68,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const onSubmitCreate = async (e: SyntheticEvent) => {
         e.preventDefault();
         setWaiting(true);
+        setSuiError('');
         if (!validateForm()) {
             setWaiting(false);
             return;
@@ -149,6 +150,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                     className={waiting ? 'disabled' : ''}
                     value={description}
                     onChange={e => {
+                        setSuiError('');
                         setDescription(e.target.value);
                     }}
                 ></textarea>
