@@ -1,5 +1,4 @@
 import { useEffect, useState, SyntheticEvent } from 'react';
-import { SuiAddress } from '@mysten/sui.js';
 import { useWalletKit, ConnectModal } from '@mysten/wallet-kit';
 import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
 
@@ -7,16 +6,16 @@ import { isImageUrl } from './lib/common';
 import './4_CreateProfileCard.less';
 
 export type CreateProfileCardProps = {
-    fetchAndSetProfile: (lookupAddress: SuiAddress|null) => Promise<PolymediaProfile|null|undefined>,
     nextStage: () => void,
     addressWidget: React.ReactNode,
     profile: PolymediaProfile|null|undefined,
+    setProfile: React.Dispatch<React.SetStateAction<PolymediaProfile|null|undefined>>,
     profileManager: ProfileManager,
     suiError: string,
     setSuiError: React.Dispatch<React.SetStateAction<string>>,
 }
 export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
-    fetchAndSetProfile,
+    setProfile,
     nextStage,
     addressWidget,
     profile,
@@ -75,25 +74,21 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         }
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
         try {
-            const profileObjectId = await profileManager.createProfile({
+            const newProfile = await profileManager.createProfile({
                 signAndExecuteTransactionBlock,
                 name,
                 imageUrl: image,
                 description,
             });
-            console.debug('[onSubmitCreate] New profile object ID:', profileObjectId);
-            let newProfile;
-            do {
-                // Handle RPC lag by retrying until we get the new profile
-                newProfile = await fetchAndSetProfile(currentAccount?.address || null);
-            }
-            while (!newProfile);
+            console.debug('[onSubmitCreate] New profile:', newProfile);
+            setProfile(newProfile);
         } catch(error: any) {
             const errorString = String(error.stack || error.message || error);
             console.warn(errorString);
             setSuiError(errorString);
+        } finally {
+            setWaiting(false);
         }
-        setWaiting(false);
     };
 
     const Loading = () => {

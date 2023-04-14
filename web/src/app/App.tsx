@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
-import { WalletKitProvider } from '@mysten/wallet-kit';
+import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
 import { NetworkName, NetworkSelector, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
@@ -17,20 +17,19 @@ import { GrogBye } from './8_GrogBye';
 
 import './App.less';
 
+export const AppWrap: React.FC = () =>
+    <WalletKitProvider><App /></WalletKitProvider>;
+
 export function App()
 {
     const [stage, setStage] = useState(0);
-    // undefined = we haven't looked for the user profile yet
-    // null = the user's address does not have a profile associated to it
     const [profile, setProfile] = useState<PolymediaProfile|null|undefined>(undefined);
     const [earlyAdopterCardId, setEarlyAdopterCardId] = useState<string|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
-    // const networkTmp = getNetwork();
-    // Delete query string
-    window.history.replaceState({}, document.title, window.location.pathname);
     const [network, setNetwork] = useState<NetworkName|null>(null);
     const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
+    const { currentAccount  } = useWalletKit();
 
     useEffect(() => {
         async function initialize() {
@@ -44,9 +43,18 @@ export function App()
         initialize();
     }, []);
 
-    const fetchAndSetProfile = async (lookupAddress: SuiAddress|null): Promise<PolymediaProfile|null|undefined> =>
+    useEffect(() => {
+        setSuiError('');
+        if (!currentAccount) {
+            setProfile(undefined);
+        } else if (!profile || (profile.owner !== currentAccount.address)) {
+            fetchAndSetProfile(currentAccount.address);
+        }
+    }, [currentAccount]);
+
+    const fetchAndSetProfile = async (lookupAddress: SuiAddress): Promise<PolymediaProfile|null|undefined> =>
     {
-        if (!lookupAddress || !profileManager) {
+        if (!profileManager) {
             setProfile(undefined);
             return undefined;
         }
@@ -86,11 +94,7 @@ export function App()
 
     // HTML
 
-    const addressWidget = <AddressWidget
-        fetchAndSetProfile={fetchAndSetProfile}
-        setSuiError={setSuiError}
-        />;
-
+    const addressWidget = <AddressWidget />;
     let view;
     if (stage === 0) {
         view = <Home nextStage={nextStage} />;
@@ -102,10 +106,10 @@ export function App()
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {
         view = <CreateProfileCard
-                fetchAndSetProfile={fetchAndSetProfile}
                 nextStage={nextStage}
                 addressWidget={addressWidget}
                 profile={profile}
+                setProfile={setProfile}
                 profileManager={profileManager}
                 suiError={suiError}
                 setSuiError={setSuiError}
@@ -147,8 +151,8 @@ export function App()
                 profile={profile}
             />;
     }
-    return <WalletKitProvider>
+    return <>
         <NetworkSelector currentNetwork={network} />
         {view}
-    </WalletKitProvider>;
+    </>;
 }
