@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
+import { Quest } from './App';
 import { createQuest } from './lib/mountsogol';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
@@ -15,7 +16,7 @@ export type MintEarlyAdopterCardProps = {
     earlyAdopterCardId: string|null|undefined,
     suiError: string,
     setSuiError: React.Dispatch<React.SetStateAction<string>>,
-    fingerprint: string,
+    quest: Quest
 }
 export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     network,
@@ -25,7 +26,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     earlyAdopterCardId,
     setSuiError,
     suiError,
-    fingerprint,
+    quest,
 }) => {
     useEffect(() => {
         document.body.className = 'bg-library';

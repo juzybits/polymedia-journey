@@ -23,6 +23,26 @@ const fingerprintPromise = FingerprintJS.load({monitoring: false});
 export const AppWrap: React.FC = () =>
     <WalletKitProvider><App /></WalletKitProvider>;
 
+export type Quest = {
+    fingerprint: string;
+    findDoorStart: number;
+    findDoorEnd: number;
+    findDoorClicks: number;
+    knockDoorStart: number;
+    knockDoorEnd: number;
+    knockDoorClicks: number;
+}
+
+const quest: Quest = {
+    fingerprint: '',
+    findDoorStart: 0,
+    findDoorEnd: 0,
+    findDoorClicks: 0,
+    knockDoorStart: 0,
+    knockDoorEnd: 0,
+    knockDoorClicks: 0,
+};
+
 export function App()
 {
     const [stage, setStage] = useState(0);
@@ -32,7 +52,6 @@ export function App()
     const [network, setNetwork] = useState<NetworkName|null>(null);
     const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
-    const [fingerprint, setFingerprint] = useState('');
     const { currentAccount  } = useWalletKit();
 
     useEffect(() => {
@@ -47,7 +66,9 @@ export function App()
         initialize();
         fingerprintPromise
         .then(agent => agent.get())
-        .then(result => setFingerprint(result.visitorId));
+        .then(result => {
+            quest.fingerprint = result.visitorId;
+        });
     }, []);
 
     useEffect(() => {
@@ -151,7 +172,7 @@ export function App()
                 earlyAdopterCardId={earlyAdopterCardId}
                 suiError={suiError}
                 setSuiError={setSuiError}
-                fingerprint={fingerprint}
+                quest={quest}
             />;
     } else if (stage === 8) {
         view = <GrogBye
