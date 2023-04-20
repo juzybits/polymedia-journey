@@ -17,6 +17,9 @@ import { GrogBye } from './8_GrogBye';
 
 import './App.less';
 
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+const fingerprintPromise = FingerprintJS.load({monitoring: false});
+
 export const AppWrap: React.FC = () =>
     <WalletKitProvider><App /></WalletKitProvider>;
 
@@ -29,6 +32,7 @@ export function App()
     const [network, setNetwork] = useState<NetworkName|null>(null);
     const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
+    const [fingerprint, setFingerprint] = useState('');
     const { currentAccount  } = useWalletKit();
 
     useEffect(() => {
@@ -41,6 +45,9 @@ export function App()
             setProfileManager( new ProfileManager({network, rpcProvider}) );
         };
         initialize();
+        fingerprintPromise
+        .then(agent => agent.get())
+        .then(result => setFingerprint(result.visitorId));
     }, []);
 
     useEffect(() => {
@@ -144,6 +151,7 @@ export function App()
                 earlyAdopterCardId={earlyAdopterCardId}
                 suiError={suiError}
                 setSuiError={setSuiError}
+                fingerprint={fingerprint}
             />;
     } else if (stage === 8) {
         view = <GrogBye

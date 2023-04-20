@@ -15,6 +15,7 @@ export type MintEarlyAdopterCardProps = {
     earlyAdopterCardId: string|null|undefined,
     suiError: string,
     setSuiError: React.Dispatch<React.SetStateAction<string>>,
+    fingerprint: string,
 }
 export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     network,
@@ -24,6 +25,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     earlyAdopterCardId,
     setSuiError,
     suiError,
+    fingerprint,
 }) => {
     useEffect(() => {
         document.body.className = 'bg-library';
