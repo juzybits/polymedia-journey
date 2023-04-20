@@ -127,9 +127,9 @@ export function App()
     if (stage === 0) {
         view = <Home nextStage={nextStage} />;
     } else if (stage === 1) {
-        view = <FindDoor nextStage={nextStage} />;
+        view = <FindDoor nextStage={nextStage} quest={quest} />;
     } else if (stage === 2) {
-        view = <KnockDoor nextStage={nextStage} />;
+        view = <KnockDoor nextStage={nextStage} quest={quest} />;
     } else if (stage === 3) {
         view = <MeetGrog nextStage={nextStage} />;
     } else if (stage === 4) {

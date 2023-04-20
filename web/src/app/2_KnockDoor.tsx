@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { Quest } from './App';
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorOpen from '../img/door_open.webp';
 import imgTorch from '../img/torch.gif';
@@ -8,8 +9,13 @@ import imgWizardBrown from '../img/wizard_brown.webp';
 
 import './2_KnockDoor.less';
 
-export function KnockDoor(props: any) {
-
+export const KnockDoor: React.FC<{
+    nextStage: () => void,
+    quest: Quest,
+}> = ({
+    nextStage,
+    quest,
+}) => {
     useEffect(() => {
         document.body.className = 'bg-bricks';
         // Preload images
@@ -19,6 +25,10 @@ export function KnockDoor(props: any) {
         // Preload next scene
         (new Image()).src = imgBgLibrary;
         (new Image()).src = imgWizardBrown;
+        // Reset relevant quest data
+        quest.knockDoorClicks = 0;
+        quest.knockDoorStart = 0;
+        quest.knockDoorEnd = 0;
     }, []);
 
     const [act, setAct] = useState('0_intro');
@@ -57,6 +67,11 @@ export function KnockDoor(props: any) {
         }
     }, [msgIdx]);
 
+    const onClickStart = () => {
+        quest.knockDoorStart = Date.now();
+        setAct('1_game');
+    };
+
     const Intro = () => {
         return <div className='intro'>
             <h1 className='mario title fade-in-1'>TWO</h1>
@@ -68,12 +83,19 @@ export function KnockDoor(props: any) {
                 The entrance is blocked, it won't budge or yield.
                 Demonstrate your tenacity, and let the journey reveal.
             </p>
-            <button className='btn fade-in-4 last' onClick={() => setAct('1_game')}>I'm ready</button>
+            <button className='btn fade-in-4 last' onClick={onClickStart}>I'm ready</button>
         </div>;
     };
 
-    const onClickNextPhase = () => { props.nextStage(); };
-    const onClickNextMessage = () => { setMsgIdx(oldIdx => oldIdx+1); };
+    const onClickNextMessage = () => {
+        quest.knockDoorClicks += 1;
+        setMsgIdx(oldIdx => oldIdx+1);
+    };
+    const onClickNextPhase = () => {
+        quest.knockDoorClicks += 1;
+        quest.knockDoorEnd = Date.now();
+        nextStage();
+    };
     const DoorContainer = () => {
         return <>
             <div id='door-container'>

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 
+import { Quest } from './App';
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
 import imgBgBricks from '../img/bg-bricks.webp';
 
 import './1_FindDoor.less';
 
-export function FindDoor(props: any) {
-    // MAYBE: record # of attempts and elapsed time
-    // MAYBE: add a timer to the UI
-
+export const FindDoor: React.FC<{
+    nextStage: () => void,
+    quest: Quest,
+}> = ({
+    nextStage,
+    quest,
+}) => {
     useEffect(() => {
         document.body.className = 'bg-castle-wall';
         // Preload images
@@ -17,6 +21,10 @@ export function FindDoor(props: any) {
         (new Image()).src = imgDoorClosedDiff;
         // Preload next background
         (new Image()).src = imgBgBricks;
+        // Reset relevant quest data
+        quest.findDoorClicks = 0;
+        quest.findDoorStart = 0;
+        quest.findDoorEnd = 0;
     }, []);
 
     const [modal, setModal]: any = useState(null);
@@ -31,7 +39,13 @@ export function FindDoor(props: any) {
         }
     }, [act]);
 
+    const onClickStart = () => {
+        quest.findDoorStart = Date.now();
+        setAct('1_game');
+    };
+
     const onWrong = (idx: number) => {
+        quest.findDoorClicks += 1;
         const closeModal = () => {
             setModal(null);
         };
@@ -45,9 +59,11 @@ export function FindDoor(props: any) {
     }
 
     const onCorrect = () => {
+        quest.findDoorClicks += 1;
+        quest.findDoorEnd = Date.now();
         const closeModal = () => {
             setModal(null);
-            props.nextStage();
+            nextStage();
         };
         setModal(<div className='modal' onClick={closeModal}>
             <h1 className='mario green guess-result'>Correct!</h1>
@@ -86,7 +102,7 @@ export function FindDoor(props: any) {
                 Your first challenge will be to prove your perspicacious mind:
                 pick the door that stands apart from all the other doors you'll find.
             </p>
-            <button className='btn last fade-in-5' onClick={() => setAct('1_game')}>I'm ready</button>
+            <button className='btn last fade-in-5' onClick={onClickStart} >I'm ready</button>
         </div>;
     };
 
