@@ -8,18 +8,20 @@ module polymedia_journey::journey
     use sui::transfer;
     use sui::tx_context::{Self, TxContext};
 
-    use polymedia_profile::profile::{Profile, add_dynamic_object_field};
+    use polymedia_profile::profile::{Profile, add_dynamic_object_field, remove_dynamic_object_field};
 
     struct Quest has key, store {
         id: UID,
         name: String,
         image_url: String,
         description: String,
+        data: String,
     }
 
     struct EventSaveQuest has copy, drop {
         profile_id: ID,
         quest_name: String,
+        data: String,
     }
 
     public entry fun save_quest(
@@ -27,6 +29,7 @@ module polymedia_journey::journey
         name: vector<u8>,
         image_url: vector<u8>,
         description: vector<u8>,
+        data: vector<u8>,
         ctx: &mut TxContext,
     ) {
         let quest_name = utf8(name);
@@ -35,13 +38,32 @@ module polymedia_journey::journey
             name: quest_name,
             image_url: utf8(image_url),
             description: utf8(description),
+            data: utf8(data),
         };
         add_dynamic_object_field(profile, quest_name, quest);
 
         event::emit(EventSaveQuest {
             profile_id: object::id(profile),
             quest_name,
+            data: utf8(data),
         });
+    }
+
+    public entry fun delete_quest(
+        profile: &mut Profile,
+        name: vector<u8>,
+        _ctx: &mut TxContext,
+    ) {
+        let quest_name = utf8(name);
+        let quest = remove_dynamic_object_field(profile, quest_name);
+        let Quest {
+            id,
+            name: _,
+            image_url: _,
+            description: _,
+            data: _,
+        } = quest;
+        object::delete(id);
     }
 
     // One-Time-Witness
