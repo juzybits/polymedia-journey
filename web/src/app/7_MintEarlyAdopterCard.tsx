@@ -3,7 +3,7 @@ import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { Quest } from './App';
-import { createQuest } from './lib/mountsogol';
+import { createQuest } from './lib/journey';
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
 import './7_MintEarlyAdopterCard.less';
@@ -63,12 +63,10 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             data: JSON.stringify({
                 fp: quest.fingerprint,
                 ch: Number(isCheater(quest)),
-                s1: quest.findDoorStart,
-                e1: quest.findDoorEnd,
                 c1: quest.findDoorClicks,
-                s2: quest.knockDoorStart,
-                e2: quest.knockDoorEnd,
                 c2: quest.knockDoorClicks,
+                t1: quest.findDoorEnd - quest.findDoorStart,
+                t2: quest.knockDoorEnd - quest.knockDoorStart,
             }),
         })
         .then( (resp: any) => {

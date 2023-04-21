@@ -6,8 +6,8 @@ import {
 import { WalletKitCore } from '@mysten/wallet-kit-core';
 
 const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x5d44f372b1176bd2e870fc3eefed5e815dc500ce7e3166cdb841607fcf894f96';
-const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xe676f10859705bcfdcb3b27ace0d38ba4bafb9d185919c1c545ddb75e24a9afe';
-const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x4f05d5706b3982be1715115e795393c6d44feca8b2f2f0a8c0f9631eec9ad027';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xe2be29044952bddf1f7ce2a4d44a5df243139de0c310d92a20f21c9bb80371f3';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0xaa8eaf9dce8fdacd74b1b1b5d53cd67c41796cc63636b4be0f7396f4e129e24c';
 
 function getJourneyPackageId(network: string): string {
     if (network === 'localnet') {
