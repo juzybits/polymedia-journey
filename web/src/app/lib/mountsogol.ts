@@ -3,8 +3,9 @@ import {
     TransactionBlock,
     TransactionEffects,
 } from '@mysten/sui.js';
+import { WalletKitCore } from '@mysten/wallet-kit-core';
 
-const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x776f7415d7c3d5a58ca999be752e365f0c0f0085ec60cb959a057c04113f3725';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x5d44f372b1176bd2e870fc3eefed5e815dc500ce7e3166cdb841607fcf894f96';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xe676f10859705bcfdcb3b27ace0d38ba4bafb9d185919c1c545ddb75e24a9afe';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x4f05d5706b3982be1715115e795393c6d44feca8b2f2f0a8c0f9631eec9ad027';
 
@@ -24,30 +25,81 @@ export async function createQuest({
     signAndExecuteTransactionBlock,
     network,
     profileId,
-    name,
+    questName,
     imageUrl,
     description,
+    data,
 } : {
-    signAndExecuteTransactionBlock: (input: any) => Promise<any>, // TODO: add type
+    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
     network: string,
     profileId: SuiAddress,
-    name: string,
+    questName: string,
     imageUrl: string,
     description: string,
-}): Promise<any>
+    data: string,
+}): ReturnType<typeof signAndExecuteTransactionBlock>
+{
+    const tx = new TransactionBlock();
+    return await moveCall({
+        signAndExecuteTransactionBlock,
+        tx,
+        network,
+        moveFunc: 'save_quest',
+        moveArgs: [
+            tx.object(profileId),
+            tx.pure(Array.from( (new TextEncoder()).encode(questName) )),
+            tx.pure(Array.from( (new TextEncoder()).encode(imageUrl) )),
+            tx.pure(Array.from( (new TextEncoder()).encode(description) )),
+            tx.pure(Array.from( (new TextEncoder()).encode(data) )),
+        ],
+    });
+}
+
+export async function deleteQuest({
+    signAndExecuteTransactionBlock,
+    network,
+    profileId,
+    questName,
+} : {
+    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
+    network: string,
+    profileId: SuiAddress,
+    questName: string,
+}): ReturnType<typeof signAndExecuteTransactionBlock>
+{
+    const tx = new TransactionBlock();
+    return await moveCall({
+        signAndExecuteTransactionBlock,
+        tx,
+        network,
+        moveFunc: 'delete_quest',
+        moveArgs: [
+            tx.object(profileId),
+            tx.pure(Array.from( (new TextEncoder()).encode(questName) )),
+        ],
+    });
+}
+
+async function moveCall({
+    signAndExecuteTransactionBlock,
+    tx,
+    network,
+    moveFunc,
+    moveArgs,
+} : {
+    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
+    tx: TransactionBlock,
+    network: string,
+    moveFunc: string,
+    moveArgs: Array<any>,
+}): ReturnType<typeof signAndExecuteTransactionBlock>
 {
     const packageId = getJourneyPackageId(network);
 
-    const tx = new TransactionBlock();
     tx.moveCall({
-        target: `${packageId}::journey::save_quest`,
-        typeArguments: [],
-        arguments: [
-            tx.object(profileId),
-            tx.pure(Array.from( (new TextEncoder()).encode(name) )),
-            tx.pure(Array.from( (new TextEncoder()).encode(imageUrl) )),
-            tx.pure(Array.from( (new TextEncoder()).encode(description) )),
-        ],
+        target: `${packageId}::journey::${moveFunc}`,
+        typeArguments: undefined,
+        arguments: moveArgs,
     });
 
     const resp = await signAndExecuteTransactionBlock({
@@ -57,9 +109,7 @@ export async function createQuest({
         },
     })
 
-    // Verify the transaction results
-    //                  Sui/Ethos || Suiet
-    const effects = (resp.effects || resp.EffectsCert?.effects?.effects) as TransactionEffects;
+    const effects = resp.effects as TransactionEffects;
     if (effects.status.status !== 'success') {
         throw new Error(effects.status.error);
     }

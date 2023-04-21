@@ -42,13 +42,34 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     }, [profile]);
 
     const mintCard = () => {
+        const isCheater = (quest: Quest): boolean => {
+            const TEN_HOURS_AGO = Date.now() - 10 * 60 * 60 * 1000;
+            return (
+                quest.findDoorStart < TEN_HOURS_AGO || quest.findDoorEnd < TEN_HOURS_AGO ||
+                (quest.findDoorEnd - quest.findDoorStart < 100) ||
+                quest.findDoorClicks <= 0 || quest.findDoorClicks > 12 ||
+                quest.knockDoorStart < TEN_HOURS_AGO || quest.knockDoorEnd < TEN_HOURS_AGO ||
+                (quest.knockDoorEnd - quest.knockDoorStart < 1000) ||
+                quest.knockDoorClicks !== 25
+            );
+        };
         profile && createQuest({
             signAndExecuteTransactionBlock,
             network,
             profileId: profile.id,
-            name: 'Polymedia: Early Adopter',
+            questName: 'Polymedia: Early Adopter',
             imageUrl: 'https://mountsogol.com/img/card_early_adopter.webp',
             description: 'The door to the invisible must be visible',
+            data: JSON.stringify({
+                fp: quest.fingerprint,
+                ch: Number(isCheater(quest)),
+                s1: quest.findDoorStart,
+                e1: quest.findDoorEnd,
+                c1: quest.findDoorClicks,
+                s2: quest.knockDoorStart,
+                e2: quest.knockDoorEnd,
+                c2: quest.knockDoorClicks,
+            }),
         })
         .then( (resp: any) => {
             console.debug('[mintCard] Success. Response:', resp);

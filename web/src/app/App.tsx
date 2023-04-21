@@ -25,6 +25,7 @@ export const AppWrap: React.FC = () =>
 
 export type Quest = {
     fingerprint: string;
+    cheat: boolean;
     findDoorStart: number;
     findDoorEnd: number;
     findDoorClicks: number;
@@ -35,6 +36,7 @@ export type Quest = {
 
 const quest: Quest = {
     fingerprint: '',
+    cheat: false,
     findDoorStart: 0,
     findDoorEnd: 0,
     findDoorClicks: 0,

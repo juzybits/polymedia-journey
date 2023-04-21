@@ -6,6 +6,7 @@
         "@fingerprintjs/fingerprintjs": "latest",
         "@mysten/sui.js": "latest",
         "@mysten/wallet-kit": "latest",
+        "@mysten/wallet-kit-core": "latest",
         "@polymedia/profile-sdk": "latest",
         "@polymedia/webutils": "latest",
         "react": "^18.0.0",
