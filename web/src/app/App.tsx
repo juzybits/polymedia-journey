@@ -17,14 +17,14 @@ import { GrogBye } from './8_GrogBye';
 
 import './App.less';
 
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-const fingerprintPromise = FingerprintJS.load({monitoring: false});
+// import FingerprintJS from '@fingerprintjs/fingerprintjs';
+// const fingerprintPromise = FingerprintJS.load({monitoring: false});
 
 export const AppWrap: React.FC = () =>
     <WalletKitProvider><App /></WalletKitProvider>;
 
 export type Quest = {
-    fingerprint: string;
+    // fingerprint: string;
     cheat: boolean;
     findDoorStart: number;
     findDoorEnd: number;
@@ -35,7 +35,7 @@ export type Quest = {
 }
 
 const quest: Quest = {
-    fingerprint: '',
+    // fingerprint: '',
     cheat: false,
     findDoorStart: 0,
     findDoorEnd: 0,
@@ -66,11 +66,11 @@ export function App()
             setProfileManager( new ProfileManager({network, rpcProvider}) );
         };
         initialize();
-        fingerprintPromise
-        .then(agent => agent.get())
-        .then(result => {
-            quest.fingerprint = result.visitorId;
-        });
+        // fingerprintPromise
+        // .then(agent => agent.get())
+        // .then(result => {
+        //     quest.fingerprint = result.visitorId;
+        // });
     }, []);
 
     useEffect(() => {

@@ -61,11 +61,11 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             imageUrl: 'https://mountsogol.com/img/card_early_adopter.webp',
             description: 'The door to the invisible must be visible',
             data: JSON.stringify({
-                fp: quest.fingerprint,
+                // fp: quest.fingerprint,
                 ch: Number(isCheater(quest)),
                 c1: quest.findDoorClicks,
-                c2: quest.knockDoorClicks,
                 t1: quest.findDoorEnd - quest.findDoorStart,
+                c2: quest.knockDoorClicks,
                 t2: quest.knockDoorEnd - quest.knockDoorStart,
             }),
         })
