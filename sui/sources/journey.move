@@ -16,6 +16,7 @@ module polymedia_journey::journey
         image_url: String,
         description: String,
         data: String,
+        epoch_time: u64,
     }
 
     struct EventSaveQuest has copy, drop {
@@ -38,6 +39,7 @@ module polymedia_journey::journey
             name: quest_name,
             image_url: utf8(image_url),
             description: utf8(description),
+            epoch_time: tx_context::epoch_timestamp_ms(ctx),
             data: utf8(data),
         };
         add_dynamic_object_field(profile, quest_name, quest);
@@ -62,6 +64,7 @@ module polymedia_journey::journey
             image_url: _,
             description: _,
             data: _,
+            epoch_time: _,
         } = quest;
         object::delete(id);
     }
