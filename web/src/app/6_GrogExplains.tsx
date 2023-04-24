@@ -61,7 +61,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
             }
             console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp);
             const objData = resp.data.content as SuiMoveObject;
-            setEarlyAdopterCardId(objData.fields.id.id); // TODO: check the object type is ...::journey::Quest
+            setEarlyAdopterCardId(objData.fields.id.id); // MAYBE: check the object type is ...::journey::Quest
         })
         .catch( (error: any) => {
             console.warn('[fetchAndSetEarlyAdopterCard] Card not found', error.stack);

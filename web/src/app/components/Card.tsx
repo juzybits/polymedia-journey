@@ -4,7 +4,7 @@ import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { isImageUrl, shorten } from '../lib/common';
 import './Card.less';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
-import imgLogo from '../../img/logo.png';
+import imgLogo from '../../img/polymedia_logo.png';
 
 export function Card(props: any)
 {
