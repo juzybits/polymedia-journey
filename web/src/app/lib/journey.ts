@@ -7,7 +7,7 @@ import { WalletKitCore } from '@mysten/wallet-kit-core';
 import { NetworkName } from '@polymedia/webutils';
 
 const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x5d44f372b1176bd2e870fc3eefed5e815dc500ce7e3166cdb841607fcf894f96';
-const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xe2be29044952bddf1f7ce2a4d44a5df243139de0c310d92a20f21c9bb80371f3';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xaf3ba9e47b2978ffdd4c02d4dc5750f21161a7b7c2ab9185051abef0d8bef132';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x8159966aa88cf482f710d6ce61a004986993f1ffe05190934602f04da82e0dbc';
 
 function getJourneyPackageId(network: NetworkName): string {

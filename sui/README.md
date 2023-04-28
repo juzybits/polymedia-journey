@@ -2,5 +2,5 @@
 
 ## Publish the package
 ```
-sui client publish --with-unpublished-dependencies --gas-budget 100000000 | grep packageId
+sui client publish --gas-budget 100000000 | grep packageId
 ```
