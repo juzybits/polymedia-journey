@@ -5,6 +5,7 @@ import {
     SuiObjectResponse,
 } from '@mysten/sui.js';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
+import { NetworkName } from '@polymedia/webutils';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
@@ -12,7 +13,7 @@ import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
 import './6_GrogExplains.less';
 
 export type GrogExplainsProps = {
-    network: string,
+    network: NetworkName,
     rpcProvider: JsonRpcProvider,
     nextStage: () => void,
     prevStage: () => void,

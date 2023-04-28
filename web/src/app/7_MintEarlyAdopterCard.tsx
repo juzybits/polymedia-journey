@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
+import { NetworkName } from '@polymedia/webutils';
 
 import { Quest } from './App';
 import { createQuest } from './lib/journey';
@@ -9,7 +10,7 @@ import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
 import './7_MintEarlyAdopterCard.less';
 
 export type MintEarlyAdopterCardProps = {
-    network: string,
+    network: NetworkName,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,

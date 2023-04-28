@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
+import { NetworkName, linkToExplorer } from '@polymedia/webutils';
 
 import imgWizardBrown from '../img/wizard_brown.webp';
 import './8_GrogBye.less';
 
 export type GrogByeProps = {
-    network: string,
+    network: NetworkName,
     profile: PolymediaProfile|null|undefined,
 }
 export const GrogBye: React.FC<GrogByeProps> = ({
@@ -18,7 +19,7 @@ export const GrogBye: React.FC<GrogByeProps> = ({
 
     const tweetText = encodeURIComponent('🤔Yo, what even is Mount Sogol? I have no clue haha, but I just got an Early Adopter NFT by creating my Polymedia Profile!\n\nWho knows, it might be useful later on... (idk tho, could be psyops)\n\nhttps://mountsogol.com | @polymedia_app | #SuiNetwork');
     const tweetHref = `https://twitter.com/share?text=${tweetText}`;
-    const profileUrl = profile ? `https://explorer.sui.io/object/${profile.id}?network=${network}` : '#';
+    const profileUrl = profile ? linkToExplorer(network, 'object', profile.id) : '#';
     return <div id='page' className='grog-bye'>
         <div className='wizard-wrap'>
             <img src={imgWizardBrown} alt='wizard' />

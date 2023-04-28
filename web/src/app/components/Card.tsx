@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-
 import { PolymediaProfile } from '@polymedia/profile-sdk';
+import { linkToExplorer } from '@polymedia/webutils';
+
 import { isImageUrl, shorten } from '../lib/common';
 import './Card.less';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
@@ -76,9 +77,9 @@ export function Card(props: any)
         <div className='card-back-frame'>
             <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
             <div className='card-back-info'>
-                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={`https://explorer.sui.io/address/${profile.owner}?network=${props.network}`}>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
-                &nbsp;Profile: {<a target="_blank" href={`https://explorer.sui.io/object/${profile.id}?network=${props.network}`}>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
-                Registry: {<a target="_blank" href={`https://explorer.sui.io/object/${props.registryId}?network=${props.network}`}>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
+                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={linkToExplorer(props.network, 'address', profile.owner)}>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
+                &nbsp;Profile: {<a target="_blank" href={linkToExplorer(props.network, 'object', profile.id)}>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
+                Registry: {<a target="_blank" href={linkToExplorer(props.network, 'object', props.registryId)}>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
             </div>
         </div>
     </div>

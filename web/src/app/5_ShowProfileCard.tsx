@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
+import { NetworkName } from '@polymedia/webutils';
 
 import { Card } from './components/Card';
 import './5_ShowProfileCard.less';
 
 export type ShowProfileCardProps = {
-    network: string,
+    network: NetworkName,
     nextStage: () => void,
     prevStage: () => void,
     addressWidget: React.ReactNode,

@@ -4,12 +4,13 @@ import {
     TransactionEffects,
 } from '@mysten/sui.js';
 import { WalletKitCore } from '@mysten/wallet-kit-core';
+import { NetworkName } from '@polymedia/webutils';
 
 const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x5d44f372b1176bd2e870fc3eefed5e815dc500ce7e3166cdb841607fcf894f96';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xe2be29044952bddf1f7ce2a4d44a5df243139de0c310d92a20f21c9bb80371f3';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x8159966aa88cf482f710d6ce61a004986993f1ffe05190934602f04da82e0dbc';
 
-function getJourneyPackageId(network: string): string {
+function getJourneyPackageId(network: NetworkName): string {
     if (network === 'localnet') {
         return POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET;
     } else if (network === 'devnet') {
@@ -31,7 +32,7 @@ export async function createQuest({
     data,
 } : {
     signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
-    network: string,
+    network: NetworkName,
     profileId: SuiAddress,
     questName: string,
     imageUrl: string,
@@ -62,7 +63,7 @@ export async function deleteQuest({
     questName,
 } : {
     signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
-    network: string,
+    network: NetworkName,
     profileId: SuiAddress,
     questName: string,
 }): ReturnType<typeof signAndExecuteTransactionBlock>
@@ -89,7 +90,7 @@ async function moveCall({
 } : {
     signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
     tx: TransactionBlock,
-    network: string,
+    network: NetworkName,
     moveFunc: string,
     moveArgs: Array<any>,
 }): ReturnType<typeof signAndExecuteTransactionBlock>

@@ -54,6 +54,7 @@ export function App()
     const [network, setNetwork] = useState<NetworkName|null>(null);
     const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
+    const [isInitialized, setIsInitialized] = useState(false);
     const { currentAccount  } = useWalletKit();
 
     useEffect(() => {
@@ -64,6 +65,7 @@ export function App()
             setNetwork(network);
             setRpcProvider(rpcProvider);
             setProfileManager( new ProfileManager({network, rpcProvider}) );
+            setIsInitialized(true);
         };
         initialize();
         // fingerprintPromise
@@ -75,12 +77,12 @@ export function App()
 
     useEffect(() => {
         setSuiError('');
-        if (!currentAccount) {
+        if (!isInitialized || !currentAccount) {
             setProfile(undefined);
         } else if (!profile || (profile.owner !== currentAccount.address)) {
             fetchAndSetProfile(currentAccount.address);
         }
-    }, [currentAccount]);
+    }, [isInitialized, currentAccount]);
 
     const fetchAndSetProfile = async (lookupAddress: SuiAddress): Promise<PolymediaProfile|null|undefined> =>
     {
@@ -108,7 +110,9 @@ export function App()
         }
     };
 
-    if (!network || !rpcProvider || !profileManager) {
+    if (!isInitialized
+        // only checking these so TS doesn't complain
+        || !network || !rpcProvider || !profileManager) {
         return <></>;
     }
 
