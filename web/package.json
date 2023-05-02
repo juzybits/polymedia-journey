@@ -22,7 +22,7 @@
     },
     "scripts": {
         "serve": "rm -rf .parcel-cache/ dist/ && parcel src/index.html",
-        "build": "rm -rf .parcel-cache/ dist/ && parcel build --no-source-maps src/index.html && cp src/static/* dist/ && cp src/img/card_early_adopter.webp dist/img/",
+        "build": "rm -rf .parcel-cache/ dist/ && parcel build --no-source-maps src/index.html && cp src/static/* dist/ && cp src/img/card_* dist/img/",
         "deploy-dev": "yarn build && wrangler pages publish dist/ --project-name mountsogol --branch dev",
         "deploy-prod": "yarn build && wrangler pages publish dist/ --project-name mountsogol --branch main"
     }

@@ -7,7 +7,7 @@ import { NetworkName } from '@polymedia/webutils';
 import { Quest } from './App';
 import { createQuest } from './lib/journey';
 import imgWizardBrown from '../img/wizard_brown.webp';
-import imgCardEarlyAdopter from '../img/card_early_adopter.webp';
+import imgCardExplorer from '../img/card_explorer.webp';
 import './7_MintEarlyAdopterCard.less';
 
 export type MintEarlyAdopterCardProps = {
@@ -63,7 +63,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             network,
             profileId: profile.id,
             questName: 'Polymedia: Early Adopter',
-            imageUrl: 'https://mountsogol.com/img/card_early_adopter.webp',
+            imageUrl: 'https://mountsogol.com/img/card_explorer.webp',
             description: 'The door to the invisible must be visible',
             data: JSON.stringify({
                 // fp: quest.fingerprint,
@@ -105,7 +105,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
 
         contents = <>
             <div className='paragraph dialog fade-in-1 card'>
-                <img src={imgCardEarlyAdopter} alt='chat.polymedia.app' />
+                <img src={imgCardExplorer} alt='chat.polymedia.app' />
             </div>
             <p className='paragraph dialog fade-in-2'>
                 You can attach this card to your Polymedia Profile as a <a href='https://docs.sui.io/build/programming-with-objects/ch5-dynamic-fields' target='_blank'><i>dynamic field object</i></a>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later on.
