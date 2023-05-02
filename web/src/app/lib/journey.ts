@@ -1,4 +1,5 @@
 import {
+    JsonRpcProvider,
     SuiAddress,
     TransactionBlock,
     TransactionEffects,
@@ -23,7 +24,8 @@ function getJourneyPackageId(network: NetworkName): string {
 }
 
 export async function createQuest({
-    signAndExecuteTransactionBlock,
+    rpcProvider,
+    signTransactionBlock,
     network,
     profileId,
     questName,
@@ -31,18 +33,20 @@ export async function createQuest({
     description,
     data,
 } : {
-    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
+    rpcProvider: JsonRpcProvider,
+    signTransactionBlock: WalletKitCore['signTransactionBlock'],
     network: NetworkName,
     profileId: SuiAddress,
     questName: string,
     imageUrl: string,
     description: string,
     data: string,
-}): ReturnType<typeof signAndExecuteTransactionBlock>
+}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
 {
     const tx = new TransactionBlock();
     return await moveCall({
-        signAndExecuteTransactionBlock,
+        rpcProvider,
+        signTransactionBlock,
         tx,
         network,
         moveFunc: 'save_quest',
@@ -57,20 +61,23 @@ export async function createQuest({
 }
 
 export async function deleteQuest({
-    signAndExecuteTransactionBlock,
+    rpcProvider,
+    signTransactionBlock,
     network,
     profileId,
     questName,
 } : {
-    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
+    rpcProvider: JsonRpcProvider,
+    signTransactionBlock: WalletKitCore['signTransactionBlock'],
     network: NetworkName,
     profileId: SuiAddress,
     questName: string,
-}): ReturnType<typeof signAndExecuteTransactionBlock>
+}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
 {
     const tx = new TransactionBlock();
     return await moveCall({
-        signAndExecuteTransactionBlock,
+        rpcProvider,
+        signTransactionBlock,
         tx,
         network,
         moveFunc: 'delete_quest',
@@ -82,18 +89,20 @@ export async function deleteQuest({
 }
 
 async function moveCall({
-    signAndExecuteTransactionBlock,
+    rpcProvider,
+    signTransactionBlock,
     tx,
     network,
     moveFunc,
     moveArgs,
 } : {
-    signAndExecuteTransactionBlock: WalletKitCore['signAndExecuteTransactionBlock'],
+    rpcProvider: JsonRpcProvider,
+    signTransactionBlock: WalletKitCore['signTransactionBlock'],
     tx: TransactionBlock,
     network: NetworkName,
     moveFunc: string,
     moveArgs: Array<any>,
-}): ReturnType<typeof signAndExecuteTransactionBlock>
+}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
 {
     const packageId = getJourneyPackageId(network);
 
@@ -103,12 +112,16 @@ async function moveCall({
         arguments: moveArgs,
     });
 
-    const resp = await signAndExecuteTransactionBlock({
+    const signedTx = await signTransactionBlock({
         transactionBlock: tx,
+    });
+    const resp = await rpcProvider.executeTransactionBlock({
+        transactionBlock: signedTx.transactionBlockBytes,
+        signature: signedTx.signature,
         options: {
             showEffects: true,
         },
-    })
+    });
 
     const effects = resp.effects as TransactionEffects;
     if (effects.status.status !== 'success') {

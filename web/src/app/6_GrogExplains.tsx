@@ -54,8 +54,13 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
                 value: 'Polymedia: Early Adopter',
             }
         }).then((resp: SuiObjectResponse) => {
+            const notFound = resp.error && resp.error.code === 'dynamicFieldNotFound';
+            if (notFound) {
+                return;
+            }
             if (resp.error || !resp.data) {
-                const errMsg = '[fetchAndSetEarlyAdopterCard] unexpected error: ' + JSON.stringify(resp.error);
+                const errMsg = '[fetchAndSetEarlyAdopterCard] unexpected error: '
+                    + JSON.stringify(resp.error || 'missing data');
                 console.warn(errMsg);
                 setSuiError(errMsg);
                 return;

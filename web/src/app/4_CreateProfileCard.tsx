@@ -36,7 +36,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
     const [nameError, setNameError] = useState('');
     const [imageError, setImageError] = useState('');
 
-    const { currentAccount, disconnect, signAndExecuteTransactionBlock } = useWalletKit();
+    const { currentAccount, disconnect, signTransactionBlock } = useWalletKit();
 
     useEffect(() => {
         document.body.className = 'bg-library dark';
@@ -76,7 +76,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         console.debug(`[onSubmitCreate] Attempting to create profile: ${name}`);
         try {
             const newProfile = await profileManager.createProfile({
-                signAndExecuteTransactionBlock,
+                signTransactionBlock,
                 name,
                 imageUrl: image,
                 description,
@@ -86,7 +86,7 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
         } catch(error: any) {
             const errorString = String(error.stack || error.message || error);
             console.warn(errorString);
-            setSuiError(errorString);
+            setSuiError(errorString); // TODO: don't show error if user rejected the txn
         } finally {
             setWaiting(false);
         }
