@@ -10,6 +10,7 @@ import { NetworkName } from '@polymedia/webutils';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_LOCALNET = '0x5d44f372b1176bd2e870fc3eefed5e815dc500ce7e3166cdb841607fcf894f96';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET = '0xaf3ba9e47b2978ffdd4c02d4dc5750f21161a7b7c2ab9185051abef0d8bef132';
 const POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET = '0x8159966aa88cf482f710d6ce61a004986993f1ffe05190934602f04da82e0dbc';
+const POLYMEDIA_JOURNEY_PACKAGE_ID_MAINNET = '0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db';
 
 function getJourneyPackageId(network: NetworkName): string {
     if (network === 'localnet') {
@@ -18,6 +19,8 @@ function getJourneyPackageId(network: NetworkName): string {
         return POLYMEDIA_JOURNEY_PACKAGE_ID_DEVNET;
     } else if (network === 'testnet') {
         return POLYMEDIA_JOURNEY_PACKAGE_ID_TESTNET;
+    } else if (network === 'mainnet') {
+        return POLYMEDIA_JOURNEY_PACKAGE_ID_MAINNET;
     } else {
         throw new Error('Network not recognized: ' + network);
     }

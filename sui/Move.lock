@@ -10,7 +10,7 @@ dependencies = [
 
 [[move.package]]
 name = "MoveStdlib"
-source = { local = "../../sui/crates/sui-framework/packages/move-stdlib" }
+source = { git = "https://github.com/MystenLabs/sui.git", rev = "mainnet", subdir = "crates/sui-framework/packages/move-stdlib" }
 
 [[move.package]]
 name = "PolymediaProfile"
@@ -22,7 +22,7 @@ dependencies = [
 
 [[move.package]]
 name = "Sui"
-source = { local = "../../sui/crates/sui-framework/packages/sui-framework" }
+source = { git = "https://github.com/MystenLabs/sui.git", rev = "mainnet", subdir = "crates/sui-framework/packages/sui-framework" }
 
 dependencies = [
   { name = "MoveStdlib" },
