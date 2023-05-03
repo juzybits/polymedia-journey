@@ -17,7 +17,7 @@ export const GrogBye: React.FC<GrogByeProps> = ({
         document.body.className = 'bg-library';
     }, []);
 
-    const tweetText = encodeURIComponent('🤔Yo, what even is Mount Sogol? I have no clue haha, but I just got an Early Adopter NFT by creating my Polymedia Profile!\n\nWho knows, it might be useful later on... (idk tho, could be psyops)\n\nhttps://mountsogol.com | @polymedia_app | #SuiNetwork');
+    const tweetText = encodeURIComponent('🤔Yo, what even is Mount Sogol? I have no clue haha, but I just got a free NFT by creating my Polymedia Profile!\n\nWho knows, it might be useful later on... (idk tho, could be psyops)\n\nhttps://mountsogol.com | @polymedia_app | #SuiNetwork');
     const tweetHref = `https://twitter.com/share?text=${tweetText}`;
     const profileUrl = profile ? linkToExplorer(network, 'object', profile.id) : '#';
     return <div id='page' className='grog-bye'>
@@ -26,7 +26,7 @@ export const GrogBye: React.FC<GrogByeProps> = ({
         </div>
         <div>
             <p className='paragraph dialog fade-in-1'>
-                All done! You can find your Early Adopter card as a <i>dynamic field</i> inside <a href={profileUrl} target='_blank'>your profile</a>.
+                All done! You can find your Explorer card as a <i>dynamic field</i> inside <a href={profileUrl} target='_blank'>your profile</a>.
             </p>
             <p className='paragraph dialog fade-in-2'>
                 Better <a href={tweetHref} target='_blank'>let Polymedia know</a> that you made it this far, they will be happy to hear from you. Follow <a target='_blank' href='https://twitter.com/polymedia_app'>@polymedia_app</a> to stay up to date!
