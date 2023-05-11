@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
 import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
-import { NetworkName, NetworkSelector, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
+import { NetworkName, NetworkSelector, isLocalhost, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -56,10 +56,11 @@ export function App()
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
     const { currentAccount  } = useWalletKit();
+    const showNetworkSelector = isLocalhost();
 
     useEffect(() => {
         async function initialize() {
-            const network = loadNetwork();
+            const network = isLocalhost() ? loadNetwork() : 'mainnet';
             const rpcConfig = await loadRpcConfig({network});
             const rpcProvider = new JsonRpcProvider(new Connection(rpcConfig));
             setNetwork(network);
@@ -188,7 +189,7 @@ export function App()
             />;
     }
     return <>
-        <NetworkSelector currentNetwork={network} />
+        {showNetworkSelector && <NetworkSelector currentNetwork={network} />}
         {view}
     </>;
 }

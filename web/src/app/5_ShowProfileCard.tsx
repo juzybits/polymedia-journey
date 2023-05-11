@@ -42,7 +42,7 @@ export const ShowProfileCard: React.FC<ShowProfileCardProps> = ({
             <Card
                 network={network}
                 profile={profile}
-                registryId={profileManager.getRegistryId()}
+                registryId={profileManager.registryId}
             />
             <div className='action-buttons'>
                 <button className='btn' onClick={nextStage}>USE THIS PROFILE</button>
