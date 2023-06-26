@@ -63,7 +63,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             network,
             profileId: profile.id,
             questName: 'Polymedia: Early Adopter',
-            imageUrl: 'https://mountsogol.com/img/card_explorer.webp',
+            imageUrl: 'https://journey.polymedia.app/img/card_explorer.webp',
             description: 'The door to the invisible must be visible',
             data: JSON.stringify({
                 // fp: quest.fingerprint,
