@@ -108,7 +108,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
                 <img src={imgCardExplorer} alt='chat.polymedia.app' />
             </div>
             <p className='paragraph dialog fade-in-2'>
-                You can attach this card to your Polymedia Profile as a <a href='https://docs.sui.io/build/programming-with-objects/ch5-dynamic-fields' target='_blank'><i>dynamic field object</i></a>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later on.
+                You can attach this card to your Polymedia Profile as a <a href='https://docs.sui.io/build/programming-with-objects/ch5-dynamic-fields' target='_blank' rel='noopener'><i>dynamic field object</i></a>. The Professor didn't explain what it does... but who knows, it sounds like you might need it later on.
             </p>
             {button}
         </>;

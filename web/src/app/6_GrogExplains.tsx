@@ -90,20 +90,20 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
             </p>
             <p className='paragraph dialog fade-in-2'>
                 I see you already created a <a href='https://profile.polymedia.app'
-                    target='_blank'><i>Polymedia Profile</i></a>. Excellent! Your profile is an <i>object</i> that will accompany you everywhere in the Sui Metaverse:
+                    target='_blank' rel='noopener'><i>Polymedia Profile</i></a>. Excellent! Your profile is an <i>object</i> that will accompany you everywhere in the Sui Metaverse:
             </p>
             <div className='paragraph narrator profile-usecases fade-in-3'>
-                <a href={'https://chat.polymedia.app/@sui-fans?network='+network} target='_blank'>
+                <a href={'https://chat.polymedia.app/@sui-fans?network='+network} target='_blank' rel='noopener'>
                     chat.polymedia.app
                     <img src={imgExampleChat} alt='chat.polymedia.app' />
                 </a>
-                <a href={'https://gotbeef.app?network='+network} target='_blank'>
-                    gotbeef.app
-                    <img src={imgExampleGotbeef} alt='gotbeef.app' />
+                <a href={'https://gotbeef.polymedia.app?network='+network} target='_blank' rel='noopener'>
+                    gotbeef.polymedia.app
+                    <img src={imgExampleGotbeef} alt='gotbeef.polymedia.app' />
                 </a>
             </div>
             <div className='paragraph dialog fade-in-3'>
-                Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank'>Polymedia Profile</a>, it's really easy!
+                Don't see your favorite app? Ask them to integrate <a href='https://profile.polymedia.app' target='_blank' rel='noopener'>Polymedia Profile</a>, it's really easy!
             </div>
             <p className='paragraph dialog fade-in-3'>
                 But there's more.

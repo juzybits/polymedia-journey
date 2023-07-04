@@ -77,9 +77,9 @@ export function Card(props: any)
         <div className='card-back-frame'>
             <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
             <div className='card-back-info'>
-                &nbsp;&nbsp;&nbsp;Owner: {<a target="_blank" href={linkToExplorer(props.network, 'address', profile.owner)}>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
-                &nbsp;Profile: {<a target="_blank" href={linkToExplorer(props.network, 'object', profile.id)}>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
-                Registry: {<a target="_blank" href={linkToExplorer(props.network, 'object', props.registryId)}>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
+                &nbsp;&nbsp;&nbsp;Owner: {<a href={linkToExplorer(props.network, 'address', profile.owner)} target='_blank' rel='noopener'>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
+                &nbsp;Profile: {<a href={linkToExplorer(props.network, 'object', profile.id)} target='_blank' rel='noopener'>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
+                Registry: {<a href={linkToExplorer(props.network, 'object', props.registryId)} target='_blank' rel='noopener'>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
             </div>
         </div>
     </div>
