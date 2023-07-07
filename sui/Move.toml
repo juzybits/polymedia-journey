@@ -2,11 +2,14 @@
 name = "PolymediaJourney"
 version = "1.0.0"
 authors = ["juzybits <https://twitter.com/juzybits>"]
-published-at = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db"
+published-at = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db" # mainnet
+# published-at = "0x5c02213542193c406884e918d0c39051d61a2cd896c887f8dd2d39daf3dee8d8" # testnet
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet" }
+# Sui = { local = "../../sui/crates/sui-framework/packages/sui-framework" }
 PolymediaProfile = { local = "../../polymedia-profile/sui" }
 
 [addresses]
-polymedia_journey = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db"
+polymedia_journey = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db" # mainnet
+# polymedia_journey = "0x5c02213542193c406884e918d0c39051d61a2cd896c887f8dd2d39daf3dee8d8" # testnet
