@@ -55,6 +55,7 @@ export const FindDoor: React.FC<{
         });
         setModal(<div className='modal' onClick={closeModal}>
             <h1 className='mario red guess-result'>Wrong!</h1>
+            <div className='guess-result-note'>(click anywhere to continue)</div>
         </div>);
     }
 
@@ -67,6 +68,7 @@ export const FindDoor: React.FC<{
         };
         setModal(<div className='modal' onClick={closeModal}>
             <h1 className='mario green guess-result'>Correct!</h1>
+            <div className='guess-result-note'>(click anywhere to continue)</div>
         </div>);
     }
 
