@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
 import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
-import { NetworkName, NetworkSelector, isLocalhost, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
+import { NetworkSelector } from '@polymedia/react-components';
+import { NetworkName, isLocalhost, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';

@@ -7,14 +7,15 @@
         "@mysten/wallet-kit": "latest",
         "@mysten/wallet-kit-core": "latest",
         "@polymedia/profile-sdk": "latest",
+        "@polymedia/react-components": "latest",
         "@polymedia/webutils": "latest",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@parcel/transformer-less": "latest",
-        "@types/react": "^18.2.14",
-        "@types/react-dom": "^18.2.6",
+        "@types/react": "^18.2.20",
+        "@types/react-dom": "^18.2.7",
         "buffer": "^5.7.1",
         "events": "^3.3.0",
         "parcel": "latest",
