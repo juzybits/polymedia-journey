@@ -86,11 +86,11 @@ export function App()
         }
     }, [isInitialized, currentAccount]);
 
-    const fetchAndSetProfile = async (lookupAddress: SuiAddress): Promise<PolymediaProfile|null|undefined> =>
+    const fetchAndSetProfile = async (lookupAddress: SuiAddress): Promise<void> =>
     {
         if (!profileManager) {
             setProfile(undefined);
-            return undefined;
+            return;
         }
         try {
             const profiles: Map<SuiAddress, PolymediaProfile|null> = await profileManager.getProfiles({
@@ -101,11 +101,11 @@ export function App()
                 const profile = profiles.get(lookupAddress);
                 console.debug('[fetchAndSetProfile] Found profile:', profile ? profile.id : null);
                 setProfile(profile);
-                return profile;
+                return;
             } else {
                 console.debug('[fetchAndSetProfile] Profile not found');
                 setProfile(null);
-                return null;
+                return;
             }
         } catch(error: any) {
             setSuiError(error.message);
