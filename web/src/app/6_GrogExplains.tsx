@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
-import {
-    JsonRpcProvider,
-    SuiMoveObject,
-    SuiObjectResponse,
-} from '@mysten/sui.js';
+import { SuiClient, SuiMoveObject, SuiObjectResponse } from '@mysten/sui.js/client';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { NetworkName } from '@polymedia/webutils';
 
@@ -14,7 +10,7 @@ import './6_GrogExplains.less';
 
 export type GrogExplainsProps = {
     network: NetworkName,
-    rpcProvider: JsonRpcProvider,
+    suiClient: SuiClient,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
@@ -24,7 +20,7 @@ export type GrogExplainsProps = {
 }
 export const GrogExplains: React.FC<GrogExplainsProps> = ({
     network,
-    rpcProvider,
+    suiClient,
     nextStage,
     prevStage,
     profile,
@@ -47,7 +43,7 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
     const fetchAndSetEarlyAdopterCard = () => {
         if (!profile) return;
 
-        rpcProvider.getDynamicFieldObject({
+        suiClient.getDynamicFieldObject({
             parentId: profile.id,
             name: {
                 type: '0x1::string::String',
@@ -67,7 +63,8 @@ export const GrogExplains: React.FC<GrogExplainsProps> = ({
             }
             console.debug('[fetchAndSetEarlyAdopterCard] Found card. Response:', resp);
             const objData = resp.data.content as SuiMoveObject;
-            setEarlyAdopterCardId(objData.fields.id.id); // MAYBE: check the object type is ...::journey::Quest
+            const objFields = objData.fields as any;
+            setEarlyAdopterCardId(objFields.id.id); // MAYBE: check the object type is ...::journey::Quest
         })
         .catch( (error: any) => {
             console.warn('[fetchAndSetEarlyAdopterCard] Card not found', error.stack);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Connection, JsonRpcProvider, SuiAddress } from '@mysten/sui.js';
+import { SuiClient } from '@mysten/sui.js/client';
 import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
 import { NetworkSelector } from '@polymedia/react-components';
 import { NetworkName, isLocalhost, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
@@ -53,7 +53,7 @@ export function App()
     const [earlyAdopterCardId, setEarlyAdopterCardId] = useState<string|null|undefined>(undefined);
     const [suiError, setSuiError] = useState('');
     const [network, setNetwork] = useState<NetworkName|null>(null);
-    const [rpcProvider, setRpcProvider] = useState<JsonRpcProvider|null>(null);
+    const [suiClient, setSuiClient] = useState<SuiClient|null>(null);
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
     const { currentAccount  } = useWalletKit();
@@ -63,10 +63,10 @@ export function App()
         async function initialize() {
             const network = isLocalhost() ? loadNetwork() : 'mainnet';
             const rpcConfig = await loadRpcConfig({network, noFetch: true});
-            const rpcProvider = new JsonRpcProvider(new Connection(rpcConfig));
+            const suiClient = new SuiClient({url: rpcConfig.fullnode});
             setNetwork(network);
-            setRpcProvider(rpcProvider);
-            setProfileManager( new ProfileManager({network, rpcProvider}) );
+            setSuiClient(suiClient);
+            setProfileManager( new ProfileManager({network, suiClient}) );
             setIsInitialized(true);
         };
         initialize();
@@ -86,14 +86,14 @@ export function App()
         }
     }, [isInitialized, currentAccount]);
 
-    const fetchAndSetProfile = async (lookupAddress: SuiAddress): Promise<void> =>
+    const fetchAndSetProfile = async (lookupAddress: string): Promise<void> =>
     {
         if (!profileManager) {
             setProfile(undefined);
             return;
         }
         try {
-            const profiles: Map<SuiAddress, PolymediaProfile|null> = await profileManager.getProfiles({
+            const profiles: Map<string, PolymediaProfile|null> = await profileManager.getProfilesByOwner({
                 lookupAddresses: [lookupAddress],
                 useCache: false,
             });
@@ -114,7 +114,7 @@ export function App()
 
     if (!isInitialized
         // only checking these so TS doesn't complain
-        || !network || !rpcProvider || !profileManager) {
+        || !network || !suiClient || !profileManager) {
         return <></>;
     }
 
@@ -163,7 +163,7 @@ export function App()
     } else if (stage === 6) {
         view = <GrogExplains
                 network={network}
-                rpcProvider={rpcProvider}
+                suiClient={suiClient}
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}
@@ -174,7 +174,7 @@ export function App()
     } else if (stage === 7) {
         view = <MintEarlyAdopterCard
                 network={network}
-                rpcProvider={rpcProvider}
+                suiClient={suiClient}
                 nextStage={nextStage}
                 prevStage={prevStage}
                 profile={profile}

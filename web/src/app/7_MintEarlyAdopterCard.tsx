@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { JsonRpcProvider } from '@mysten/sui.js';
+import { SuiClient } from '@mysten/sui.js/client';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { NetworkName } from '@polymedia/webutils';
@@ -12,7 +12,7 @@ import './7_MintEarlyAdopterCard.less';
 
 export type MintEarlyAdopterCardProps = {
     network: NetworkName,
-    rpcProvider: JsonRpcProvider,
+    suiClient: SuiClient,
     nextStage: () => void,
     prevStage: () => void,
     profile: PolymediaProfile|null|undefined,
@@ -23,7 +23,7 @@ export type MintEarlyAdopterCardProps = {
 }
 export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
     network,
-    rpcProvider,
+    suiClient,
     nextStage,
     prevStage,
     profile,
@@ -58,7 +58,7 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             );
         };
         profile && createQuest({
-            rpcProvider,
+            suiClient,
             signTransactionBlock,
             network,
             profileId: profile.id,

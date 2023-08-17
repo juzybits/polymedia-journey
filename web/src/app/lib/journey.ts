@@ -1,9 +1,5 @@
-import {
-    JsonRpcProvider,
-    SuiAddress,
-    TransactionBlock,
-    TransactionEffects,
-} from '@mysten/sui.js';
+import { SuiClient, TransactionEffects } from '@mysten/sui.js/client';
+import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { WalletKitCore } from '@mysten/wallet-kit-core';
 import { NetworkName } from '@polymedia/webutils';
 
@@ -27,7 +23,7 @@ function getJourneyPackageId(network: NetworkName): string {
 }
 
 export async function createQuest({
-    rpcProvider,
+    suiClient,
     signTransactionBlock,
     network,
     profileId,
@@ -36,19 +32,19 @@ export async function createQuest({
     description,
     data,
 } : {
-    rpcProvider: JsonRpcProvider,
+    suiClient: SuiClient,
     signTransactionBlock: WalletKitCore['signTransactionBlock'],
     network: NetworkName,
-    profileId: SuiAddress,
+    profileId: string,
     questName: string,
     imageUrl: string,
     description: string,
     data: string,
-}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
+}): ReturnType<SuiClient['executeTransactionBlock']>
 {
     const tx = new TransactionBlock();
     return await moveCall({
-        rpcProvider,
+        suiClient,
         signTransactionBlock,
         tx,
         network,
@@ -64,22 +60,22 @@ export async function createQuest({
 }
 
 export async function deleteQuest({
-    rpcProvider,
+    suiClient,
     signTransactionBlock,
     network,
     profileId,
     questName,
 } : {
-    rpcProvider: JsonRpcProvider,
+    suiClient: SuiClient,
     signTransactionBlock: WalletKitCore['signTransactionBlock'],
     network: NetworkName,
-    profileId: SuiAddress,
+    profileId: string,
     questName: string,
-}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
+}): ReturnType<SuiClient['executeTransactionBlock']>
 {
     const tx = new TransactionBlock();
     return await moveCall({
-        rpcProvider,
+        suiClient,
         signTransactionBlock,
         tx,
         network,
@@ -92,20 +88,20 @@ export async function deleteQuest({
 }
 
 async function moveCall({
-    rpcProvider,
+    suiClient,
     signTransactionBlock,
     tx,
     network,
     moveFunc,
     moveArgs,
 } : {
-    rpcProvider: JsonRpcProvider,
+    suiClient: SuiClient,
     signTransactionBlock: WalletKitCore['signTransactionBlock'],
     tx: TransactionBlock,
     network: NetworkName,
     moveFunc: string,
     moveArgs: Array<any>,
-}): ReturnType<JsonRpcProvider['executeTransactionBlock']>
+}): ReturnType<SuiClient['executeTransactionBlock']>
 {
     const packageId = getJourneyPackageId(network);
 
@@ -118,7 +114,7 @@ async function moveCall({
     const signedTx = await signTransactionBlock({
         transactionBlock: tx,
     });
-    const resp = await rpcProvider.executeTransactionBlock({
+    const resp = await suiClient.executeTransactionBlock({
         transactionBlock: signedTx.transactionBlockBytes,
         signature: signedTx.signature,
         options: {
