@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SuiClient } from '@mysten/sui.js/client';
 import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
 import { NetworkSelector } from '@polymedia/react-components';
-import { NetworkName, isLocalhost, loadNetwork, loadRpcConfig } from '@polymedia/webutils';
+import { NetworkName, isLocalhost, loadNetwork, getRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
 
 import { AddressWidget } from './components/AddressWidget';
@@ -62,7 +62,7 @@ export function App()
     useEffect(() => {
         async function initialize() {
             const network = isLocalhost() ? loadNetwork() : 'mainnet';
-            const rpcConfig = await loadRpcConfig({network, noFetch: true});
+            const rpcConfig = await getRpcConfig({network, fetch: false});
             const suiClient = new SuiClient({url: rpcConfig.fullnode});
             setNetwork(network);
             setSuiClient(suiClient);
