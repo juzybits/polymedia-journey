@@ -121,8 +121,25 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 />
                 {nameError && <div className='field-error'>{nameError}</div>}
             </div>
+            <div className='field'>
+                <label className='mario' htmlFor='field-description'>
+                    DESCRIPTION
+                    <span className='field-optional'>(optional)</span>
+                </label>
+                <textarea id='field-description'
+                    className={waiting ? 'disabled' : ''}
+                    value={description}
+                    onChange={e => {
+                        setSuiError('');
+                        setDescription(e.target.value);
+                    }}
+                ></textarea>
+            </div>
             <div className={'field' + (imageError && ' error')}>
-                <label className='mario' htmlFor='field-image'>PROFILE PICTURE URL</label>
+                <label className='mario' htmlFor='field-image'>
+                    IMAGE URL
+                    <span className='field-optional'>(optional)</span>
+                </label>
                 <input type='text' id='field-image'
                     autoCorrect='off' autoComplete='off'
                     className={waiting ? 'disabled' : ''}
@@ -143,17 +160,6 @@ export const CreateProfileCard: React.FC<CreateProfileCardProps> = ({
                 />
                 {imageError && <div className='field-error'>{imageError}</div>}
                 <div className='field-info'>Right click the image, then 'Copy Image Address'. To use a picture from your device, first upload it to a service like <a href='https://imgur.com/upload' target='_blank' rel='noopener nofollow noreferrer'>imgur.com</a>, then copy the image address.</div>
-            </div>
-            <div className='field'>
-                <label className='mario' htmlFor='field-description'>DESCRIPTION / SOCIALS</label>
-                <textarea id='field-description'
-                    className={waiting ? 'disabled' : ''}
-                    value={description}
-                    onChange={e => {
-                        setSuiError('');
-                        setDescription(e.target.value);
-                    }}
-                ></textarea>
             </div>
             <button type='submit'
                 className={'btn'+(waiting||hasFormErrors ? ' disabled' : '')}

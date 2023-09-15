@@ -25,21 +25,21 @@ export const GrogBye: React.FC<GrogByeProps> = ({
             <img src={imgWizardBrown} alt='wizard' />
         </div>
         <div>
-            <p className='paragraph dialog fade-in-1'>
-                All done! You can find your Explorer card as a <i>dynamic field</i> inside <a href={profileUrl} target='_blank' rel='noopener'>your profile</a>.
-            </p>
-            <p className='paragraph dialog fade-in-2'>
-                Better <a href={tweetHref} target='_blank' rel='noopener'>let Polymedia know</a> that you made it this far, they will be happy to hear from you. Follow <a href='https://twitter.com/polymedia_app' target='_blank' rel='noopener'>@polymedia_app</a> to stay up to date!
-            </p>
-            <p className='paragraph dialog fade-in-3'>
-                Now, why don't you get some rest. There is a guest room ready for you upstairs. We will talk more in the morning, before you continue the Journey to Mount Sogol.
-            </p>
-
+            <div className='text-wrap'>
+                <p className='paragraph dialog fade-in-1'>
+                    All done! You can find your Explorer card as a <i>dynamic field</i> inside <a href={profileUrl} target='_blank' rel='noopener'>your profile</a>.
+                </p>
+                <p className='paragraph dialog fade-in-2'>
+                    Better <a href={tweetHref} target='_blank' rel='noopener'>let Polymedia know</a> that you made it this far, they will be happy to hear from you. Follow <a href='https://twitter.com/polymedia_app' target='_blank' rel='noopener'>@polymedia_app</a> to stay up to date!
+                </p>
+                <p className='paragraph dialog fade-in-3'>
+                    Now, why don't you get some rest. There is a guest room ready for you upstairs. We will talk more in the morning, before you continue the Journey to Mount Sogol.
+                </p>
+            </div>
             <button className='btn fade-in-4 last'
                     onClick={() => window.open('https://chat.polymedia.app/@sui-fans?network='+network, '_blank')}>
                 GO TO LOBBY
             </button>
-
         </div>
     </div>;
 }

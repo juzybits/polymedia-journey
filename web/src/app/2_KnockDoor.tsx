@@ -74,15 +74,17 @@ export const KnockDoor: React.FC<{
 
     const Intro = () => {
         return <div className='intro'>
-            <h1 className='mario title fade-in-1'>TWO</h1>
-            <p className='paragraph narrator fade-in-2'>
-                The door to The Invisible, you've come so far!
-                Your second challenge, your journey's next part.
-            </p>
-            <p className='paragraph narrator fade-in-3'>
-                The entrance is blocked, it won't budge or yield.
-                Demonstrate your tenacity, and let the journey reveal.
-            </p>
+            <div className='text-wrap'>
+                <h1 className='mario title fade-in-1'>TWO</h1>
+                <p className='paragraph narrator fade-in-2'>
+                    The door to The Invisible, you've come so far!
+                    Your second challenge, your journey's next part.
+                </p>
+                <p className='paragraph narrator fade-in-3'>
+                    The entrance is blocked, it won't budge or yield.
+                    Demonstrate your tenacity, and let the journey reveal.
+                </p>
+            </div>
             <button className='btn fade-in-4 last' onClick={onClickStart}>I'm ready</button>
         </div>;
     };

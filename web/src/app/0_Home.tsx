@@ -44,16 +44,18 @@ export function Home(props: any) {
 
     const Castle = () => {
         return <div className='act-castle'>
-            <h1 className='mario title fade-in-1'>THE CASTLE</h1>
-            <p className='home-description paragraph dialog fade-in-2'>
-                <i>“The door to The Invisible must be visible”</i>, that's what the Professor used to say. For a long time I wondered what he meant...
-            </p>
-            <p className='home-description paragraph dialog fade-in-3'>
-                Eventually I learned about “Le Château Invisible”, a medieval castle deep in the Alps that the locals had nicknamed “The Invisible Castle”, due to its unexplained origins.
-            </p>
-            <p className='home-description paragraph dialog fade-in-4'>
-                The castle's remote location makes it only accessible by foot, and it took me a <i>looong</i> time to get here. But I found it, I finally found it!
-            </p>
+            <div className='text-wrap'>
+                <h1 className='mario title fade-in-1'>THE CASTLE</h1>
+                <p className='home-description paragraph dialog fade-in-2'>
+                    <i>“The door to The Invisible must be visible”</i>, that's what the Professor used to say. For a long time I wondered what he meant...
+                </p>
+                <p className='home-description paragraph dialog fade-in-3'>
+                    Eventually I learned about “Le Château Invisible”, a medieval castle deep in the Alps that the locals had nicknamed “The Invisible Castle”, due to its unexplained origins.
+                </p>
+                <p className='home-description paragraph dialog fade-in-4'>
+                    The castle's remote location makes it only accessible by foot, and it took me a <i>looong</i> time to get here. But I found it, I finally found it!
+                </p>
+            </div>
             <button className='btn fade-in-5' onClick={props.nextStage}>
                 LET'S GO! 💪
             </button>

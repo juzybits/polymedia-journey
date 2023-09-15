@@ -92,18 +92,20 @@ export const FindDoor: React.FC<{
 
     const Intro = () => {
         return <div className='intro'>
-            <h1 className='mario title fade-in-1'>ONE</h1>
-            <p className='paragraph narrator fade-in-2'>
-                You arrive to the castle wall.
-            </p>
-            <p className='paragraph narrator fade-in-3'>
-                As it turns out, the door to The Invisible may be visible, but it's not easy to find...
-                Not because you cannot see it, but because it's hiding in plain sight.
-            </p>
-            <p className='paragraph narrator fade-in-4'>
-                Your first challenge will be to prove your perspicacious mind:
-                pick the door that stands apart from all the other doors you'll find.
-            </p>
+            <div className='text-wrap'>
+                <h1 className='mario title fade-in-1'>ONE</h1>
+                <p className='paragraph narrator fade-in-2'>
+                    You arrive to the castle wall.
+                </p>
+                <p className='paragraph narrator fade-in-3'>
+                    As it turns out, the door to The Invisible may be visible, but it's not easy to find...
+                    Not because you cannot see it, but because it's hiding in plain sight.
+                </p>
+                <p className='paragraph narrator fade-in-4'>
+                    Your first challenge will be to prove your perspicacious mind:
+                    pick the door that stands apart from all the other doors you'll find.
+                </p>
+            </div>
             <button className='btn last fade-in-5' onClick={onClickStart} >I'm ready</button>
         </div>;
     };
