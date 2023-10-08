@@ -113,6 +113,7 @@ async function moveCall({
 
     const signedTx = await signTransactionBlock({
         transactionBlock: tx,
+        chain: `sui:${network}`,
     });
     const resp = await suiClient.executeTransactionBlock({
         transactionBlock: signedTx.transactionBlockBytes,
