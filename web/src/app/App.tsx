@@ -15,8 +15,10 @@ import { ShowProfileCard } from './5_ShowProfileCard';
 import { GrogExplains } from './6_GrogExplains';
 import { MintEarlyAdopterCard } from './7_MintEarlyAdopterCard';
 import { GrogBye } from './8_GrogBye';
-
 import './App.less';
+
+import { registerSuiSnapWallet } from "@kunalabs-io/sui-snap-wallet";
+registerSuiSnapWallet();
 
 // import FingerprintJS from '@fingerprintjs/fingerprintjs';
 // const fingerprintPromise = FingerprintJS.load({monitoring: false});
