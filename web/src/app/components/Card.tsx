@@ -5,7 +5,6 @@ import { linkToExplorer } from '@polymedia/webutils';
 import { isImageUrl, shorten } from '../lib/common';
 import './Card.less';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
-import imgLogo from '../../img/polymedia_logo.png';
 
 export function Card(props: any)
 {
@@ -75,7 +74,7 @@ export function Card(props: any)
 
     <div className='card back'>
         <div className='card-back-frame'>
-            <img src={imgLogo} className="polymedia-logo" alt='polymedia logo' />
+            <img src='https://assets.polymedia.app/img/all/logo-nomargin-transparent-512x512.webp' className='polymedia-logo' alt='polymedia logo' />
             <div className='card-back-info'>
                 &nbsp;&nbsp;&nbsp;Owner: {<a href={linkToExplorer(props.network, 'address', profile.owner)} target='_blank' rel='noopener'>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
                 &nbsp;Profile: {<a href={linkToExplorer(props.network, 'object', profile.id)} target='_blank' rel='noopener'>{shorten(profile.id, 14, 14, '...')}</a>}<br/>

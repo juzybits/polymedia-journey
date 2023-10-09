@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import imgBgCastleSunset from '../img/bg-castle-sunset.webp';
 import imgBgCastleWall from '../img/bg-castle-wall.webp';
-import imgLogo from '../img/polymedia_logo.png';
 import './0_Home.less';
 
 export function Home(props: any) {
@@ -25,7 +24,7 @@ export function Home(props: any) {
 
     const Stars = () => {
         return <div className='act-stars'>
-            <a id='polymedia-logo' href='https://polymedia.app/' target='_blank' rel='noopener'><img src={imgLogo} alt='about' /></a>
+            <a id='polymedia-logo' href='https://polymedia.app/' target='_blank' rel='noopener'><img src='https://assets.polymedia.app/img/all/logo-nomargin-transparent-512x512.webp' alt='Polymedia logo' /></a>
             <h1 className='mario home-title title fade-in-1'><span className='prefix'>Journey to</span>Mount Sogol</h1>
             <p className='home-description paragraph narrator fade-in-2'>
                 Explorers beware: The Journey to Mount Sogol is a peculiar one, because the destination is not a geographical place. That is not to say it's not <i>real</i>.
