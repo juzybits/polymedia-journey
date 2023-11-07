@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
-import { linkToExplorer } from '@polymedia/webutils';
-
-import { isImageUrl, shorten } from '../lib/common';
-import './Card.less';
+import { linkToExplorer, shortenAddress } from '@polymedia/webutils';
+import { useEffect, useState } from 'react';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
+import { isImageUrl } from '../lib/common';
+import './Card.less';
 
 export function Card(props: any)
 {
@@ -49,7 +48,7 @@ export function Card(props: any)
 
                 <header className='card-type'>
                     <div className='title-wrapper'>
-                        <h2>{shorten(profile.owner, 14, 14, '...')}</h2>
+                        <h2>{shortenAddress(profile.owner, 12, 14, '0x', '...')}</h2>
                     </div>
                 </header>
                 <div className='textBox'>
@@ -62,8 +61,8 @@ export function Card(props: any)
                 </header>
 
                 <footer>
-                    <p>{shorten(profile.id)}<br />
-                    {shorten(props.registryId)}</p>
+                    <p>{shortenAddress(profile.id, 4, 4, '0x')}<br />
+                    {shortenAddress(props.registryId, 4, 4, '0x')}</p>
                     <h6>2023 Polymedia</h6>
                 </footer>
 
@@ -76,9 +75,9 @@ export function Card(props: any)
         <div className='card-back-frame'>
             <img src='https://assets.polymedia.app/img/all/logo-nomargin-transparent-512x512.webp' className='polymedia-logo' alt='polymedia logo' />
             <div className='card-back-info'>
-                &nbsp;&nbsp;&nbsp;Owner: {<a href={linkToExplorer(props.network, 'address', profile.owner)} target='_blank' rel='noopener'>{shorten(profile.owner, 14, 14, '...')}</a>}<br/>
-                &nbsp;Profile: {<a href={linkToExplorer(props.network, 'object', profile.id)} target='_blank' rel='noopener'>{shorten(profile.id, 14, 14, '...')}</a>}<br/>
-                Registry: {<a href={linkToExplorer(props.network, 'object', props.registryId)} target='_blank' rel='noopener'>{shorten(props.registryId, 14, 14, '...')}</a>}<br/>
+                &nbsp;&nbsp;&nbsp;Owner: {<a href={linkToExplorer(props.network, 'address', profile.owner)} target='_blank' rel='noopener'>{shortenAddress(profile.owner, 12, 14, '0x', '...')}</a>}<br/>
+                &nbsp;Profile: {<a href={linkToExplorer(props.network, 'object', profile.id)} target='_blank' rel='noopener'>{shortenAddress(profile.id, 12, 14, '0x', '...')}</a>}<br/>
+                Registry: {<a href={linkToExplorer(props.network, 'object', props.registryId)} target='_blank' rel='noopener'>{shortenAddress(props.registryId, 12, 14, '0x', '...')}</a>}<br/>
             </div>
         </div>
     </div>

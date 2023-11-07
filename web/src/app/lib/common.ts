@@ -1,10 +1,5 @@
 // Miscellaneous convenience functions and constants
 
-// Transform a long string like "startXXXXXXend" into "start...end"
-export function shorten(text: string, start=6, end=4, separator='..'): string {
-    return !text ? '' : text.slice(0, start) + separator + (end?text.slice(-end):'')
-}
-
 // Check if an image exists behind a given URL
 export function isImageUrl(imageUrl: string): Promise<boolean> {
     return new Promise<boolean>((resolve, _reject) => {
