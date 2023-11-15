@@ -87,10 +87,10 @@ module polymedia_journey::journey
                 utf8(b"creator"),
             ], vector[
                 utf8(b"{name}"),
-                utf8(b"{image_url}"),
+                utf8(b"https://journey.polymedia.app/img/card_explorer.webp"),
                 utf8(b"{description}"),
-                utf8(b"https://mountsogol.com"),
-                utf8(b"https://mountsogol.com"),
+                utf8(b"https://journey.polymedia.app"),
+                utf8(b"https://journey.polymedia.app"),
                 utf8(b"https://polymedia.app")
             ], ctx
         );
