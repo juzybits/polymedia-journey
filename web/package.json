@@ -1,7 +1,23 @@
 {
+    "private": true,
+    "version": "0.0.0",
     "name": "@polymedia/journey-web",
     "author": "@juzybits (https://polymedia.app)",
-    "private": true,
+    "homepage": "https://journey.polymedia.app",
+    "description": "Point-and-click mini game on Sui.",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/juzybits/polymedia-journey"
+    },
+    "keywords": [],
+    "scripts": {
+        "clean": "rm -rf .parcel-cache/ dist/",
+        "lint": "eslint ./src --ext .ts,.tsx",
+        "serve": "pnpm clean && parcel src/index.html",
+        "build": "pnpm clean && parcel build --no-source-maps src/index.html && cp src/static/* dist/ && cp src/img/card_* dist/img/",
+        "deploy-prod": "pnpm build && wrangler pages publish dist/ --project-name polymedia-journey --branch main"
+    },
     "dependencies": {
         "@kunalabs-io/sui-snap-wallet": "latest",
         "@mysten/sui.js": "latest",
@@ -26,12 +42,5 @@
         "parcel": "latest",
         "process": "latest",
         "react-devtools": "latest"
-    },
-    "scripts": {
-        "clean": "rm -rf .parcel-cache/ dist/",
-        "lint": "eslint ./src --ext .ts,.tsx",
-        "serve": "pnpm clean && parcel src/index.html",
-        "build": "pnpm clean && parcel build --no-source-maps src/index.html && cp src/static/* dist/ && cp src/img/card_* dist/img/",
-        "deploy-prod": "pnpm build && wrangler pages publish dist/ --project-name polymedia-journey --branch main"
     }
 }
