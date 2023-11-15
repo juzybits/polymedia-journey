@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { NetworkName, linkToExplorer } from '@polymedia/webutils';
-
 import imgWizardBrown from '../img/wizard_brown.webp';
-import './8_GrogBye.less';
 
 export type GrogByeProps = {
     network: NetworkName,

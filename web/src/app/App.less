@@ -1,4 +1,9 @@
-@import './variables.less';
+/* Constants */
+
+@cursor-default: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABFklEQVRYR9WXURLDIAhE6/0PbSdOtUpcd1Gnpv1KGpTHBpCE1/cXq+vrMph7dGvXZTtpfW10DCA5jrH1H0Jhs5E0hnZdCR+vb5S8Nn8mQCeS9BdSalYJqMBjAGzq59xAESN7VFVUgV8AZB/dZBR7QTFDCqGquvUBVVoEtgIwpQRzmANSFHgWQKExHdIrPeuMvQNDarXe6nC/AutgV3JW+6bgqQLeV8FekRtgV+ToDKEKnACYKsfZjjkam7a0ZpYTytwmgainpC3HvwBocgKOxqRjehoR9DFKNFYtOwCGYCszobeCbl26N6yyQ6g8X/Wex/rBPsNEV6qAMaJPMynIHQCoSqS9JSMmwef51LflTgCRszU7DvAGiV6mHWfsaVUAAAAASUVORK5CYII=), auto;
+@cursor-pointer: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
+
+/* Fonts */
 
 @font-face {
     font-family: 'SuperMario256';
@@ -11,6 +16,8 @@
     src: url(../fonts/Righteous-Regular.ttf) format('truetype');
     font-display: swap;
 }
+
+/* Common */
 
 :root {
     --bg-body: #000;
@@ -287,4 +294,292 @@ input, textarea {
   to {
     opacity: 1;
   }
+}
+
+/* 0_Home */
+
+#page.home {
+    text-align: center;
+    font-family: 'Times New Roman';
+    .home-title {
+        color: yellow;
+        font-size: 5.5rem;
+        padding: 0 1rem;
+        @media (max-width: 500px) {
+            font-size: 4.8rem;
+        }
+        .prefix {
+            display: block;
+            font-size: 0.7em;
+            margin-bottom: 0.2em;
+        }
+        text-shadow:
+            -1px 0px black,
+            0px -1px black,
+            1px 0px black,
+            0px 1px black,
+            6px 6px red;
+    }
+    #polymedia-logo {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        height: 2em;
+        img {
+            height: 2em;
+            opacity: 0.9;
+            &:hover {
+                opacity: 1;
+                filter: brightness(1.16);
+                cursor: @cursor-pointer;
+            }
+        }
+    }
+}
+
+/* 1_FindDoor */
+
+#page.find-door {
+    .door-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr)); // 4 columns
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr)); // 3 columns
+        }
+        text-align: center;
+        .door-wrap {
+            img {
+                height: 31vh; // 3 rows
+                @media screen and (max-width: 900px) {
+                    height: 22vh; // 4 rows
+                }
+                margin: 0.5em 0;
+            }
+            &.tried {
+                opacity: 0.5;
+            }
+            &:not(.tried) {
+                &:hover {
+                    filter: brightness(1.1);
+                }
+            }
+        }
+    }
+    .modal {
+        .guess-result {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6em;
+            @media screen and (max-width: 520px) {
+                font-size: 4em;
+            }
+        }
+        .guess-result-note {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.3em;
+        }
+
+    }
+}
+
+/* 2_KnockDoor */
+
+#page.knock-door {
+    #door-container {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        padding-top: 2em;
+        text-align: center;
+        .door-wrap {
+            .door {
+                width: 100%;
+                &:hover {
+                    filter: brightness(1.1);
+                }
+            }
+        }
+        .torch-wrap {
+            .torch {
+                width: 100%;
+            }
+        }
+    }
+    .speech-bubble {
+        cursor: var(--cursor-default);
+        background: #fff;
+        border-radius: 40px;
+        color: #000;
+        font-family: sans-serif;
+        font-size: 1.125em;
+        left: 50%;
+        line-height: 1.5rem;
+        padding: 24px;
+        position: absolute;
+        text-align: center;
+        top: 1em;
+        transform: translateX(-50%);
+        min-width: 280px;
+        max-width: 380px;
+        box-sizing: border-box;
+    }
+
+    .speech-bubble:before {
+        border-top: 12px solid #fff;
+        border-right: 12px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 24px solid #fff;
+        bottom: -24px;
+        content: "";
+        height: 0px;
+        left: 32px;
+        position: absolute;
+        width: 0px;
+    }
+}
+
+/* 3_MeetGrog */
+
+#page.meet-grog {
+    text-align: center;
+    .wizard-text {
+        p {
+            margin-bottom: 1em;
+        }
+    }
+
+}
+
+/* 4_CreateProfileCard */
+
+#page.create-profile-card {
+    .loading {
+        font-size: 3em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        margin-top: 2em;
+        text-align: center;
+        max-width: 500px;
+        font-size: 2em;
+        .field {
+            margin-bottom: 2em;
+            label, input, textarea {
+                box-sizing: border-box;
+                display: block;
+                width: 100%;
+            }
+            label {
+                margin-bottom: 0.2em;
+            }
+            &.error input {
+                border-color: red;
+            }
+        }
+        .field-error, .field-info {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 0.5em;
+            display: table;
+            margin-bottom: 0.15em;
+            margin-top: 0.15em;
+            padding: 0.1em 0.3em;
+        }
+        .field-error {
+            color: red;
+            font-size: 0.6em;
+            text-align: left;
+        }
+        .field-info {
+            font-style: italic;
+            font-size: 0.5em;
+        }
+        .field-optional {
+            font-size: 0.55em;
+            margin-left: 0.5em;
+            color: #ddd;
+        }
+    }
+}
+
+/* 5_ShowProfileCard */
+
+#page.show-profile-card {
+    .profile-card {
+        margin: 1rem 0;
+    }
+    .action-buttons {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        .btn {
+            margin: 1rem auto;
+            @media (max-width: 400px) {
+                transform: scale(0.9);
+            }
+        }
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* 6_GrogExplains */
+
+#page.grog-explains {
+    text-align: center;
+    .profile-usecases {
+        background-color: transparent;
+        max-width: 800px;
+        padding: 0;
+        a {
+            border-radius: 1rem;
+            color: var(--text-color);
+            display: block;
+            margin-bottom: 1rem;
+            text-align: left;
+            text-decoration: none;
+            img {
+                border-radius: inherit;
+                border: 6px solid black;
+                display: block;
+                max-width: 100%;
+                &:hover {
+                    cursor: var(--cursor-pointer);
+                }
+            }
+        }
+    }
+}
+
+/* 7_MintEarlyAdopterCard */
+
+#page.mint-early-adopter-card {
+    text-align: center;
+    .card {
+        max-width: 800px;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 1rem;
+        margin-top: 1em;
+        img {
+            border-radius: inherit;
+            max-width: 80%;
+        }
+    }
+}
+
+/* 8_GrogBye */
+
+#page.grog-bye {
+    text-align: center;
 }

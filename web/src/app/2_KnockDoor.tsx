@@ -7,8 +7,6 @@ import imgTorch from '../img/torch.gif';
 import imgBgLibrary from '../img/bg-library.webp';
 import imgWizardBrown from '../img/wizard_brown.webp';
 
-import './2_KnockDoor.less';
-
 export const KnockDoor: React.FC<{
     nextStage: () => void,
     quest: Quest,

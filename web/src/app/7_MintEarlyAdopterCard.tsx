@@ -3,12 +3,10 @@ import { SuiClient } from '@mysten/sui.js/client';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { NetworkName } from '@polymedia/webutils';
-
 import { Quest } from './App';
 import { createQuest } from './lib/journey';
-import imgWizardBrown from '../img/wizard_brown.webp';
 import imgCardExplorer from '../img/card_explorer.webp';
-import './7_MintEarlyAdopterCard.less';
+import imgWizardBrown from '../img/wizard_brown.webp';
 
 export type MintEarlyAdopterCardProps = {
     network: NetworkName,

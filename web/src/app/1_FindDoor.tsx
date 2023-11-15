@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-
 import { Quest } from './App';
+import imgBgBricks from '../img/bg-bricks.webp';
 import imgDoorClosed from '../img/door_closed.webp';
 import imgDoorClosedDiff from '../img/door_closed_diff.webp';
-import imgBgBricks from '../img/bg-bricks.webp';
-
-import './1_FindDoor.less';
 
 export const FindDoor: React.FC<{
     nextStage: () => void,

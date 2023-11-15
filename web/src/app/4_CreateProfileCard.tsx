@@ -1,9 +1,7 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
-import { useWalletKit, ConnectModal } from '@mysten/wallet-kit';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { ConnectModal, useWalletKit } from '@mysten/wallet-kit';
 import { PolymediaProfile, ProfileManager } from '@polymedia/profile-sdk';
-
 import { isImageUrl } from './lib/common';
-import './4_CreateProfileCard.less';
 
 export type CreateProfileCardProps = {
     nextStage: () => void,

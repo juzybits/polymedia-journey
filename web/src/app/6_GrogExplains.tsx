@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import { SuiClient, SuiMoveObject, SuiObjectResponse } from '@mysten/sui.js/client';
 import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { NetworkName } from '@polymedia/webutils';
-
-import imgWizardBrown from '../img/wizard_brown.webp';
 import imgExampleChat from '../img/profile_example_chat.webp';
 import imgExampleGotbeef from '../img/profile_example_gotbeef.webp';
-import './6_GrogExplains.less';
+import imgWizardBrown from '../img/wizard_brown.webp';
 
 export type GrogExplainsProps = {
     network: NetworkName,

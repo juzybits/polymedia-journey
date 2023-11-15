@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-
 import imgBgCastleSunset from '../img/bg-castle-sunset.webp';
 import imgBgCastleWall from '../img/bg-castle-wall.webp';
-import './0_Home.less';
 
 export function Home(props: any) {
 
