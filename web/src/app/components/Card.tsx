@@ -2,7 +2,7 @@ import { PolymediaProfile } from '@polymedia/profile-sdk';
 import { linkToExplorer, shortenAddress } from '@polymedia/webutils';
 import { useEffect, useState } from 'react';
 import imgGhostPfp from '../../img/ghost_pfp.webp';
-import { isImageUrl } from '../lib/common';
+import { isImageUrl } from '../lib/utils';
 import './Card.less';
 
 export function Card(props: any)
