@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SuiClient } from '@mysten/sui.js/client';
-import { WalletKitProvider, useWalletKit } from '@mysten/wallet-kit';
+import { useWalletKit } from '@mysten/wallet-kit';
 import { NetworkSelector } from '@polymedia/react-components';
 import { NetworkName, isLocalhost, loadNetwork, getRpcConfig } from '@polymedia/webutils';
 import { ProfileManager, PolymediaProfile } from '@polymedia/profile-sdk';
@@ -22,9 +22,6 @@ registerSuiSnapWallet();
 
 // import FingerprintJS from '@fingerprintjs/fingerprintjs';
 // const fingerprintPromise = FingerprintJS.load({monitoring: false});
-
-export const AppWrap: React.FC = () =>
-    <WalletKitProvider><App /></WalletKitProvider>;
 
 export type Quest = {
     // fingerprint: string;
