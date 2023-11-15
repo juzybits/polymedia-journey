@@ -1,7 +1,9 @@
-# journey.polymedia.app website
+# Journey to Mount Sogol: web app
 
-## How to run locally
+This is the code for https://journey.polymedia.app
+
+## Local development
 ```
-pnpm i
+pnpm install
 pnpm serve
 ```
