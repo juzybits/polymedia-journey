@@ -51,7 +51,7 @@ export function App()
     const [profileManager, setProfileManager] = useState<ProfileManager|null>(null);
     const [isInitialized, setIsInitialized] = useState(false);
     const { currentAccount  } = useWalletKit();
-    const showNetworkSelector = isLocalhost();
+    const showNetworkSelector = !isLocalhost();
 
     useEffect(() => {
         async function initialize() {

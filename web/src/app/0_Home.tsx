@@ -4,7 +4,7 @@ import imgBgCastleWall from '../img/bg-castle-wall.webp';
 
 export function Home(props: any) {
 
-    const [act, setAct] = useState('0_stars');
+    const [act, setAct] = useState('1_castle');
 
     useEffect(() => {
         document.body.className = 'bg-stars';
@@ -40,6 +40,10 @@ export function Home(props: any) {
     };
 
     const Castle = () => {
+        return <div className='act-stars'>
+            <a id='polymedia-logo' href='https://polymedia.app/' target='_blank' rel='noopener'><img src='https://assets.polymedia.app/img/all/logo-nomargin-transparent-512x512.webp' alt='Polymedia logo' /></a>
+            <h1 className='mario home-title title fade-in-1'><span className='prefix'>Journey to</span>Mount Sogol</h1>
+        </div>;
         return <div className='act-castle'>
             <div className='text-wrap'>
                 <h1 className='mario title fade-in-1'>THE CASTLE</h1>
