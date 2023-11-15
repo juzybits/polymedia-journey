@@ -66,7 +66,6 @@ export const MintEarlyAdopterCard: React.FC<MintEarlyAdopterCardProps> = ({
             imageUrl: 'https://journey.polymedia.app/img/card_explorer.webp',
             description: 'The door to the invisible must be visible',
             data: JSON.stringify({
-                // fp: quest.fingerprint,
                 ch: Number(isCheater(quest)),
                 c1: quest.findDoorClicks,
                 t1: quest.findDoorEnd - quest.findDoorStart,

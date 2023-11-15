@@ -20,11 +20,7 @@ import './App.less';
 import { registerSuiSnapWallet } from "@kunalabs-io/sui-snap-wallet";
 registerSuiSnapWallet();
 
-// import FingerprintJS from '@fingerprintjs/fingerprintjs';
-// const fingerprintPromise = FingerprintJS.load({monitoring: false});
-
 export type Quest = {
-    // fingerprint: string;
     cheat: boolean;
     findDoorStart: number;
     findDoorEnd: number;
@@ -35,7 +31,6 @@ export type Quest = {
 }
 
 const quest: Quest = {
-    // fingerprint: '',
     cheat: false,
     findDoorStart: 0,
     findDoorEnd: 0,
@@ -69,11 +64,6 @@ export function App()
             setIsInitialized(true);
         };
         initialize();
-        // fingerprintPromise
-        // .then(agent => agent.get())
-        // .then(result => {
-        //     quest.fingerprint = result.visitorId;
-        // });
     }, []);
 
     useEffect(() => {
