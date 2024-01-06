@@ -17,9 +17,6 @@ import { MintEarlyAdopterCard } from './7_MintEarlyAdopterCard';
 import { GrogBye } from './8_GrogBye';
 import './App.less';
 
-import { registerSuiSnapWallet } from "@kunalabs-io/sui-snap-wallet";
-registerSuiSnapWallet();
-
 export type Quest = {
     cheat: boolean;
     findDoorStart: number;

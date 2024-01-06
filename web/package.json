@@ -19,7 +19,6 @@
         "deploy-prod": "pnpm build && wrangler pages publish dist/ --project-name polymedia-journey --branch main"
     },
     "dependencies": {
-        "@kunalabs-io/sui-snap-wallet": "latest",
         "@mysten/sui.js": "latest",
         "@mysten/wallet-kit": "latest",
         "@mysten/wallet-kit-core": "latest",
