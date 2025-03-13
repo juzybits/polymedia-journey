@@ -6,9 +6,9 @@ published-at = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26
 # published-at = "0x5c02213542193c406884e918d0c39051d61a2cd896c887f8dd2d39daf3dee8d8" # testnet
 
 [dependencies]
-# Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet" }
-Sui = { local = "../../sui/crates/sui-framework/packages/sui-framework" }
-PolymediaProfile = { local = "../../polymedia-profile/sui" }
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }
+# Sui = { local = "../../../../sui/crates/sui-framework/packages/sui-framework" }
+PolymediaProfile = { local = "../../profile/src/sui" }
 
 [addresses]
 polymedia_journey = "0x7c423c0f1ab19c99155c24e98fdb971453b699c90ab579b23b38103060ea26db" # mainnet
